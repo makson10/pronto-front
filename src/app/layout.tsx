@@ -1,10 +1,13 @@
 import './globals.css';
+import axios from 'axios';
 
 export default function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
+	axios.defaults.withCredentials = true;
+
 	return (
 		<html lang="en">
 			<head>
