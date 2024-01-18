@@ -5,7 +5,17 @@ export interface SignUpUser {
 	password: string;
 }
 
-export interface User {
+export interface LoginUser {
 	email: string;
 	password: string;
 }
+
+export type FullUser = {
+	id: number;
+	firstName: string;
+	lastName: string;
+	fullName: string;
+	createdAt: string;
+	email: string;
+	password: string;
+};

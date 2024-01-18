@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { object, string } from 'yup';
 import PasswordRequirementsHintButton from '@/components/PasswordRequirementsHint';
 import ChangePasswordVisibilityButton from '@/components/ChangePasswordVisibilityButton';
-import { User } from '@/types/userTypes';
+import { LoginUser } from '@/types/userTypes';
 import axios from 'axios';
 import { getSession } from 'next-auth/react';
 
@@ -21,14 +21,8 @@ const formValidator = object({
 export default function LogInForm() {
 	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
 
-	const sendLogInRequest = async (user: User) => {
-		await axios.post(
-			process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/user/login',
-			{
-				user,
-			}
-		);
-		// make error handle
+	const sendLogInRequest = async (user: LoginUser) => {
+		await axios.post('/api/login', { user });
 	};
 
 	return (

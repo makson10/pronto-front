@@ -23,8 +23,7 @@ export default function SignUpForm() {
 	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
 
 	const sendSignUpRequest = async (user: SignUpUser) => {
-		await axios.post('/api/setSession', { user }).then(console.log);
-		await axios.get('/api/setSession').then(console.log);
+		await axios.post('/api/signup', { user });
 	};
 
 	return (
