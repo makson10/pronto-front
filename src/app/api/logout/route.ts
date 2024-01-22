@@ -17,6 +17,7 @@ export async function POST() {
 
 const sendLogOutRequest = async () => {
 	const sessionId = getSessionIdFromCookie();
+	if (!sessionId) throw new Error('No session id given');
 	const cookieForSending = formCookieForSending(sessionId);
 
 	return await axios.post(

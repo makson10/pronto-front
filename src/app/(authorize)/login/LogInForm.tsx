@@ -105,7 +105,7 @@ export default function LogInForm() {
 						type="submit"
 						disabled={isSubmitting}
 						style={SubmitButtonStyle}>
-						Sign up
+						Log In
 					</button>
 				</Form>
 			)}
