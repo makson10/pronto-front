@@ -5,13 +5,7 @@ export const initialValues = {
 	user: null,
 };
 
-// export const storeFunctions = (set: SetFunctionType) => {
-// 	return {
-// 		setInitialValues: () => set((state) => (state = initialValues)),
-// 	};
-// };
-
 export const store = create<Store>((set) => ({
 	...initialValues,
-	// setInitialValues: () => set((state) => (state = initialValues)),
+	setInitialValues: () => set(initialValues),
 }));

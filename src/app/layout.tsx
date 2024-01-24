@@ -25,3 +25,5 @@ export default async function RootLayout({
 		</html>
 	);
 }
+
+// make setting user data up after signup/login

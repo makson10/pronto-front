@@ -5,8 +5,8 @@ import { object, string } from 'yup';
 import PasswordRequirementsHintButton from '@/components/PasswordRequirementsHint';
 import ChangePasswordVisibilityButton from '@/components/ChangePasswordVisibilityButton';
 import { LoginUser } from '@/types/userTypes';
+import usePageNavigation from '@/hooks/usePageNavigation';
 import axios from 'axios';
-import { getSession } from 'next-auth/react';
 
 const formValidator = object({
 	email: string().email('Email is not valid'),
@@ -19,6 +19,7 @@ const formValidator = object({
 });
 
 export default function LogInForm() {
+	const { goToHomePage } = usePageNavigation();
 	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
 
 	const sendLogInRequest = async (user: LoginUser) => {
@@ -36,6 +37,7 @@ export default function LogInForm() {
 				setTimeout(() => {
 					console.log(values);
 					sendLogInRequest(values);
+					goToHomePage();
 					setSubmitting(false);
 				}, 200);
 			}}>

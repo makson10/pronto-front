@@ -1,12 +1,10 @@
 'use client';
-import { store, initialValues } from '@/context/store';
-import axios from 'axios';
+import LogOutButton from '@/components/LogOutButton';
 
 export default function LogOut() {
-	const handleClick = async () => {
-		await axios.post('/api/logout').then(console.log);
-		store.setState(initialValues);
-	};
-
-	return <button onClick={handleClick}>Fuck u</button>;
+	return (
+		<div className="flex-[2_1_auto] flex flex-col justify-center items-center">
+			<LogOutButton />
+		</div>
+	);
 }

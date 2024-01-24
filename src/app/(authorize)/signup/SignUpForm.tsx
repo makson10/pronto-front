@@ -1,10 +1,11 @@
 'use client';
 import { Form, Formik } from 'formik';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { object, string } from 'yup';
 import PasswordRequirementsHintButton from '@/components/PasswordRequirementsHint';
 import ChangePasswordVisibilityButton from '@/components/ChangePasswordVisibilityButton';
 import { SignUpUser } from '@/types/userTypes';
+import usePageNavigation from '@/hooks/usePageNavigation';
 import axios from 'axios';
 
 const formValidator = object({
@@ -20,6 +21,7 @@ const formValidator = object({
 });
 
 export default function SignUpForm() {
+	const { goToHomePage } = usePageNavigation();
 	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
 
 	const sendSignUpRequest = async (user: SignUpUser) => {
@@ -39,6 +41,7 @@ export default function SignUpForm() {
 				setTimeout(async () => {
 					console.log(values);
 					await sendSignUpRequest(values);
+					goToHomePage();
 					setSubmitting(false);
 				}, 200);
 			}}>

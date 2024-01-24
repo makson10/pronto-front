@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import { CookieSerializeOptions } from 'cookie';
 import * as cookie from 'cookie';
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 
 export const sessionCookieOptions: CookieSerializeOptions = {
 	secure: process.env.NODE_ENV === 'production',
@@ -38,11 +38,20 @@ export const getUserData = async () => {
 	if (!sessionId) return null;
 	const cookieForSending = formCookieForSending(sessionId);
 
-	const user = await axios.post(
+	const req = await fetch(
 		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/user/getuserdata',
-		null,
-		{ headers: { Cookie: cookieForSending } }
+		{
+			method: 'POST',
+			credentials: 'include',
+			headers: {
+				'Content-Type': 'application/json',
+				Cookie: cookieForSending,
+			},
+			// cache: 'force-cache',
+			next: { revalidate: 3600, tags: ['getUserRequest'] },
+		}
 	);
 
-	return user.data;
+	const user = await req.json();
+	return user;
 };
