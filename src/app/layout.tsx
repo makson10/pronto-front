@@ -1,4 +1,5 @@
-import './globals.css';
+import '@/styles/globals.css';
+import '@/styles/variables.css';
 import { getUserData } from './api/sessionUtils';
 import StoreInitializer from '@/context/StoreInitializer';
 
@@ -25,5 +26,3 @@ export default async function RootLayout({
 		</html>
 	);
 }
-
-// make setting user data up after signup/login

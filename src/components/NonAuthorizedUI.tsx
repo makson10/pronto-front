@@ -4,7 +4,7 @@ import LogOutButton from './LogOutButton';
 
 export default function NonAuthorizedUI() {
 	return (
-		<div className="flex-[2_1_auto] flex flex-col justify-center items-center">
+		<div className="flex flex-col justify-center items-center">
 			<div className="flex flex-col items-center gap-6">
 				<p className="text-xl">
 					This page does not acceptable for unauthorized users

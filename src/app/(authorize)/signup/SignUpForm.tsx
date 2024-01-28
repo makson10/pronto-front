@@ -1,24 +1,13 @@
 'use client';
 import { Form, Formik } from 'formik';
 import { useState } from 'react';
-import { object, string } from 'yup';
 import PasswordRequirementsHintButton from '@/components/PasswordRequirementsHint';
 import ChangePasswordVisibilityButton from '@/components/ChangePasswordVisibilityButton';
 import { SignUpUser } from '@/types/userTypes';
 import usePageNavigation from '@/hooks/usePageNavigation';
+import { getAndStoreUser } from '@/context/storeUtils';
+import { signUpValidationScheme } from '@/assets/validationScheme';
 import axios from 'axios';
-
-const formValidator = object({
-	firstName: string().min(2, 'Too short first name'),
-	lastName: string().min(2, 'Too short last name'),
-	email: string().email('Email is not valid'),
-	password: string()
-		.min(8, 'Password is too short')
-		.matches(
-			/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/gim,
-			'Password does not contain special characters'
-		),
-});
 
 export default function SignUpForm() {
 	const { goToHomePage } = usePageNavigation();
@@ -26,6 +15,7 @@ export default function SignUpForm() {
 
 	const sendSignUpRequest = async (user: SignUpUser) => {
 		await axios.post('/api/signup', { user });
+		await getAndStoreUser();
 	};
 
 	return (
@@ -36,7 +26,7 @@ export default function SignUpForm() {
 				email: '',
 				password: '',
 			}}
-			validationSchema={formValidator}
+			validationSchema={signUpValidationScheme}
 			onSubmit={(values, { setSubmitting }) => {
 				setTimeout(async () => {
 					console.log(values);

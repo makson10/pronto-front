@@ -5,6 +5,7 @@ export default function usePageNavigation() {
 
 	const goToHomePage = () => router.push('/');
 	const refreshPage = () => router.refresh();
+	const goToPage = (path: string) => router.push(path);
 
-	return { goToHomePage, refreshPage };
+	return { goToHomePage, refreshPage, goToPage };
 }

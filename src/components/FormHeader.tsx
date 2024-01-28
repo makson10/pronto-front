@@ -1,8 +1,8 @@
-import Logo from './Logo';
+import Logo from './MainHeader/Logo';
 
 export default function FormHeader() {
 	return (
-		<div className="w-screen bg-[#222222] flex flex-row justify-center py-3">
+		<div className="w-screen min-h-[64px] bg-[--header-bg-color] flex flex-row justify-center py-3">
 			<Logo />
 		</div>
 	);
