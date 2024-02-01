@@ -1,4 +1,4 @@
-import Logo from './MainHeader/Logo';
+import Logo from './Logo';
 
 export default function FormHeader() {
 	return (

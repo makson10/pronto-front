@@ -1,8 +1,10 @@
+import { store } from '@/context/store';
+
 const pagesLinks = [
 	{
 		title: 'Profile',
 		icon: 'https://img.icons8.com/ios/50/ffffff/user-male-circle--v1.png',
-		goToPath: '/profile',
+		goToPath: '/profile/' + store.getState().user?.id,
 	},
 	{
 		title: 'Games',

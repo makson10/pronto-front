@@ -1,3 +1,4 @@
+import { store } from '@/context/store';
 import { resetUserData } from '@/context/storeUtils';
 import usePageNavigation from '@/hooks/usePageNavigation';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
@@ -7,13 +8,16 @@ interface Props {
 	children: React.ReactNode;
 }
 
-export default function UserIconDropdownMenu({ children }: Props) {
+export default function UserHeaderIconDropdownMenu({ children }: Props) {
+	const userId = store.getState().user?.id;
 	const { goToPage, refreshPage } = usePageNavigation();
 
-	const goToProfilePage = () => goToPage('/profile');
+	const goToProfilePage = () => goToPage('/profile/' + userId);
 	const logOutUser = async () => {
 		await axios.post('/api/logout').then(console.log);
-		await axios.post('/api/revalidategetuserrequest').then(console.log);
+		await axios
+			.post('/api/revalidategetuserbysessionrequest')
+			.then(console.log);
 		resetUserData();
 		refreshPage();
 	};

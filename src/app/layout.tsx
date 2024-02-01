@@ -1,6 +1,6 @@
 import '@/styles/globals.css';
 import '@/styles/variables.css';
-import { getUserData } from './api/sessionUtils';
+import { getUserDataBySession } from './api/sessionUtils';
 import StoreInitializer from '@/context/StoreInitializer';
 
 export default async function RootLayout({
@@ -8,7 +8,7 @@ export default async function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	const user = await getUserData();
+	const user = await getUserDataBySession();
 	const storeInitialValues = {
 		user,
 	};

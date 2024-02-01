@@ -14,7 +14,8 @@ export async function POST() {
 
 const sendGetUserRequest = async (cookie: string) => {
 	const req = await axios.post(
-		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/user/getuserdata',
+		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL +
+			'/user/getuserdatabysession',
 		null,
 		{
 			headers: { Cookie: cookie },

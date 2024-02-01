@@ -33,13 +33,14 @@ export const deleteSession = () => {
 	cookies().delete('sessionId');
 };
 
-export const getUserData = async () => {
+export const getUserDataBySession = async () => {
 	const sessionId = getSessionIdFromCookie();
 	if (!sessionId) return null;
 	const cookieForSending = formCookieForSending(sessionId);
 
 	const req = await fetch(
-		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/user/getuserdata',
+		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL +
+			'/user/getuserdatabysession',
 		{
 			method: 'POST',
 			credentials: 'include',
@@ -47,8 +48,25 @@ export const getUserData = async () => {
 				'Content-Type': 'application/json',
 				Cookie: cookieForSending,
 			},
-			// cache: 'force-cache',
-			next: { revalidate: 3600, tags: ['getUserRequest'] },
+			next: { revalidate: 3600, tags: ['getUserBySessionRequest'] },
+		}
+	);
+
+	const user = await req.json();
+	return user;
+};
+
+export const getUserDataByUserId = async (userId: number) => {
+	const req = await fetch(
+		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/user/getuserdatabyuserid',
+		{
+			method: 'POST',
+			credentials: 'include',
+			body: JSON.stringify({ userId }),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			next: { revalidate: 3600, tags: ['getUserByUserIdRequest'] },
 		}
 	);
 

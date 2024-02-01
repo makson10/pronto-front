@@ -18,4 +18,5 @@ export type FullUser = {
 	createdAt: string;
 	email: string;
 	password: string;
+	icon: string | null;
 };
