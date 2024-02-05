@@ -1,22 +1,21 @@
+import DetailUserInformation from '@/components/Profile/DetailUserInformation';
+import PostsFlow from '@/components/Profile/PostsFlow';
+import ProfileContentWrapper from '@/components/Profile/ProfileContentWrapper';
 import ProfileHeader from '@/components/Profile/ProfileHeader';
-import { FullUser } from '@/types/userTypes';
+import { UserProfile } from '@/types/userProfile';
 
 interface Props {
-	user: FullUser;
+	profile: UserProfile;
 }
 
-export default function Profile({ user }: Props) {
+export default function Profile({ profile }: Props) {
 	return (
-		<div className="flex-[1] flex w-full">
-			<ProfileHeader user={user} />
+		<div className="w-full flex-[1] flex flex-col gap-4">
+			<ProfileHeader profile={profile} />
+			<ProfileContentWrapper>
+				<PostsFlow />
+				<DetailUserInformation />
+			</ProfileContentWrapper>
 		</div>
 	);
 }
-
-// <div className="border">
-// 	{/* <header></header> */}
-// 	{/* <wrapper>
-//     <posts />
-//     <sideinfo />
-// </wrapper> */}
-// </div>

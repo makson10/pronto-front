@@ -1,7 +1,10 @@
-import pagesLinks from '@/assets/pagesLinkList';
+'use client';
+import { getPagesLinks } from '@/assets/pagesLinkList';
 import PageLink from './pageField';
 
 export default function PagesList() {
+	const pagesLinks = getPagesLinks();
+
 	return (
 		<div className="pt-12 w-1/5">
 			<div className="py-4 flex flex-col items-center gap-2">

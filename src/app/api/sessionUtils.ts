@@ -56,7 +56,7 @@ export const getUserDataBySession = async () => {
 	return user;
 };
 
-export const getUserDataByUserId = async (userId: number) => {
+export const getUserDataByUserId = async (userId: number | string) => {
 	const req = await fetch(
 		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/user/getuserdatabyuserid',
 		{
@@ -72,4 +72,45 @@ export const getUserDataByUserId = async (userId: number) => {
 
 	const user = await req.json();
 	return user;
+};
+
+export const getUserProfile = async (userId: number | string) => {
+	const req = await fetch(
+		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/userprofile',
+		{
+			method: 'POST',
+			body: JSON.stringify({ userId }),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			next: { revalidate: 3600, tags: ['getUserProfile'] },
+		}
+	);
+
+	const profile = await req.json();
+	return profile;
+};
+
+export const getUserIdBySession = async () => {
+	const sessionId = getSessionIdFromCookie();
+	if (!sessionId)
+		throw new Error('No stored session was found', {
+			cause: "It seems you aren't authorized",
+		});
+	const cookie = formCookieForSending(sessionId);
+
+	const req = await fetch(
+		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/user/getuseridbysession',
+		{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Cookie: cookie,
+			},
+			next: { revalidate: 3600, tags: ['getUserIdBySession'] },
+		}
+	);
+
+	const userId = await req.json().then((data) => data.userId);
+	return userId;
 };
