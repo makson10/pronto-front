@@ -1,5 +1,6 @@
-import { UserProfile } from '@/types/userProfile';
 import Header from './Header';
+import ChangeProfileForm from './ChangeProfileForm';
+import { UserProfile } from '@/types/userProfile';
 
 interface Props {
 	profile: UserProfile;
@@ -7,25 +8,13 @@ interface Props {
 
 export default function EditPage({ profile }: Props) {
 	return (
-		<div className="p-8 w-full flex-[1]">
+		<div className="w-full flex-[1] px-[15%] py-[3%]">
 			<Header
 				iconUrl={profile.icon}
 				name={profile.name}
 				profileId={profile.profileId}
 			/>
+			<ChangeProfileForm defaultFormValues={profile} />
 		</div>
 	);
-}
-
-{
-	/* 
-<Header>...</Header>
-<FormWrapper>
-<ChangeAgeForm></ChangeAgeForm>
-<ChangeDescriptionForm></ChangeDescriptionForm>
-<ChangeCityForm></ChangeCityForm>
-<SendVerificationRequestForm></SendVerificationRequestForm>
-<ChangePasswordForm></ChangePasswordForm>
-</FormWrapper> 
-*/
 }

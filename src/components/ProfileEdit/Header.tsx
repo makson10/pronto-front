@@ -12,12 +12,12 @@ export default function Header({ iconUrl, name, profileId }: Props) {
 			<UserProfileIcon
 				iconUrl={iconUrl}
 				altIconText={name[0].toUpperCase()}
-				width={50}
-				height={50}
+				width={80}
+				height={80}
 			/>
-			<div>
+			<div className="flex flex-col justify-center">
 				<p className="text-2xl">{name}</p>
-				<p className="text-sm text-gray-600">{profileId}</p>
+				<p className="text-sm text-gray-600">id: {profileId}</p>
 			</div>
 		</div>
 	);

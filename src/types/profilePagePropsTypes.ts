@@ -13,9 +13,9 @@ export interface NameProps {
 }
 
 export interface DescriptionProps {
-	description: string;
+	description: string | null;
 }
 
 export interface AddressProps {
-	city: string;
+	city: string | null;
 }

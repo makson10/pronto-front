@@ -2,18 +2,18 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import {
-	AddressProps,
-	DescriptionProps,
 	MainProps,
 	NameProps,
+	AddressProps,
+	DescriptionProps,
 } from '@/types/profilePagePropsTypes';
 
 export default function UserInfo({ profile }: MainProps) {
 	return (
 		<div className="flex flex-col gap-1">
 			<NameInfo data={profile} />
-			{profile.description && <Description description={profile.description} />}
-			{profile.city && <AddressInfo city={profile.city} />}
+			<Description description={profile.description} />
+			<AddressInfo city={profile.city} />
 		</div>
 	);
 }
@@ -35,6 +35,21 @@ const NameInfo = ({ data: { name, verifedUser, createdAt } }: NameProps) => {
 const VerifedUserIcon = () => <div className="w-[20px]">✔</div>;
 
 const Description = ({ description }: DescriptionProps) => {
+	if (!description) {
+		return (
+			<div className="flex flex-row gap-2 items-center">
+				<Image
+					className="w-[24px] h-[24px] opacity-50"
+					src={'https://img.icons8.com/ffffff/ios/100/info-squared.png'}
+					alt="#"
+					width={100}
+					height={100}
+				/>
+				<p className="w-[75%] break-all text-gray-500">Not specified</p>
+			</div>
+		);
+	}
+
 	const mounted = useRef<boolean>(false);
 	const [userDescription, setUserDescription] = useState<string>(
 		description.slice(0, 80)
@@ -111,12 +126,12 @@ const SeeFullDescriptionButton = () => {
 const AddressInfo = ({ city }: AddressProps) => (
 	<div className="flex flex-row gap-2">
 		<Image
-			className="w-[24px]"
+			className="w-[24px] opacity-50"
 			src={'https://img.icons8.com/pastel-glyph/64/ffffff/place-marker--v1.png'}
 			alt="#"
 			width={32}
 			height={32}
 		/>
-		<p>{city}</p>
+		{city ? city : <p className="text-gray-500">Not specified</p>}
 	</div>
 );

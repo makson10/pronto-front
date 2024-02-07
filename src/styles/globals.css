@@ -15,4 +15,5 @@
 body {
 	background-color: var(--first-bg-color);
 	color: white;
+	overflow-x: hidden;
 }

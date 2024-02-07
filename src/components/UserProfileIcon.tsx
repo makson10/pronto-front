@@ -15,9 +15,20 @@ export default function UserProfileIcon({
 	height = 150,
 	needToLiftUp = false,
 }: Props) {
+	const IconWrapperStyle: React.CSSProperties = {
+		position: 'relative',
+		width: width + 'px',
+		height: height + 'px',
+	};
+
+	const IconStyle: React.CSSProperties = {
+		minWidth: width + 'px',
+		minHeight: height + 'px',
+	};
+
 	return (
-		<div className={`relative min-w-[${width}px]`}>
-			<div className={needToLiftUp ? 'absolute -top-[80%]' : ''}>
+		<div style={IconWrapperStyle}>
+			<div className={needToLiftUp ? 'absolute -top-[60%]' : ''}>
 				{iconUrl ? (
 					<Image
 						className="rounded-full border-[--first-bg-color] border-4"
@@ -28,7 +39,8 @@ export default function UserProfileIcon({
 					/>
 				) : (
 					<div
-						className={`w-[${width}px] h-[${height}px] grid place-items-center rounded-full bg-gray-500 border-[--first-bg-color] border-4 text-3xl`}>
+						style={IconStyle}
+						className="grid place-items-center rounded-full bg-gray-500 border-[--first-bg-color] border-4 text-3xl">
 						{altIconText}
 					</div>
 				)}
