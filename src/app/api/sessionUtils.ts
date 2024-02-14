@@ -76,14 +76,14 @@ export const getUserDataByUserId = async (userId: number | string) => {
 
 export const getUserProfile = async (userId: number | string) => {
 	const req = await fetch(
-		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/userprofile',
+		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/profile',
 		{
 			method: 'POST',
 			body: JSON.stringify({ userId }),
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			next: { revalidate: 3600, tags: ['getUserProfile'] },
+			next: { revalidate: 3600, tags: ['getuserprofile'] },
 		}
 	);
 

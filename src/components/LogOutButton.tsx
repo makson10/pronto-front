@@ -21,7 +21,9 @@ export default function LogOutButton() {
 	};
 
 	const makeGetUserRequestRevalidation = async () => {
-		await axios.post('/api/revalidategetuserbysessionrequest').then(console.log);
+		await axios
+			.post('/api/revalidateTag', { tag: 'getuserbysessionrequest' })
+			.then(console.log);
 	};
 
 	const removeUserDataFromStore = () => {

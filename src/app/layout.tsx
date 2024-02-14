@@ -2,6 +2,7 @@ import '@/styles/globals.css';
 import '@/styles/variables.css';
 import { getUserDataBySession } from './api/sessionUtils';
 import StoreInitializer from '@/context/StoreInitializer';
+import CustomNextUIProvider from '@/components/CustomNextUIProvider';
 
 export default async function RootLayout({
 	children,
@@ -20,8 +21,10 @@ export default async function RootLayout({
 				<link rel="icon" type="image/x-icon" href="/short_logo.png" />
 			</head>
 			<body>
-				<StoreInitializer initialValues={storeInitialValues} />
-				{children}
+				<CustomNextUIProvider>
+					<StoreInitializer initialValues={storeInitialValues} />
+					{children}
+				</CustomNextUIProvider>
 			</body>
 		</html>
 	);

@@ -1,11 +1,11 @@
-import DetailUserInformation from '@/components/Profile/DetailUserInformation';
-import PostsFlow from '@/components/Profile/PostsFlow';
-import ProfileContentWrapper from '@/components/Profile/ProfileContentWrapper';
 import ProfileHeader from '@/components/Profile/ProfileHeader';
-import { UserProfile } from '@/types/userProfile';
+import ProfileContentWrapper from '@/components/Profile/ProfileContentWrapper';
+import PostsFlow from '@/components/Profile/PostsFlow';
+import DetailUserInformation from '@/components/Profile/DetailUserInformation';
+import { Profile } from '@/types/profile';
 
 interface Props {
-	profile: UserProfile;
+	profile: Profile;
 }
 
 export default function Profile({ profile }: Props) {

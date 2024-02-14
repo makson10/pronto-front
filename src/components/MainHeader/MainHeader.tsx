@@ -3,8 +3,7 @@ import { store } from '@/context/store';
 import Logo from '../Logo';
 import RegisterButton from '../RegisterButton';
 import SearchBox from './SearchBox';
-import UserHeaderIcon from './UserHeaderIcon';
-import UserHeaderIconDropdownMenu from './UserHeaderIconDropdownMenu';
+import UserIconDropdownMenu from './UserIconDropdownMenu';
 
 export default function MainHeader() {
 	const { user } = store.getState();
@@ -18,7 +17,7 @@ export default function MainHeader() {
 				</div>
 
 				{user ? (
-					<UserHeaderIconWithDropdownMenu name={user.firstName} />
+					<UserIconDropdownMenu name={user.firstName} />
 				) : (
 					<RegisterButton />
 				)}
@@ -26,11 +25,3 @@ export default function MainHeader() {
 		</div>
 	);
 }
-
-const UserHeaderIconWithDropdownMenu = ({ name }: { name: string }) => {
-	return (
-		<UserHeaderIconDropdownMenu>
-			<UserHeaderIcon name={name} />
-		</UserHeaderIconDropdownMenu>
-	);
-};

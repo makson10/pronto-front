@@ -18,13 +18,13 @@ export default function UserInfo({ profile }: MainProps) {
 	);
 }
 
-const NameInfo = ({ data: { name, verifedUser, createdAt } }: NameProps) => {
+const NameInfo = ({ data: { name, isVerifed, createdAt } }: NameProps) => {
 	const userRegistrationDate = new Date(createdAt).toLocaleDateString();
 
 	return (
 		<div className="flex flex-row gap-2 items-center">
 			<p className="text-2xl">{name}</p>
-			{verifedUser && <VerifedUserIcon />}
+			{isVerifed && <isVerifedIcon />}
 			<p className="text-gray-500 text-sm">
 				in pronto from {userRegistrationDate}
 			</p>

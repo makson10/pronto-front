@@ -1,13 +1,16 @@
+import { Spinner } from '@nextui-org/react';
+
 export default function LoadingSpinner() {
 	return (
 		<div style={overlayStyle}>
-			<div style={spinnerStyle} className="animate-spin"></div>
+			<Spinner color="danger" size="lg" className="scale-[200%]" />
 			<p style={letterStyle}>p</p>
 		</div>
 	);
 }
 
 const overlayStyle: React.CSSProperties = {
+	backgroundColor: 'var(--first-bg-color)',
 	position: 'fixed',
 	left: 0,
 	top: 0,
@@ -17,15 +20,6 @@ const overlayStyle: React.CSSProperties = {
 	display: 'flex',
 	alignItems: 'center',
 	justifyContent: 'center',
-};
-
-const spinnerStyle: React.CSSProperties = {
-	width: '5rem',
-	height: '5rem',
-	border: '0.5rem solid #f3f3f3',
-	borderTop: '0.5rem solid #f06292',
-	borderRadius: '50%',
-	animation: 'spin 1s linear infinite',
 };
 
 const letterStyle: React.CSSProperties = {

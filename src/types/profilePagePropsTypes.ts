@@ -1,13 +1,13 @@
-import { UserProfile } from './userProfile';
+import { Profile } from './profile';
 
 export interface MainProps {
-	profile: UserProfile;
+	profile: Profile;
 }
 
 export interface NameProps {
 	data: {
 		name: string;
-		verifedUser: boolean;
+		isVerifed: boolean;
 		createdAt: string;
 	};
 }

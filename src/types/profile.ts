@@ -1,4 +1,4 @@
-export type UserProfile = {
+export type Profile = {
 	profileId: number;
 	name: string;
 	age: number | null;
@@ -6,6 +6,7 @@ export type UserProfile = {
 	description: string | null;
 	createdAt: string;
 	city: string | null;
-	verifedUser: boolean;
+	isVerifed: boolean;
+	sentVerificationRequest: boolean;
 	icon: string | null;
 };

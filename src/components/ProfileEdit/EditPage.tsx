@@ -1,9 +1,9 @@
 import Header from './Header';
-import ChangeProfileForm from './ChangeProfileForm';
-import { UserProfile } from '@/types/userProfile';
+import EditProfileForm from './EditProfileForm';
+import { Profile } from '@/types/profile';
 
 interface Props {
-	profile: UserProfile;
+	profile: Profile;
 }
 
 export default function EditPage({ profile }: Props) {
@@ -14,7 +14,7 @@ export default function EditPage({ profile }: Props) {
 				name={profile.name}
 				profileId={profile.profileId}
 			/>
-			<ChangeProfileForm defaultFormValues={profile} />
+			<EditProfileForm defaultFormValues={profile} />
 		</div>
 	);
 }

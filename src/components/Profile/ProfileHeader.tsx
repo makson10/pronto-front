@@ -2,12 +2,12 @@
 import UserProfileIcon from '../UserProfileIcon';
 import UserInfo from './UserInfo';
 import AddToFriendButton from './AddToFriendButton';
-import { UserProfile } from '@/types/userProfile';
+import { Profile } from '@/types/profile';
 import { store } from '@/context/store';
 import EditProfileButton from './EditProfileButton';
 
 interface Props {
-	profile: UserProfile;
+	profile: Profile;
 }
 
 export default function ProfileHeader({ profile }: Props) {
