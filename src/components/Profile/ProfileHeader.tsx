@@ -18,7 +18,7 @@ export default function ProfileHeader({ profile }: Props) {
 			<div className="relative flex flex-row gap-6 w-full mt-auto bg-[--main-color] rounded-t-2xl rounded-b-md max-h-[150px] p-4">
 				<UserProfileIcon
 					iconUrl={profile.icon}
-					altIconText={profile.name[0].toUpperCase()}
+					altIconText={profile.name[0]}
 					needToLiftUp={true}
 				/>
 				<UserInfo profile={profile} />

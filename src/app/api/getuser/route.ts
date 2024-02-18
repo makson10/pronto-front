@@ -1,4 +1,4 @@
-import { formCookieForSending, getSessionIdFromCookie } from '../sessionUtils';
+import { encodeCookie, getSessionIdFromCookie } from '../sessionUtils';
 import axios from 'axios';
 
 export const dynamic = 'force-dynamic';
@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 export async function POST() {
 	const sessionId = getSessionIdFromCookie();
 	if (!sessionId) return null;
-	const cookieForSending = formCookieForSending(sessionId);
+	const cookieForSending = encodeCookie('sessionId', sessionId);
 
 	const user = await sendGetUserRequest(cookieForSending);
 	return Response.json(user, { status: 200 });

@@ -1,34 +1,36 @@
 'use client';
 import { Form, Formik } from 'formik';
 import { useState } from 'react';
-import PasswordRequirementsHintButton from '@/components/PasswordRequirementsHint';
+import PasswordRequirementsHint from '@/components/PasswordRequirementsHint';
 import ChangePasswordVisibilityButton from '@/components/ChangePasswordVisibilityButton';
-import { LoginUser } from '@/types/userTypes';
+import { SignUpUser } from '@/types/userTypes';
 import usePageNavigation from '@/hooks/usePageNavigation';
 import { getAndStoreUser } from '@/context/storeUtils';
-import { logInValidationScheme } from '@/assets/validationScheme';
+import { signUpValidationScheme } from '@/assets/validationScheme';
 import axios from 'axios';
 
-export default function LogInForm() {
+export default function SignUpForm() {
 	const { goToHomePage } = usePageNavigation();
 	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
 
-	const sendLogInRequest = async (user: LoginUser) => {
-		await axios.post('/api/login', { user });
+	const sendSignUpRequest = async (user: SignUpUser) => {
+		await axios.post('/api/signup', { user });
 		await getAndStoreUser();
 	};
 
 	return (
 		<Formik
 			initialValues={{
+				firstName: '',
+				lastName: '',
 				email: '',
 				password: '',
 			}}
-			validationSchema={logInValidationScheme}
+			validationSchema={signUpValidationScheme}
 			onSubmit={(values, { setSubmitting }) => {
 				setTimeout(async () => {
 					console.log(values);
-					await sendLogInRequest(values);
+					await sendSignUpRequest(values);
 					goToHomePage();
 					setSubmitting(false);
 				}, 200);
@@ -42,8 +44,50 @@ export default function LogInForm() {
 				handleSubmit,
 				isSubmitting,
 			}) => (
-				<Form className="flex flex-col gap-10 w-1/4" onSubmit={handleSubmit}>
+				<Form className="flex flex-col gap-10" onSubmit={handleSubmit}>
 					<div className="flex flex-col gap-4">
+						<div className="flex flex-row justify-between gap-12">
+							<div style={InputWrapperStyle}>
+								<div style={PlaceholderWrapperStyle}>
+									<label htmlFor="firstName" style={PlaceholderStyle}>
+										First Name
+									</label>
+									{errors.firstName && touched.firstName && (
+										<p style={ErrorStyle}>{errors.firstName}</p>
+									)}
+								</div>
+								<input
+									id="firstName"
+									name="firstName"
+									type="text"
+									style={InputStyle}
+									onChange={handleChange}
+									onBlur={handleBlur}
+									value={values.firstName}
+								/>
+							</div>
+
+							<div style={InputWrapperStyle}>
+								<div style={PlaceholderWrapperStyle}>
+									<label htmlFor="lastName" style={PlaceholderStyle}>
+										Last Name
+									</label>
+									{errors.lastName && touched.lastName && (
+										<p style={ErrorStyle}>{errors.lastName}</p>
+									)}
+								</div>
+								<input
+									id="lastName"
+									name="lastName"
+									type="text"
+									style={InputStyle}
+									onChange={handleChange}
+									onBlur={handleBlur}
+									value={values.lastName}
+								/>
+							</div>
+						</div>
+
 						<div style={InputWrapperStyle}>
 							<div style={PlaceholderWrapperStyle}>
 								<label htmlFor="email" style={PlaceholderStyle}>
@@ -70,7 +114,7 @@ export default function LogInForm() {
 									<label htmlFor="password" style={PlaceholderStyle}>
 										Password
 									</label>
-									<PasswordRequirementsHintButton />
+									<PasswordRequirementsHint />
 								</div>
 								{errors.password && touched.password && (
 									<p style={ErrorStyle}>{errors.password}</p>
@@ -99,7 +143,7 @@ export default function LogInForm() {
 						type="submit"
 						disabled={isSubmitting}
 						style={SubmitButtonStyle}>
-						Log In
+						Sign up
 					</button>
 				</Form>
 			)}

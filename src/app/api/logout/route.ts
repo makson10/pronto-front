@@ -1,6 +1,6 @@
 import {
 	deleteSession,
-	formCookieForSending,
+	encodeCookie,
 	getSessionIdFromCookie,
 } from '../sessionUtils';
 import axios from 'axios';
@@ -18,7 +18,7 @@ export async function POST() {
 const sendLogOutRequest = async () => {
 	const sessionId = getSessionIdFromCookie();
 	if (!sessionId) throw new Error('No session id given');
-	const cookieForSending = formCookieForSending(sessionId);
+	const cookieForSending = encodeCookie('sessionId', sessionId);
 
 	return await axios.post(
 		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/user/logout',

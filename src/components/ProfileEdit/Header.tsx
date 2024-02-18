@@ -1,4 +1,5 @@
-import UserProfileIcon from '../UserProfileIcon';
+'use client';
+import { User } from '@nextui-org/react';
 
 interface Props {
 	iconUrl: string | null;
@@ -8,17 +9,10 @@ interface Props {
 
 export default function Header({ iconUrl, name, profileId }: Props) {
 	return (
-		<div className="flex flex-row gap-4">
-			<UserProfileIcon
-				iconUrl={iconUrl}
-				altIconText={name[0].toUpperCase()}
-				width={80}
-				height={80}
-			/>
-			<div className="flex flex-col justify-center">
-				<p className="text-2xl">{name}</p>
-				<p className="text-sm text-gray-600">id: {profileId}</p>
-			</div>
-		</div>
+		<User
+			name={<p className="text-lg">{name}</p>}
+			description={<p className="text-base opacity-60">id: {profileId}</p>}
+			avatarProps={{ src: iconUrl!, name: name[0], size: 'lg' }}
+		/>
 	);
 }

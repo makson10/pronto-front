@@ -1,7 +1,8 @@
 'use client';
-import { LegacyRef, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import EditField from './EditField';
 import axios from 'axios';
+import { Button } from '@nextui-org/react';
 
 interface MainProps {
 	isVerifed: boolean;
@@ -36,20 +37,20 @@ export default function SendVerificationRequest({
 }
 
 const SendRequestButton = ({ setShouldShowSendButton }: ButtonProps) => {
-	const buttonRef = useRef<HTMLButtonElement>();
+	const isButtonDisabled = useRef<boolean>(false);
 
 	const handleClick = async () => {
-		if (buttonRef.current) buttonRef.current.disabled = true;
+		if (isButtonDisabled.current) isButtonDisabled.current = true;
 		await axios.post('/api/sendverificationrequest');
 		setShouldShowSendButton(false);
 	};
 
 	return (
-		<button
-			ref={buttonRef as LegacyRef<HTMLButtonElement>}
-			className="mx-auto w-fit bg-white text-black font-bold py-2 px-4 rounded transition duration-200 ease-in-out hover:bg-gray-300 disabled:bg-gray-500"
+		<Button
+			isDisabled={isButtonDisabled.current}
+			className="bg-white font-bold text-base"
 			onClick={handleClick}>
 			Send verification request
-		</button>
+		</Button>
 	);
 };

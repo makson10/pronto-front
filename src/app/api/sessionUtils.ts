@@ -25,8 +25,8 @@ export const getSessionIdFromCookie = () => {
 	return sessionCookie?.value ? sessionCookie?.value : null;
 };
 
-export const formCookieForSending = (sessionId: string) => {
-	return cookie.serialize('sessionId', sessionId);
+export const encodeCookie = (key: string, value: string) => {
+	return cookie.serialize(key, value);
 };
 
 export const deleteSession = () => {
@@ -36,7 +36,7 @@ export const deleteSession = () => {
 export const getUserDataBySession = async () => {
 	const sessionId = getSessionIdFromCookie();
 	if (!sessionId) return null;
-	const cookieForSending = formCookieForSending(sessionId);
+	const cookieForSending = encodeCookie('sessionId', sessionId);
 
 	const req = await fetch(
 		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL +
@@ -97,7 +97,7 @@ export const getUserIdBySession = async () => {
 		throw new Error('No stored session was found', {
 			cause: "It seems you aren't authorized",
 		});
-	const cookie = formCookieForSending(sessionId);
+	const cookie = encodeCookie('sessionId', sessionId);
 
 	const req = await fetch(
 		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/user/getuseridbysession',

@@ -5,7 +5,7 @@ import EditAge from './form/EditAge';
 import EditProfileFormWrapper from './form/EditProfileFormWrapper';
 import EditDescription from './form/EditDescription';
 import EditCity from './form/EditCity';
-import EditPassword from './form/EditPassword';
+import ChangePassword from './form/ChangePassword';
 import SendVerificationRequest from './form/SendVerificationRequest';
 import Separator from './form/Separator';
 import { Profile } from '@/types/profile';
@@ -24,7 +24,6 @@ export default function EditProfileForm({ defaultFormValues }: Props) {
 		defaultFormValues.description
 	);
 	const [newCity, setNewCity] = useState(defaultFormValues.city);
-	const [newPassword, setNewPassword] = useState();
 
 	const handleSubmit: React.MouseEventHandler<HTMLButtonElement> = () => {
 		const newProfileData = formNewProfileData();
@@ -36,11 +35,13 @@ export default function EditProfileForm({ defaultFormValues }: Props) {
 			dateOfBirth: newDateOfBirth,
 			description: newDescription,
 			city: newCity,
-			password: newPassword,
 		};
 	};
-	// add EditIcon field
-	// change popup password hint to nextui
+
+	// TODO:
+	//? add ChangeIcon and ChangePassword field
+	//? add showing server error through signup|login
+
 	return (
 		<div className="mt-8">
 			<EditProfileFormWrapper>
@@ -59,7 +60,7 @@ export default function EditProfileForm({ defaultFormValues }: Props) {
 				<Separator />
 				<EditCity city={newCity} setCity={setNewCity} />
 				<Separator />
-				<EditPassword />
+				<ChangePassword />
 				<Separator />
 				<SendVerificationRequest
 					isVerifed={defaultFormValues.isVerifed}

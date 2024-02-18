@@ -3,7 +3,7 @@ import EditFieldWrapper from './EditFieldWrapper';
 
 interface MainProps {
 	title: string;
-	description: string;
+	description: string | React.ReactNode;
 	children: React.ReactNode;
 }
 
@@ -16,7 +16,7 @@ export default function EditField({ title, description, children }: MainProps) {
 		<EditFieldWrapper>
 			<div>
 				<FormTitle>{title}</FormTitle>
-				<p>{description}</p>
+				{description}
 			</div>
 			{children}
 		</EditFieldWrapper>
