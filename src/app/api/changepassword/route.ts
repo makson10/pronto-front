@@ -1,3 +1,4 @@
+import { NextResponse } from 'next/server';
 import { getUserIdBySession } from '../sessionUtils';
 import axios from 'axios';
 
@@ -14,16 +15,21 @@ export async function POST(request: Request) {
 	const userId = await getUserIdBySession();
 	if (!userId) return new Response('error', { status: 400 });
 
-	await sendChangePasswordRequest({ userId, oldPassword, newPassword });
-	return Response.json('success', { status: 200 });
+	return await sendChangePasswordRequest({
+		userId,
+		oldPassword,
+		newPassword,
+	});
 }
 
 const sendChangePasswordRequest = async (body: Body) => {
-	const req = await axios.post(
-		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/profile/changepassword',
-		body
-	);
-
-	console.log(req);
-	return req.data;
+	try {
+		await axios.post(
+			process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/profile/changepassword',
+			body
+		);
+		return NextResponse.json('success', { status: 200 });
+	} catch (error: any) {
+		return NextResponse.json(error.response.data.message, { status: 401 });
+	}
 };

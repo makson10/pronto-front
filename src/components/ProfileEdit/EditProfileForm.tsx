@@ -39,7 +39,7 @@ export default function EditProfileForm({ defaultFormValues }: Props) {
 	};
 
 	// TODO:
-	//? add ChangeIcon and ChangePassword field
+	//? add ChangeIcon field
 	//? add showing server error through signup|login
 
 	return (
