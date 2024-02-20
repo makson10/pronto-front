@@ -1,6 +1,19 @@
-import { Button, Input } from '@nextui-org/react';
+import { Button } from '@nextui-org/react';
 import EditField from './EditField';
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
+interface ChangeIconButtonProps {
+	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+interface NewIconPreviewProps {
+	newIcon: File;
+}
+
+interface SubmitChangeIconProps {
+	newIcon: File;
+	setNewIcon: React.Dispatch<React.SetStateAction<File | null>>;
+}
 
 export default function ChangeIcon() {
 	return (
@@ -18,27 +31,23 @@ export default function ChangeIcon() {
 }
 
 const DropdownInput = () => {
-	const [newUserIcon, setNewUserIcon] = useState<File>();
+	const [newIcon, setNewIcon] = useState<File | null>(null);
 
 	const setIconOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		if (event.target.files) setNewUserIcon(event.target.files[0]);
+		if (event.target.files) setNewIcon(event.target.files[0]);
 	};
 
 	const setIconOnDrop = (event: React.DragEvent<HTMLInputElement>) => {
-		setNewUserIcon(event.dataTransfer.files[0]);
+		setNewIcon(event.dataTransfer.files[0]);
 	};
 
-	useEffect(() => {
-		console.log(newUserIcon);
-	}, [newUserIcon]);
-
-	if (newUserIcon)
+	if (newIcon)
 		return (
-			<div>
-				<NewIconPreview />
-				<div>
-					<Button>Change icon</Button>
-					<Button>Submit</Button>
+			<div className="flex flex-col gap-4">
+				<NewIconPreview newIcon={newIcon} />
+				<div className="flex flex-row gap-4 justify-center">
+					<ChangeIconButton onChange={setIconOnChange} />
+					<SubmitChangeIcon newIcon={newIcon} setNewIcon={setNewIcon} />
 				</div>
 			</div>
 		);
@@ -69,6 +78,51 @@ const DropdownInput = () => {
 	);
 };
 
-const NewIconPreview = () => {
-	return <div></div>;
+const ChangeIconButton = ({ onChange }: ChangeIconButtonProps) => {
+	return (
+		<Button className="bg-white">
+			<label htmlFor="change-icon">
+				<div className="font-bold bg-white">
+					<p>Change icon</p>
+				</div>
+				<input
+					id="change-icon"
+					type="file"
+					accept="image/*"
+					onChange={onChange}
+					className="hidden"
+				/>
+			</label>
+		</Button>
+	);
+};
+// make saving icon and pretty animate message
+const SubmitChangeIcon = ({ newIcon, setNewIcon }: SubmitChangeIconProps) => {
+	const submitChangeIcon = () => {
+		console.log('click submit');
+		console.log(newIcon);
+		setNewIcon(null);
+	};
+
+	return (
+		<Button
+			className="font-bold text-white bg-green-500"
+			onClick={submitChangeIcon}>
+			Save
+		</Button>
+	);
+};
+
+const NewIconPreview = ({ newIcon }: NewIconPreviewProps) => {
+	const [newIconUrl, setNewIconUrl] = useState<string>();
+
+	useEffect(() => {
+		setNewIconUrl(URL.createObjectURL(newIcon));
+	}, [newIcon]);
+
+	return (
+		<div className="h-[250px] flex justify-center items-center">
+			<img className="max-h-[250px]" src={newIconUrl} alt="#" />
+		</div>
+	);
 };
