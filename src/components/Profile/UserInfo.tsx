@@ -6,7 +6,7 @@ import {
 	NameProps,
 	AddressProps,
 	DescriptionProps,
-} from '@/types/profilePagePropsTypes';
+} from '@/types/profilePageProps';
 
 export default function UserInfo({ profile }: MainProps) {
 	return (
@@ -24,7 +24,7 @@ const NameInfo = ({ data: { name, isVerifed, createdAt } }: NameProps) => {
 	return (
 		<div className="flex flex-row gap-2 items-center">
 			<p className="text-2xl">{name}</p>
-			{isVerifed && <isVerifedIcon />}
+			{isVerifed && <VerifedUserIcon />}
 			<p className="text-gray-500 text-sm">
 				in pronto from {userRegistrationDate}
 			</p>

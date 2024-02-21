@@ -21,7 +21,7 @@ export default function UserIconDropdownMenu({ name }: Props) {
 	const goToProfilePage = () => goToPage('/profile/' + userId);
 	const logOutUser = async () => {
 		await axios.post('/api/logout');
-		await axios.post('/api/revalidateTag', { tag: 'getuserbysessionrequest' });
+		await axios.post('/api/revalidatetag', { tag: 'getuserbysessionrequest' });
 		resetUserData();
 		refreshPage();
 	};

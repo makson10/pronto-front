@@ -39,7 +39,8 @@ export default function EditProfileForm({ defaultFormValues }: Props) {
 	};
 
 	// TODO:
-	//? add ChangeIcon field
+	//? change order of form fields
+	//? make pretty animate message
 	//? add showing server error through signup|login
 
 	return (
@@ -52,13 +53,14 @@ export default function EditProfileForm({ defaultFormValues }: Props) {
 					dateOfBirth={newDateOfBirth}
 					setDateOfBirth={setNewDateOfBirth}
 				/>
-				<Separator />
 				<EditDescription
 					description={newDescription}
 					setDescription={setNewDescription}
 				/>
-				<Separator />
 				<EditCity city={newCity} setCity={setNewCity} />
+				<SubmitChangesButtonWrapper>
+					<SubmitChangesButton handleSubmit={handleSubmit} />
+				</SubmitChangesButtonWrapper>
 				<Separator />
 				<ChangePassword />
 				<Separator />
@@ -66,11 +68,7 @@ export default function EditProfileForm({ defaultFormValues }: Props) {
 					isVerifed={defaultFormValues.isVerifed}
 					sentVerificationRequest={defaultFormValues.sentVerificationRequest}
 				/>
-				<Separator />
 			</EditProfileFormWrapper>
-			<SubmitChangesButtonWrapper>
-				<SubmitChangesButton handleSubmit={handleSubmit} />
-			</SubmitChangesButtonWrapper>
 		</div>
 	);
 }

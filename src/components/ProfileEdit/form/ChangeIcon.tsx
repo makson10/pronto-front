@@ -1,19 +1,12 @@
 import { Button } from '@nextui-org/react';
 import EditField from './EditField';
 import { useEffect, useState } from 'react';
-
-interface ChangeIconButtonProps {
-	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-interface NewIconPreviewProps {
-	newIcon: File;
-}
-
-interface SubmitChangeIconProps {
-	newIcon: File;
-	setNewIcon: React.Dispatch<React.SetStateAction<File | null>>;
-}
+import axios from 'axios';
+import {
+	ChangeIconButtonProps,
+	NewIconPreviewProps,
+	SubmitChangeIconProps,
+} from '@/types/changeIconProps';
 
 export default function ChangeIcon() {
 	return (
@@ -53,28 +46,30 @@ const DropdownInput = () => {
 		);
 
 	return (
-		<div className="flex flex-row gap-2">
-			<label htmlFor="dropdown-file" className="w-full">
-				<div className="cursor-pointer py-4 bg-gray-700 flex flex-row gap-2 justify-center items-center border-2 border-gray-400 rounded-lg">
-					<img
-						width={24}
-						height={24}
-						src="https://img.icons8.com/ios/100/ffffff/upload-to-cloud--v1.png"
-						alt="#"
+		<>
+			<div className="flex flex-row gap-2">
+				<label htmlFor="dropdown-file" className="w-full">
+					<div className="cursor-pointer py-4 bg-gray-700 flex flex-row gap-2 justify-center items-center border-2 border-gray-400 rounded-lg">
+						<img
+							width={24}
+							height={24}
+							src="https://img.icons8.com/ios/100/ffffff/upload-to-cloud--v1.png"
+							alt="#"
+						/>
+						<p>Upload</p>
+					</div>
+					<input
+						id="dropdown-file"
+						type="file"
+						className="hidden"
+						accept="image/*"
+						onChange={setIconOnChange}
+						onDrop={setIconOnDrop}
+						draggable="true"
 					/>
-					<p>Upload</p>
-				</div>
-				<input
-					id="dropdown-file"
-					type="file"
-					className="hidden"
-					accept="image/*"
-					onChange={setIconOnChange}
-					onDrop={setIconOnDrop}
-					draggable="true"
-				/>
-			</label>
-		</div>
+				</label>
+			</div>
+		</>
 	);
 };
 
@@ -96,11 +91,10 @@ const ChangeIconButton = ({ onChange }: ChangeIconButtonProps) => {
 		</Button>
 	);
 };
-// make saving icon and pretty animate message
+
 const SubmitChangeIcon = ({ newIcon, setNewIcon }: SubmitChangeIconProps) => {
-	const submitChangeIcon = () => {
-		console.log('click submit');
-		console.log(newIcon);
+	const submitChangeIcon = async () => {
+		await axios.post('/api/storenewicon', newIcon);
 		setNewIcon(null);
 	};
 
