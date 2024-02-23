@@ -9,4 +9,7 @@ export interface NewIconPreviewProps {
 export interface SubmitChangeIconProps {
 	newIcon: File;
 	setNewIcon: React.Dispatch<React.SetStateAction<File | null>>;
+	setNeedToShowSuccessChangeIconMessage: React.Dispatch<
+		React.SetStateAction<boolean>
+	>;
 }

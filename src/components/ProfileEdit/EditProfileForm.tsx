@@ -8,15 +8,22 @@ import EditCity from './form/EditCity';
 import ChangePassword from './form/ChangePassword';
 import SendVerificationRequest from './form/SendVerificationRequest';
 import Separator from './form/Separator';
-import { Profile } from '@/types/profile';
 import SubmitChangesButtonWrapper from './form/SubmitChangesButtonWrapper';
 import ChangeIcon from './form/ChangeIcon';
+import { Profile } from '@/types/profile';
+import axios from 'axios';
+import { ShowMessageBox } from '../MessageBox';
 
 interface Props {
 	defaultFormValues: Profile;
 }
 
 export default function EditProfileForm({ defaultFormValues }: Props) {
+	const [
+		needToShowSuccessEditDataMessage,
+		setNeedToShowSuccessEditDataMessage,
+	] = useState(false);
+
 	const [newDateOfBirth, setNewDateOfBirth] = useState(
 		defaultFormValues.dateOfBirth
 	);
@@ -25,9 +32,10 @@ export default function EditProfileForm({ defaultFormValues }: Props) {
 	);
 	const [newCity, setNewCity] = useState(defaultFormValues.city);
 
-	const handleSubmit: React.MouseEventHandler<HTMLButtonElement> = () => {
+	const handleSubmit: React.MouseEventHandler<HTMLButtonElement> = async () => {
 		const newProfileData = formNewProfileData();
-		console.log(newProfileData);
+		await axios.post('/api/editprofiledata', newProfileData);
+		setNeedToShowSuccessEditDataMessage(true);
 	};
 
 	const formNewProfileData = () => {
@@ -38,37 +46,37 @@ export default function EditProfileForm({ defaultFormValues }: Props) {
 		};
 	};
 
-	// TODO:
-	//? change order of form fields
-	//? make pretty animate message
-	//? add showing server error through signup|login
-
 	return (
-		<div className="mt-8">
-			<EditProfileFormWrapper>
-				<Separator />
-				<ChangeIcon />
-				<Separator />
-				<EditAge
-					dateOfBirth={newDateOfBirth}
-					setDateOfBirth={setNewDateOfBirth}
-				/>
-				<EditDescription
-					description={newDescription}
-					setDescription={setNewDescription}
-				/>
-				<EditCity city={newCity} setCity={setNewCity} />
-				<SubmitChangesButtonWrapper>
-					<SubmitChangesButton handleSubmit={handleSubmit} />
-				</SubmitChangesButtonWrapper>
-				<Separator />
-				<ChangePassword />
-				<Separator />
-				<SendVerificationRequest
-					isVerifed={defaultFormValues.isVerifed}
-					sentVerificationRequest={defaultFormValues.sentVerificationRequest}
-				/>
-			</EditProfileFormWrapper>
-		</div>
+		<>
+			{needToShowSuccessEditDataMessage && (
+				<ShowMessageBox message="Data was changed" />
+			)}
+			<div className="mt-8">
+				<EditProfileFormWrapper>
+					<Separator />
+					<ChangeIcon />
+					<Separator />
+					<EditAge
+						dateOfBirth={newDateOfBirth}
+						setDateOfBirth={setNewDateOfBirth}
+					/>
+					<EditDescription
+						description={newDescription}
+						setDescription={setNewDescription}
+					/>
+					<EditCity city={newCity} setCity={setNewCity} />
+					<SubmitChangesButtonWrapper>
+						<SubmitChangesButton handleSubmit={handleSubmit} />
+					</SubmitChangesButtonWrapper>
+					<Separator />
+					<ChangePassword />
+					<Separator />
+					<SendVerificationRequest
+						isVerifed={defaultFormValues.isVerifed}
+						sentVerificationRequest={defaultFormValues.sentVerificationRequest}
+					/>
+				</EditProfileFormWrapper>
+			</div>
+		</>
 	);
 }

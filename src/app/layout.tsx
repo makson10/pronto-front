@@ -14,6 +14,12 @@ export default async function RootLayout({
 		user,
 	};
 
+	// TODO:
+	//? move getAndStoreUser to /api/login route handler
+	//? rewrite Formik forms to useFormik
+	//? rewrite all styles to .module.css and install scss
+	//? add showing server error through signup|login
+
 	return (
 		<html lang="en">
 			<head>
@@ -21,6 +27,7 @@ export default async function RootLayout({
 				<link rel="icon" type="image/x-icon" href="/short_logo.png" />
 			</head>
 			<body>
+				<div id="portal" className="fixed z-[101] w-screen" />
 				<CustomNextUIProvider>
 					<StoreInitializer initialValues={storeInitialValues} />
 					{children}

@@ -1,23 +1,27 @@
 import { SignUpUser } from '@/types/userTypes';
 import { getSessionFromRequest, setNewSession } from '../sessionUtils';
 import axios from 'axios';
+import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
 	const user = await request.json().then((data) => data.user);
-	const logInResponse = await sendLogInRequest(user);
-	if (!logInResponse.data.isAuthorized)
-		return new Response('error', { status: 400 });
-
-	const session = await getSessionFromRequest(logInResponse);
-	setNewSession(session);
-	return new Response('success', { status: 200 });
+	await sendLogInRequest(user);
 }
 
 const sendLogInRequest = async (user: SignUpUser) => {
-	return await axios.post(
-		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/user/login',
-		{ user }
-	);
+	try {
+		const logInResponse = await axios.post(
+			process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/user/login',
+			{ user }
+		);
+
+		const newSession = await getSessionFromRequest(logInResponse);
+		setNewSession(newSession);
+
+		return NextResponse.json('success', { status: 200 });
+	} catch (error: any) {
+		return NextResponse.json(error.response.data.message, { status: 400 });
+	}
 };

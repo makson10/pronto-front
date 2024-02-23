@@ -1,12 +1,13 @@
-import { Button } from '@nextui-org/react';
-import EditField from './EditField';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import EditField from './EditField';
 import {
 	ChangeIconButtonProps,
 	NewIconPreviewProps,
 	SubmitChangeIconProps,
 } from '@/types/changeIconProps';
+import { Button } from '@nextui-org/react';
+import axios from 'axios';
+import { ShowMessageBox } from '@/components/MessageBox';
 
 export default function ChangeIcon() {
 	return (
@@ -24,6 +25,10 @@ export default function ChangeIcon() {
 }
 
 const DropdownInput = () => {
+	const [
+		needToShowSuccessChangeIconMessage,
+		setNeedToShowSuccessChangeIconMessage,
+	] = useState<boolean>(false);
 	const [newIcon, setNewIcon] = useState<File | null>(null);
 
 	const setIconOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,13 +45,22 @@ const DropdownInput = () => {
 				<NewIconPreview newIcon={newIcon} />
 				<div className="flex flex-row gap-4 justify-center">
 					<ChangeIconButton onChange={setIconOnChange} />
-					<SubmitChangeIcon newIcon={newIcon} setNewIcon={setNewIcon} />
+					<SubmitChangeIcon
+						newIcon={newIcon}
+						setNewIcon={setNewIcon}
+						setNeedToShowSuccessChangeIconMessage={
+							setNeedToShowSuccessChangeIconMessage
+						}
+					/>
 				</div>
 			</div>
 		);
 
 	return (
 		<>
+			{needToShowSuccessChangeIconMessage && (
+				<ShowMessageBox message="Icon was changed" />
+			)}
 			<div className="flex flex-row gap-2">
 				<label htmlFor="dropdown-file" className="w-full">
 					<div className="cursor-pointer py-4 bg-gray-700 flex flex-row gap-2 justify-center items-center border-2 border-gray-400 rounded-lg">
@@ -92,9 +106,14 @@ const ChangeIconButton = ({ onChange }: ChangeIconButtonProps) => {
 	);
 };
 
-const SubmitChangeIcon = ({ newIcon, setNewIcon }: SubmitChangeIconProps) => {
+const SubmitChangeIcon = ({
+	newIcon,
+	setNewIcon,
+	setNeedToShowSuccessChangeIconMessage,
+}: SubmitChangeIconProps) => {
 	const submitChangeIcon = async () => {
 		await axios.post('/api/storenewicon', newIcon);
+		setNeedToShowSuccessChangeIconMessage(true);
 		setNewIcon(null);
 	};
 
