@@ -1,6 +1,7 @@
 import { store } from '@/context/store';
 import usePageNavigation from '@/hooks/usePageNavigation';
 import axios from 'axios';
+import style from '@/styles/logOutButton.module.scss';
 
 export default function LogOutButton() {
 	const { refreshPage } = usePageNavigation();
@@ -31,23 +32,8 @@ export default function LogOutButton() {
 	};
 
 	return (
-		<button onClick={handleClick} style={LogOutButtonStype}>
+		<button onClick={handleClick} className={style['log-out-button']}>
 			Log out
 		</button>
 	);
 }
-
-const LogOutButtonStype: React.CSSProperties = {
-	display: 'flex',
-	flexDirection: 'column',
-	justifyContent: 'center',
-	backgroundColor: 'blue',
-	color: 'white',
-	paddingLeft: '1rem',
-	paddingRight: '1rem',
-	paddingTop: '0.6rem',
-	paddingBottom: '0.7rem',
-	borderRadius: '5px',
-	fontSize: '1rem',
-	WebkitBorderRadius: '.5rem',
-};

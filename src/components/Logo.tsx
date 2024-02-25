@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 
 export default function Logo() {
 	const router = useRouter();
+
 	return (
 		<div className="flex flex-col justify-center">
 			<Image

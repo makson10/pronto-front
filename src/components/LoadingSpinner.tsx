@@ -1,34 +1,11 @@
 import { Spinner } from '@nextui-org/react';
+import style from '@/styles/loadingSpinner.module.scss';
 
 export default function LoadingSpinner() {
 	return (
-		<div style={overlayStyle}>
-			<Spinner color="danger" size="lg" className="scale-[200%]" />
-			<p style={letterStyle}>p</p>
+		<div className={style['overlay']}>
+			<Spinner color="danger" size="lg" className={style['spinner']} />
+			<p className={style['letter']}>p</p>
 		</div>
 	);
 }
-
-const overlayStyle: React.CSSProperties = {
-	backgroundColor: 'var(--first-bg-color)',
-	position: 'fixed',
-	left: 0,
-	top: 0,
-	width: '100%',
-	height: '100%',
-	zIndex: 9999,
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'center',
-};
-
-const letterStyle: React.CSSProperties = {
-	paddingBottom: '.8rem',
-	fontSize: '2rem',
-	fontWeight: 'bold',
-	color: '#f06292',
-	position: 'absolute',
-	left: '50%',
-	top: '50%',
-	transform: 'translate(-50%, -50%)',
-};

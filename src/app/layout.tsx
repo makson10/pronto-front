@@ -1,5 +1,5 @@
-import '@/styles/globals.css';
-import '@/styles/variables.css';
+import '@/styles/globals.scss';
+import '@/styles/variables.scss';
 import { getUserDataBySession } from './api/sessionUtils';
 import StoreInitializer from '@/context/StoreInitializer';
 import CustomNextUIProvider from '@/components/CustomNextUIProvider';
@@ -15,10 +15,9 @@ export default async function RootLayout({
 	};
 
 	// TODO:
-	//? move getAndStoreUser to /api/login route handler
-	//? rewrite Formik forms to useFormik
-	//? rewrite all styles to .module.css and install scss
-	//? add showing server error through signup|login
+	//? split UserInfo.tsx to few files
+	//? add icon to main header
+	//? delete old user icons
 
 	return (
 		<html lang="en">

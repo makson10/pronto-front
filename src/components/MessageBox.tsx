@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import style from '@/styles/messageBox.module.css';
+import style from '@/styles/messageBox.module.scss';
 
 interface Props {
 	message: string;
@@ -16,7 +16,7 @@ export const ShowMessageBox = ({ message, isError = false }: Props) => {
 const MessageBox = ({ message, isError }: Props) => {
 	return (
 		<div className={style['message-box-wrapper']}>
-			<div className={style['message-box']} data-isError={isError} />
+			<div className={style['message-box']} data-iserror={isError} />
 			<p className={style['message-box-text']}>{message}</p>
 		</div>
 	);

@@ -1,4 +1,3 @@
-import { store } from '@/context/store';
 import { resetUserData } from '@/context/storeUtils';
 import usePageNavigation from '@/hooks/usePageNavigation';
 import axios from 'axios';
@@ -9,16 +8,16 @@ import {
 	DropdownItem,
 } from '@nextui-org/react';
 import UserIcon from './UserIcon';
+import UserProfileIcon from '../UserProfileIcon';
 
 interface Props {
 	name: string;
 }
 
 export default function UserIconDropdownMenu({ name }: Props) {
-	const userId = store.getState().user?.id;
 	const { goToPage, refreshPage } = usePageNavigation();
 
-	const goToProfilePage = () => goToPage('/profile/' + userId);
+	const goToProfilePage = () => goToPage('/profile');
 	const logOutUser = async () => {
 		await axios.post('/api/logout');
 		await axios.post('/api/revalidatetag', { tag: 'getuserbysessionrequest' });
@@ -31,6 +30,7 @@ export default function UserIconDropdownMenu({ name }: Props) {
 			<DropdownTrigger>
 				<div>
 					<UserIcon name={name[0]} />
+					{/* <UserProfileIcon altIconText={name[0]} /> */}
 				</div>
 			</DropdownTrigger>
 			<DropdownMenu className="text-black">

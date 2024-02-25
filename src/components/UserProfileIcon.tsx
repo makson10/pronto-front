@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import style from '@/styles/userProfileIcon.module.scss';
 
 interface Props {
 	iconUrl: string | null;
@@ -15,34 +16,19 @@ export default function UserProfileIcon({
 	height = 150,
 	needToLiftUp = false,
 }: Props) {
-	const IconWrapperStyle: React.CSSProperties = {
-		position: 'relative',
-		width: width + 'px',
-		height: height + 'px',
-	};
-
-	const IconStyle: React.CSSProperties = {
-		minWidth: width + 'px',
-		minHeight: height + 'px',
-	};
-
 	return (
-		<div style={IconWrapperStyle}>
+		<div className={style['icon-wrapper']}>
 			<div className={needToLiftUp ? 'absolute -top-[60%]' : ''}>
 				{iconUrl ? (
 					<Image
-						className="rounded-full border-[--first-bg-color] border-4"
+						className={style['empty-icon']}
 						src={iconUrl}
 						alt="#"
 						width={width}
 						height={height}
 					/>
 				) : (
-					<div
-						style={IconStyle}
-						className="grid place-items-center rounded-full bg-gray-500 border-[--first-bg-color] border-4 text-3xl">
-						{altIconText}
-					</div>
+					<div className={style['user-icon']}>{altIconText}</div>
 				)}
 			</div>
 		</div>

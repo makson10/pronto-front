@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
+import style from '@/styles/changePasswordVisibilityButton.module.scss';
 
 interface Props {
 	isPasswordVisible: boolean;
@@ -19,11 +20,8 @@ export default function ChangePasswordVisibilityButton({
 	return (
 		<button
 			tabIndex={-1}
-			style={
-				styleVariant === 1
-					? FirstPasswordVisibilityVariantStyle
-					: SecondPasswordVisibilityVariantStyle
-			}
+			className={style['change-password-visibility-button']}
+			data-variant={styleVariant === 1 ? 'first' : 'second'}
 			onClick={togglePasswordVisible}>
 			<img
 				width="24"
@@ -36,13 +34,3 @@ export default function ChangePasswordVisibilityButton({
 		</button>
 	);
 }
-
-const FirstPasswordVisibilityVariantStyle: React.CSSProperties = {
-	borderRadius: '6px',
-	backgroundColor: '#737373',
-	padding: '0.3rem',
-};
-
-const SecondPasswordVisibilityVariantStyle: React.CSSProperties = {
-	width: 'fit-content',
-};

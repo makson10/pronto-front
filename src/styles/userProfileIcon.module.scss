@@ -1,0 +1,25 @@
+.icon-wrapper {
+	position: relative;
+	width: 150px;
+	height: 150px;
+}
+
+.user-icon {
+	min-width: 150px;
+	min-height: 150px;
+	display: grid;
+	place-items: center;
+	border-radius: 100%;
+	background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+	border-color: var(--first-bg-color);
+	border-width: 4px;
+	font-size: 1.875rem;
+	line-height: 2.25rem;
+}
+
+.empty-icon {
+	min-height: 150px;
+	border-radius: 100%;
+	border-color: var(--first-bg-color);
+	border-width: 4px;
+}

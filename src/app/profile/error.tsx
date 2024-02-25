@@ -1,6 +1,5 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 
 interface Props {
 	error: Error & { digest?: string; cause?: string };
@@ -9,10 +8,6 @@ interface Props {
 
 export default function Error({ error, reset }: Props) {
 	const router = useRouter();
-
-	useEffect(() => {
-		console.log(error);
-	}, [error]);
 
 	const handleClick = () => router.push('/');
 

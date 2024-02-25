@@ -3,11 +3,11 @@
 	justify-content: center;
 }
 
-.message-box[data-isError='false'] {
+.message-box[data-iserror='false'] {
 	background-color: #3b4379;
 }
 
-.message-box[data-isError='true'] {
+.message-box[data-iserror='true'] {
 	background-color: #d93144;
 }
 
@@ -20,7 +20,7 @@
 	transform: translateY(-50px);
 	width: max-content;
 	height: 40px;
-	animation: messageBoxAnimation 4000ms linear 1000ms forwards;
+	animation: messageBoxAnimation 4000ms linear forwards;
 }
 
 .shadow-message-box-text {
@@ -31,7 +31,7 @@
 	position: absolute;
 	opacity: 0;
 	width: max-content;
-	animation: messageBoxTextAnimation 4000ms linear 1000ms forwards;
+	animation: messageBoxTextAnimation 4000ms linear forwards;
 }
 
 @keyframes messageBoxAnimation {

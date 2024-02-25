@@ -15,7 +15,6 @@ export default function MainHeader() {
 					<Logo />
 					<SearchBox />
 				</div>
-
 				{user ? (
 					<UserIconDropdownMenu name={user.firstName} />
 				) : (

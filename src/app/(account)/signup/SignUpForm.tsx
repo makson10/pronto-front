@@ -1,5 +1,5 @@
 'use client';
-import { Form, Formik } from 'formik';
+import { useFormik } from 'formik';
 import { useState } from 'react';
 import PasswordRequirementsHint from '@/components/PasswordRequirementsHint';
 import ChangePasswordVisibilityButton from '@/components/ChangePasswordVisibilityButton';
@@ -7,187 +7,163 @@ import { SignUpUser } from '@/types/userTypes';
 import usePageNavigation from '@/hooks/usePageNavigation';
 import { getAndStoreUser } from '@/context/storeUtils';
 import { signUpValidationScheme } from '@/assets/validationScheme';
+import { ShowMessageBox } from '@/components/MessageBox';
 import axios from 'axios';
+import style from '@/styles/authorizeForm.module.scss';
 
 export default function SignUpForm() {
 	const { goToHomePage } = usePageNavigation();
 	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+	const [errorMessageText, setErrorMessageText] = useState<string>('fuck');
+	const [needToShowErrorMessage, setNeedToShowErrorMessage] =
+		useState<boolean>(false);
 
-	const sendSignUpRequest = async (user: SignUpUser) => {
-		await axios.post('/api/signup', { user });
-		await getAndStoreUser();
+	const {
+		values,
+		errors,
+		touched,
+		handleSubmit,
+		handleBlur,
+		handleChange,
+		isSubmitting,
+	} = useFormik({
+		initialValues: {
+			firstName: '',
+			lastName: '',
+			email: '',
+			password: '',
+		},
+		validationSchema: signUpValidationScheme,
+		onSubmit: (values, { setSubmitting }) => {
+			setTimeout(async () => {
+				await signUpUser(values);
+				setSubmitting(false);
+			}, 200);
+		},
+	});
+
+	const signUpUser = async (user: SignUpUser) => {
+		try {
+			await axios.post('/api/signup', { user });
+			await getAndStoreUser();
+			goToHomePage();
+		} catch (error: any) {
+			setErrorMessageText(error.response.data);
+			setNeedToShowErrorMessage(true);
+			setTimeout(() => {
+				setNeedToShowErrorMessage(false);
+			}, 4000);
+		}
 	};
 
 	return (
-		<Formik
-			initialValues={{
-				firstName: '',
-				lastName: '',
-				email: '',
-				password: '',
-			}}
-			validationSchema={signUpValidationScheme}
-			onSubmit={(values, { setSubmitting }) => {
-				setTimeout(async () => {
-					console.log(values);
-					await sendSignUpRequest(values);
-					goToHomePage();
-					setSubmitting(false);
-				}, 200);
-			}}>
-			{({
-				values,
-				errors,
-				touched,
-				handleChange,
-				handleBlur,
-				handleSubmit,
-				isSubmitting,
-			}) => (
-				<Form className="flex flex-col gap-10" onSubmit={handleSubmit}>
-					<div className="flex flex-col gap-4">
-						<div className="flex flex-row justify-between gap-12">
-							<div style={InputWrapperStyle}>
-								<div style={PlaceholderWrapperStyle}>
-									<label htmlFor="firstName" style={PlaceholderStyle}>
-										First Name
-									</label>
-									{errors.firstName && touched.firstName && (
-										<p style={ErrorStyle}>{errors.firstName}</p>
-									)}
-								</div>
-								<input
-									id="firstName"
-									name="firstName"
-									type="text"
-									style={InputStyle}
-									onChange={handleChange}
-									onBlur={handleBlur}
-									value={values.firstName}
-								/>
-							</div>
+		<>
+			{needToShowErrorMessage && (
+				<ShowMessageBox message={errorMessageText} isError={true} />
+			)}
 
-							<div style={InputWrapperStyle}>
-								<div style={PlaceholderWrapperStyle}>
-									<label htmlFor="lastName" style={PlaceholderStyle}>
-										Last Name
-									</label>
-									{errors.lastName && touched.lastName && (
-										<p style={ErrorStyle}>{errors.lastName}</p>
-									)}
-								</div>
-								<input
-									id="lastName"
-									name="lastName"
-									type="text"
-									style={InputStyle}
-									onChange={handleChange}
-									onBlur={handleBlur}
-									value={values.lastName}
-								/>
-							</div>
-						</div>
-
-						<div style={InputWrapperStyle}>
-							<div style={PlaceholderWrapperStyle}>
-								<label htmlFor="email" style={PlaceholderStyle}>
-									Email
+			<form className="flex flex-col gap-10" onSubmit={handleSubmit}>
+				<div className="flex flex-col gap-4">
+					<div className="flex flex-row justify-between gap-12">
+						<div className={style['inputWrapper']}>
+							<div className={style['placeholderWrapper']}>
+								<label htmlFor="firstName" className={style['placeholder']}>
+									First Name
 								</label>
-								{errors.email && touched.email && (
-									<p style={ErrorStyle}>{errors.email}</p>
+								{errors.firstName && touched.firstName && (
+									<p className={style['error']}>{errors.firstName}</p>
 								)}
 							</div>
 							<input
-								id="email"
-								name="email"
-								type="email"
-								style={InputStyle}
+								id="firstName"
+								name="firstName"
+								type="text"
+								className={style['input']}
 								onChange={handleChange}
 								onBlur={handleBlur}
-								value={values.email}
+								value={values.firstName}
 							/>
 						</div>
 
-						<div style={InputWrapperStyle}>
-							<div style={PlaceholderWrapperStyle}>
-								<div style={PasswordPlaceholderWrapperStyle}>
-									<label htmlFor="password" style={PlaceholderStyle}>
-										Password
-									</label>
-									<PasswordRequirementsHint />
-								</div>
-								{errors.password && touched.password && (
-									<p style={ErrorStyle}>{errors.password}</p>
+						<div className={style['inputWrapper']}>
+							<div className={style['placeholderWrapper']}>
+								<label htmlFor="lastName" className={style['placeholder']}>
+									Last Name
+								</label>
+								{errors.lastName && touched.lastName && (
+									<p className={style['error']}>{errors.lastName}</p>
 								)}
 							</div>
-							<div className="flex flex-row gap-2">
-								<input
-									id="password"
-									name="password"
-									type={isPasswordVisible ? 'text' : 'password'}
-									className="w-full"
-									style={InputStyle}
-									onChange={handleChange}
-									onBlur={handleBlur}
-									value={values.password}
-								/>
-								<ChangePasswordVisibilityButton
-									isPasswordVisible={isPasswordVisible}
-									setIsPasswordVisible={setIsPasswordVisible}
-								/>
-							</div>
+							<input
+								id="lastName"
+								name="lastName"
+								type="text"
+								className={style['input']}
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.lastName}
+							/>
 						</div>
 					</div>
 
-					<button
-						type="submit"
-						disabled={isSubmitting}
-						style={SubmitButtonStyle}>
-						Sign up
-					</button>
-				</Form>
-			)}
-		</Formik>
+					<div className={style['inputWrapper']}>
+						<div className={style['placeholderWrapper']}>
+							<label htmlFor="email" className={style['placeholder']}>
+								Email
+							</label>
+							{errors.email && touched.email && (
+								<p className={style['error']}>{errors.email}</p>
+							)}
+						</div>
+						<input
+							id="email"
+							name="email"
+							type="email"
+							className={style['input']}
+							onChange={handleChange}
+							onBlur={handleBlur}
+							value={values.email}
+						/>
+					</div>
+
+					<div className={style['inputWrapper']}>
+						<div className={style['placeholderWrapper']}>
+							<div className={style['passwordPlaceholderWrapper']}>
+								<label htmlFor="password" className={style['placeholder']}>
+									Password
+								</label>
+								<PasswordRequirementsHint />
+							</div>
+							{errors.password && touched.password && (
+								<p className={style['error']}>{errors.password}</p>
+							)}
+						</div>
+						<div className="flex flex-row gap-2">
+							<input
+								id="password"
+								name="password"
+								type={isPasswordVisible ? 'text' : 'password'}
+								className={style['input']}
+								style={{ width: '100%' }}
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.password}
+							/>
+							<ChangePasswordVisibilityButton
+								isPasswordVisible={isPasswordVisible}
+								setIsPasswordVisible={setIsPasswordVisible}
+							/>
+						</div>
+					</div>
+				</div>
+
+				<button
+					type="submit"
+					disabled={isSubmitting}
+					className={style['submitButton']}>
+					Sign up
+				</button>
+			</form>
+		</>
 	);
 }
-
-const InputWrapperStyle: React.CSSProperties = {
-	display: 'flex',
-	flexDirection: 'column',
-	gap: '.2rem',
-};
-
-const PlaceholderWrapperStyle: React.CSSProperties = {
-	display: 'flex',
-	flexDirection: 'row',
-	justifyContent: 'space-between',
-};
-
-const PasswordPlaceholderWrapperStyle: React.CSSProperties = {
-	display: 'flex',
-	flexDirection: 'row',
-	gap: '.2rem',
-};
-
-const PlaceholderStyle: React.CSSProperties = {
-	fontSize: '.8rem',
-	color: 'grey',
-	fontFamily: 'Tahoma',
-};
-
-const ErrorStyle: React.CSSProperties = {
-	color: 'red',
-	fontSize: '0.8rem',
-};
-
-const InputStyle: React.CSSProperties = {
-	color: 'black',
-	borderRadius: '6px',
-	padding: '0.3rem',
-};
-
-const SubmitButtonStyle: React.CSSProperties = {
-	backgroundColor: '#03C03C',
-	borderRadius: '.4rem',
-	padding: '0.5rem',
-};

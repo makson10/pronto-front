@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
 	const user = await request.json().then((data) => data.user);
-	await sendLogInRequest(user);
+	return await sendLogInRequest(user);
 }
 
 const sendLogInRequest = async (user: SignUpUser) => {

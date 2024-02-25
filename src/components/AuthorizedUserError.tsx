@@ -1,13 +1,14 @@
 'use client';
 import usePageNavigation from '@/hooks/usePageNavigation';
 import LogOutButton from './LogOutButton';
+import style from '@/styles/authorizedUserError.module.scss';
 
-export default function NonAuthorizedUI() {
+export default function AuthorizedUserError() {
 	return (
 		<div className="flex flex-col justify-center items-center">
 			<div className="flex flex-col items-center gap-6">
 				<p className="text-xl">
-					This page does not acceptable for unauthorized users
+					This page does not acceptable for authorized users
 				</p>
 				<div className="flex flex-row gap-4">
 					<LogOutButton />
@@ -22,23 +23,8 @@ const GoHomePageButton = () => {
 	const { goToHomePage } = usePageNavigation();
 
 	return (
-		<button style={GoHomePageButtonStyle} onClick={goToHomePage}>
+		<button className={style['go-home-button']} onClick={goToHomePage}>
 			Go home page
 		</button>
 	);
-};
-
-const GoHomePageButtonStyle: React.CSSProperties = {
-	display: 'flex',
-	flexDirection: 'column',
-	justifyContent: 'center',
-	backgroundColor: 'gray',
-	color: 'white',
-	paddingLeft: '1rem',
-	paddingRight: '1rem',
-	paddingTop: '0.6rem',
-	paddingBottom: '0.7rem',
-	borderRadius: '5px',
-	fontSize: '1rem',
-	WebkitBorderRadius: '.5rem',
 };
