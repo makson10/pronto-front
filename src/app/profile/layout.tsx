@@ -1,6 +1,6 @@
 'use client';
 import MainHeader from '@/components/MainHeader/MainHeader';
-import FormHeader from '@/components/FormHeader';
+import SecondaryHeader from '@/components/SecondaryHeader';
 import Footer from '@/components/Footer';
 import { store } from '@/context/store';
 import { LocalizationProvider } from '@mui/x-date-pickers';
@@ -20,7 +20,7 @@ export default function Layout({ children, params: { userId } }: Props) {
 		<LocalizationProvider dateAdapter={AdapterDayjs}>
 			<div className="flex flex-col min-h-screen">
 				{!userId || parseInt(userId) === storedUserId ? (
-					<FormHeader />
+					<SecondaryHeader />
 				) : (
 					<MainHeader />
 				)}

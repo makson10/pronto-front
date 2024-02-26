@@ -1,5 +1,5 @@
 import Footer from '@/components/Footer';
-import FormHeader from '@/components/FormHeader';
+import SecondaryHeader from '@/components/SecondaryHeader';
 
 interface Props {
 	children: React.ReactNode;
@@ -8,7 +8,7 @@ interface Props {
 export default function Layout({ children }: Props) {
 	return (
 		<div className="flex flex-col min-h-screen">
-			<FormHeader />
+			<SecondaryHeader />
 			<div className="flex-[2_1_auto] flex flex-col justify-center items-center">
 				{children}
 			</div>

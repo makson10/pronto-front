@@ -1,3 +1,4 @@
+'use client';
 import { resetUserData } from '@/context/storeUtils';
 import usePageNavigation from '@/hooks/usePageNavigation';
 import axios from 'axios';
@@ -7,14 +8,14 @@ import {
 	DropdownMenu,
 	DropdownItem,
 } from '@nextui-org/react';
-import UserIcon from './UserIcon';
 import UserProfileIcon from '../UserProfileIcon';
 
 interface Props {
-	name: string;
+	icon: string | null;
+	altText: string | null;
 }
 
-export default function UserIconDropdownMenu({ name }: Props) {
+export default function UserIconDropdownMenu({ icon, altText }: Props) {
 	const { goToPage, refreshPage } = usePageNavigation();
 
 	const goToProfilePage = () => goToPage('/profile');
@@ -27,10 +28,14 @@ export default function UserIconDropdownMenu({ name }: Props) {
 
 	return (
 		<Dropdown>
-			<DropdownTrigger>
+			<DropdownTrigger className={'max-h-[45px] max-w-[45px]'}>
 				<div>
-					<UserIcon name={name[0]} />
-					{/* <UserProfileIcon altIconText={name[0]} /> */}
+					<UserProfileIcon
+						iconUrl={icon}
+						altIconText={altText}
+						width={45}
+						height={45}
+					/>
 				</div>
 			</DropdownTrigger>
 			<DropdownMenu className="text-black">

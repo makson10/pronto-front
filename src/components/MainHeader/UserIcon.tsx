@@ -1,11 +1,15 @@
-interface Props {
-	name: string;
-}
+import RegisterButton from '../RegisterButton';
+import UserIconDropdownMenu from './UserIconDropdownMenu';
+import { getUserDataBySession, getUserProfile } from '@/app/api/sessionUtils';
 
-export default function UserIcon({ name }: Props) {
+const UserIcon = async () => {
+	const user = await getUserDataBySession();
+	if (!user) return <RegisterButton />;
+
+	const profile = await getUserProfile(user.id);
 	return (
-		<div className="flex flex-col justify-center items-center w-[45px] h-[45px] bg-blue-700 rounded-full cursor-pointer">
-			<p>{name[0].toUpperCase()}</p>
-		</div>
+		<UserIconDropdownMenu icon={profile.icon} altText={user.firstName[0]} />
 	);
-}
+};
+
+export default UserIcon;

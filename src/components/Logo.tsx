@@ -14,6 +14,7 @@ export default function Logo() {
 				alt="#"
 				width={120}
 				height={36}
+				draggable={false}
 			/>
 		</div>
 	);

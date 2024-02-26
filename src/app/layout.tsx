@@ -15,9 +15,8 @@ export default async function RootLayout({
 	};
 
 	// TODO:
-	//? split UserInfo.tsx to few files
-	//? add icon to main header
-	//? delete old user icons
+	//? make deleting old user icons
+	//? add new icon size checking that it can't go above limit
 
 	return (
 		<html lang="en">
