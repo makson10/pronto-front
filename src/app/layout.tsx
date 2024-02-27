@@ -16,7 +16,6 @@ export default async function RootLayout({
 
 	// TODO:
 	//? make deleting old user icons
-	//? add new icon size checking that it can't go above limit
 
 	return (
 		<html lang="en">

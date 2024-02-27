@@ -1,6 +1,6 @@
 'use client';
 import { useFormik } from 'formik';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PasswordRequirementsHint from '@/components/PasswordRequirementsHint';
 import ChangePasswordVisibilityButton from '@/components/ChangePasswordVisibilityButton';
 import { SignUpUser } from '@/types/userTypes';
@@ -42,6 +42,14 @@ export default function SignUpForm() {
 		},
 	});
 
+	useEffect(() => {
+		if (!needToShowErrorMessage) return;
+
+		setTimeout(() => {
+			setNeedToShowErrorMessage(false);
+		}, 4000);
+	}, [needToShowErrorMessage]);
+
 	const signUpUser = async (user: SignUpUser) => {
 		try {
 			await axios.post('/api/signup', { user });
@@ -50,9 +58,6 @@ export default function SignUpForm() {
 		} catch (error: any) {
 			setErrorMessageText(error.response.data);
 			setNeedToShowErrorMessage(true);
-			setTimeout(() => {
-				setNeedToShowErrorMessage(false);
-			}, 4000);
 		}
 	};
 
