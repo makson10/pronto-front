@@ -2,6 +2,7 @@ import { cookies } from 'next/headers';
 import { CookieSerializeOptions } from 'cookie';
 import * as cookie from 'cookie';
 import { AxiosResponse } from 'axios';
+import { Profile } from '@/types/profile';
 
 export const sessionCookieOptions: CookieSerializeOptions = {
 	secure: process.env.NODE_ENV === 'production',
@@ -74,7 +75,7 @@ export const getUserDataByUserId = async (userId: number | string) => {
 	return user;
 };
 
-export const getUserProfile = async (userId: number | string) => {
+export const getProfile = async (userId: number | string): Promise<Profile> => {
 	const req = await fetch(
 		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/profile',
 		{

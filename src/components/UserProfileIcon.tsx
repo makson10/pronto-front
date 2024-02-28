@@ -6,6 +6,7 @@ interface Props {
 	altIconText?: string | null;
 	width?: number;
 	height?: number;
+	makeBorder?: boolean;
 }
 
 export default function UserProfileIcon({
@@ -13,6 +14,7 @@ export default function UserProfileIcon({
 	altIconText = null,
 	width = 150,
 	height = 150,
+	makeBorder = false,
 }: Props) {
 	return (
 		<div
@@ -31,7 +33,9 @@ export default function UserProfileIcon({
 					height={height}
 				/>
 			) : (
-				<div className={style['user-icon']}>{altIconText}</div>
+				<div className={style['user-icon']} data-makeborder={makeBorder}>
+					{altIconText}
+				</div>
 			)}
 		</div>
 	);

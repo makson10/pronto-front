@@ -1,10 +1,16 @@
+'use client';
 import { useState } from 'react';
 import ChangeIconButton from './ChangeIconButton';
 import { ShowMessageBox } from '@/components/MessageBox';
 import NewIconPreview from './NewIconPreview';
 import SubmitChangeIcon from './SubmitChangeIcon';
+import DeleteIcon from './DeleteIcon';
 
-const DropdownInput = () => {
+interface Props {
+	iconExist: boolean;
+}
+
+const DropdownInput = ({ iconExist }: Props) => {
 	const [
 		needToShowSuccessChangeIconMessage,
 		setNeedToShowSuccessChangeIconMessage,
@@ -41,7 +47,7 @@ const DropdownInput = () => {
 			{needToShowSuccessChangeIconMessage && (
 				<ShowMessageBox message="Icon was changed" />
 			)}
-			<div className="flex flex-row gap-2">
+			<div className="flex flex-col gap-4">
 				<label htmlFor="dropdown-file" className="w-full">
 					<div className="cursor-pointer py-4 bg-gray-700 flex flex-row gap-2 justify-center items-center border-2 border-gray-400 rounded-lg">
 						<img
@@ -62,6 +68,7 @@ const DropdownInput = () => {
 						draggable="true"
 					/>
 				</label>
+				{iconExist && <DeleteIcon />}
 			</div>
 		</>
 	);

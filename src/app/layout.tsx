@@ -14,9 +14,6 @@ export default async function RootLayout({
 		user,
 	};
 
-	// TODO:
-	//? make deleting old user icons
-
 	return (
 		<html lang="en">
 			<head>

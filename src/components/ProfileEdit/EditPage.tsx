@@ -1,6 +1,7 @@
 import Header from './Header';
 import EditProfileForm from './EditProfileForm';
 import { Profile } from '@/types/profile';
+import ChangeIcon from './form/ChangeIcon';
 
 interface Props {
 	profile: Profile;
@@ -14,7 +15,7 @@ export default function EditPage({ profile }: Props) {
 				name={profile.name}
 				profileId={profile.profileId}
 			/>
-			<EditProfileForm defaultFormValues={profile} />
+			<EditProfileForm defaultFormValues={profile} сhangeIcon={<ChangeIcon />} />
 		</div>
 	);
 }

@@ -42,7 +42,11 @@ const ProfileIcon = ({
 	return (
 		<div>
 			<div className="relative -top-[75%]">
-				<UserProfileIcon iconUrl={iconUrl} altIconText={altIconText} />
+				<UserProfileIcon
+					iconUrl={iconUrl}
+					altIconText={altIconText}
+					makeBorder={true}
+				/>
 			</div>
 		</div>
 	);

@@ -12,11 +12,13 @@
 	display: grid;
 	place-items: center;
 	border-radius: 100%;
-	background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+	background-color: rgb(78, 78, 78);
+	font-size: 3rem;
+}
+
+.user-icon[data-makeborder='true'] {
 	border-color: var(--first-bg-color);
 	border-width: 4px;
-	font-size: 1.875rem;
-	line-height: 2.25rem;
 }
 
 .empty-icon {

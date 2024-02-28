@@ -1,7 +1,11 @@
 import EditField from './EditField';
 import DropdownInput from './ChangeIcon/DropdownInput';
+import { getProfile, getUserIdBySession } from '@/app/api/sessionUtils';
 
-export default function ChangeIcon() {
+const ChangeIcon = async () => {
+	const userId = await getUserIdBySession();
+	const profile = await getProfile(userId);
+
 	return (
 		<EditField
 			title="Icon"
@@ -11,7 +15,9 @@ export default function ChangeIcon() {
 					<u>jerk off</u>
 				</p>
 			}>
-			<DropdownInput />
+			<DropdownInput iconExist={!!profile.icon} />
 		</EditField>
 	);
-}
+};
+
+export default ChangeIcon;

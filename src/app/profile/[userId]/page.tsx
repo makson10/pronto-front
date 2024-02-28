@@ -1,4 +1,4 @@
-import { getUserProfile } from '@/app/api/sessionUtils';
+import { getProfile } from '@/app/api/sessionUtils';
 import Profile from './Profile';
 
 interface Props {
@@ -8,6 +8,6 @@ interface Props {
 }
 
 export default async function ProfilePage({ params: { userId } }: Props) {
-	const profile = await getUserProfile(userId);
+	const profile = await getProfile(userId);
 	return <Profile profile={profile} />;
 }
