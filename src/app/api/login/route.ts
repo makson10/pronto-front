@@ -1,12 +1,13 @@
 import { SignUpUser } from '@/types/userTypes';
 import { getSessionFromRequest, setNewSession } from '../sessionUtils';
-import axios from 'axios';
 import { NextResponse } from 'next/server';
+import axios from 'axios';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
-	const user = await request.json().then((data) => data.user);
+	const body = await request.json();
+	const user = body.user;
 	return await sendLogInRequest(user);
 }
 

@@ -6,7 +6,8 @@ import { NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
-	const user = await request.json().then((data) => data.user);
+	const body = await request.json();
+	const user = body.user;
 	return await sendSignUpRequest(user);
 }
 
