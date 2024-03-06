@@ -1,3 +1,4 @@
+'use client';
 import { Fragment, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
@@ -8,7 +9,9 @@ interface Props {
 const Description = ({ description }: Props) => {
 	if (!description) {
 		return (
-			<div className="flex flex-row gap-2 items-center">
+			<div
+				className="flex flex-row gap-2 items-center"
+				aria-label="pronto-description">
 				<Image
 					className="w-[24px] h-[24px] opacity-50"
 					src={'https://img.icons8.com/ffffff/ios/100/info-squared.png'}
@@ -53,16 +56,13 @@ const Description = ({ description }: Props) => {
 
 				setDescriptionFadeOutLetter((state) => [...state, letterElement]);
 			});
-
-			setDescriptionFadeOutLetter((state) => [
-				...state,
-				SeeFullDescriptionButton(),
-			]);
 		}
 	}, [userDescription]);
 
 	return (
-		<div className="flex flex-row gap-2 items-center">
+		<div
+			className="flex flex-row gap-2 items-center"
+			aria-label="pronto-description">
 			<Image
 				className="w-[24px] h-[24px]"
 				src={'https://img.icons8.com/ios/100/ffffff/info-squared.png'}
@@ -72,9 +72,16 @@ const Description = ({ description }: Props) => {
 			/>
 			<p className="w-[75%] break-all">
 				{userDescription}
-				{descriptionFadeOutLetter.map((elem, index) => (
-					<Fragment key={index}>{elem}</Fragment>
-				))}
+				{descriptionFadeOutLetter.map((elem, index) => {
+					return (
+						<>
+							<Fragment key={index}>{elem}</Fragment>
+							{descriptionFadeOutLetter.length - 1 === index && (
+								<SeeFullDescriptionButton />
+							)}
+						</>
+					);
+				})}
 			</p>
 		</div>
 	);
@@ -82,12 +89,14 @@ const Description = ({ description }: Props) => {
 
 const SeeFullDescriptionButton = () => {
 	const handleClick = () => {
-		console.log('clicked see full description');
+		const elem = document.getElementById('detail-user-info');
+		elem?.scrollIntoView({ behavior: 'smooth' });
 	};
 
 	return (
 		<button
 			className="ml-1 text-white/20 text-base line-[1px]"
+			tabIndex={-1}
 			onClick={handleClick}>
 			{'>>'}
 		</button>

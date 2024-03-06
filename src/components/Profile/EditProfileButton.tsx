@@ -7,8 +7,9 @@ export default function EditProfileButton() {
 
 	return (
 		<button
-			className="bg-white text-black font-bold py-2 px-4 rounded transition duration-200 ease-in-out hover:bg-gray-300"
-			onClick={handleClick}>
+			className="min-w-[116px] bg-white text-black font-bold py-2 px-4 rounded transition duration-200 ease-in-out hover:bg-gray-300"
+			onClick={handleClick}
+			aria-label="edit-profile-button">
 			Edit profile
 		</button>
 	);

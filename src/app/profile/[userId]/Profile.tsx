@@ -1,7 +1,7 @@
 import ProfileHeader from '@/components/Profile/ProfileHeader';
 import ProfileContentWrapper from '@/components/Profile/ProfileContentWrapper';
 import PostsFlow from '@/components/Profile/PostsFlow';
-import DetailUserInformation from '@/components/Profile/DetailUserInformation';
+import DetailInfo from '@/components/Profile/DetailInfo';
 import { Profile } from '@/types/profile';
 
 interface Props {
@@ -14,7 +14,7 @@ export default function Profile({ profile }: Props) {
 			<ProfileHeader profile={profile} />
 			<ProfileContentWrapper>
 				<PostsFlow />
-				<DetailUserInformation />
+				<DetailInfo profile={profile} />
 			</ProfileContentWrapper>
 		</div>
 	);

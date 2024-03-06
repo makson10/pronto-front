@@ -1,5 +1,6 @@
 import '@/styles/globals.scss';
 import '@/styles/variables.scss';
+import '@/styles/DetailInfo.scss';
 import { getUserDataBySession } from './api/sessionUtils';
 import StoreInitializer from '@/context/StoreInitializer';
 import CustomNextUIProvider from '@/components/CustomNextUIProvider';
@@ -13,6 +14,9 @@ export default async function RootLayout({
 	const storeInitialValues = {
 		user,
 	};
+
+	//? add presents to user
+	//? add adding new posts
 
 	return (
 		<html lang="en">

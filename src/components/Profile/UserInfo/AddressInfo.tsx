@@ -5,7 +5,7 @@ interface Props {
 }
 
 const AddressInfo = ({ city }: Props) => (
-	<div className="flex flex-row gap-2">
+	<div className="flex flex-row gap-2" aria-label="pronto-address">
 		<Image
 			className="w-[24px]"
 			style={{ opacity: city ? 1 : 0.5 }}

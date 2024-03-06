@@ -7,8 +7,9 @@ export default function AddToFriendButton() {
 
 	return (
 		<button
-			className="bg-white text-black font-bold py-2 px-4 rounded transition duration-200 ease-in-out hover:bg-gray-300"
-			onClick={handleClick}>
+			className="min-w-[142px] bg-white text-black font-bold py-2 px-4 rounded transition duration-200 ease-in-out hover:bg-gray-300"
+			onClick={handleClick}
+			aria-label="add-to-friend-button">
 			Add to friends
 		</button>
 	);

@@ -10,7 +10,7 @@ const NameInfo = ({ data: { name, isVerifed, createdAt } }: Props) => {
 	const userRegistrationDate = new Date(createdAt).toLocaleDateString();
 
 	return (
-		<div className="flex flex-row gap-2 items-center">
+		<div className="flex flex-row gap-2 items-center" aria-label="profile-name">
 			<p className="text-2xl">{name}</p>
 			{isVerifed && <VerifedUserIcon />}
 			<p className="text-gray-500 text-sm">
