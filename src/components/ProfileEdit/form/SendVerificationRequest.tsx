@@ -48,7 +48,7 @@ const SendRequestButton = ({ setShouldShowSendButton }: ButtonProps) => {
 	return (
 		<Button
 			isDisabled={isButtonDisabled.current}
-			className="bg-white font-bold text-base"
+			className="button"
 			onClick={handleClick}>
 			Send verification request
 		</Button>

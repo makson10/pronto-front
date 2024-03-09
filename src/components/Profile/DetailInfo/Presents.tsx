@@ -9,8 +9,8 @@ export default function Presents({ presents }: Props) {
 				<div>
 					<p className="detailInfoTitle">Presents</p>
 					<p className="flex flex-row gap-2">
-						{presents.map((present) => {
-							return <p>{present.title}</p>;
+						{presents.map((present, index) => {
+							return <p key={index}>{present.title}</p>;
 						})}
 					</p>
 				</div>

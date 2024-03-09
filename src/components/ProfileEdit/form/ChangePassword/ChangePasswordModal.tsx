@@ -47,7 +47,7 @@ const ChangePasswordModal = () => {
 
 	return (
 		<>
-			<Button onPress={onOpen} className="bg-white font-bold text-base">
+			<Button onPress={onOpen} className="button">
 				Change password
 			</Button>
 			<Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="opaque">

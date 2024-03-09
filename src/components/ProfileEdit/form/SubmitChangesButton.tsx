@@ -6,7 +6,7 @@ interface Props {
 
 export default function SubmitChangesButton({ handleSubmit }: Props) {
 	return (
-		<Button className="bg-white font-bold text-base" onClick={handleSubmit}>
+		<Button className="button" onClick={handleSubmit}>
 			Submit changes
 		</Button>
 	);

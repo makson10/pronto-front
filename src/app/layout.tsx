@@ -1,6 +1,7 @@
+import '@/styles/button.scss';
 import '@/styles/globals.scss';
 import '@/styles/variables.scss';
-import '@/styles/DetailInfo.scss';
+import '@/styles/detailInfo.scss';
 import { getUserDataBySession } from './api/sessionUtils';
 import StoreInitializer from '@/context/StoreInitializer';
 import CustomNextUIProvider from '@/components/CustomNextUIProvider';

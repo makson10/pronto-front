@@ -110,7 +110,7 @@ const ChangePasswordForm = ({ formik }: Props) => {
 			</div>
 			<div className="mt-8 w-full flex flex-row justify-end">
 				<Button
-					className="bg-white font-bold text-base"
+					className="button"
 					type="submit"
 					disabled={isSubmitting}>
 					Submit
