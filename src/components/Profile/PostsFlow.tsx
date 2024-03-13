@@ -5,6 +5,7 @@ import NewPostEditor from './PostsFlow/NewPostEditor';
 import Separator from '../ProfileEdit/form/Separator';
 import { store } from '@/context/store';
 import { useParams } from 'next/navigation';
+import Posts from './PostsFlow/Posts';
 
 export default function PostsFlow() {
 	const userId = store.getState().user?.id;
@@ -18,17 +19,19 @@ export default function PostsFlow() {
 }
 
 const AddNewPost = () => {
-	const [showNewPostEditor, setShowNewPostEditor] = useState<boolean>(true);
+	const [showNewPostEditor, setShowNewPostEditor] = useState<boolean>(false);
+	const openEditor = () => setShowNewPostEditor(true);
 	const closeEditor = () => setShowNewPostEditor(false);
 
 	return (
-		<div className="h-full flex flex-col gap-4 items-start">
+		<div className="h-[75%] flex flex-col gap-4 items-start">
 			{showNewPostEditor ? (
 				<NewPostEditor closeEditor={closeEditor} />
 			) : (
 				<>
-					<AddNewPostButton setShowNewPostEditor={setShowNewPostEditor} />
+					<AddNewPostButton openEditor={openEditor} />
 					<Separator />
+					<Posts />
 				</>
 			)}
 		</div>

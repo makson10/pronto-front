@@ -2,13 +2,12 @@
 import { Button } from '@nextui-org/react';
 
 interface Props {
-	setShowNewPostEditor: React.Dispatch<React.SetStateAction<boolean>>;
+	openEditor: (event?: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default function AddNewPostButton({ setShowNewPostEditor }: Props) {
-	const handleClick = () => setShowNewPostEditor(true);
+export default function AddNewPostButton({ openEditor }: Props) {
 	return (
-		<Button className="button text-base" onClick={handleClick}>
+		<Button className="button text-base" onClick={openEditor}>
 			Add new post
 		</Button>
 	);

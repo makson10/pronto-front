@@ -41,13 +41,7 @@ export default function NewPostEditor({ closeEditor }: Props) {
 				classNames={textareaStyle}
 				placeholder="Write here your posts..."
 				onValueChange={setNewPostText}
-				//? endContent={
-				//? <div className="flex flex-row gap-2">
-				//? 	<Button />
-				//? 	<Button />
-				//? 	<Button />
-				//? </div>
-				//? }
+				endContent={<SettingsButton />}
 			/>
 			<div className="w-full flex flex-row justify-end">
 				<div className="flex flex-row items-end gap-4">
@@ -64,8 +58,27 @@ export default function NewPostEditor({ closeEditor }: Props) {
 }
 
 const textareaStyle = {
-	base: 'w-full h-full',
+	base: 'w-full min-h-[230px]',
 	inputWrapper:
-		'min-h-full bg-gray-900 border-3 border-[--border-main-color] data-[hover=true]:bg-gray-900 group-data-[focus=true]:bg-gray-900',
-	input: 'min-h-full group-data-[has-value=true]:text-white',
+		'min-h-full bg-gray-900 border-3 border-[--border-main-color] data-[hover=true]:bg-gray-900 group-data-[focus=true]:bg-gray-900 flex justify-start',
+	innerWrapper: 'flex flex-col gap-2 h-4/5',
+	input: 'min-h-full group-data-[has-value=true]:text-white textarea-scrollbar',
+};
+
+const SettingsButton = () => {
+	return (
+		<div className="flex flex-row gap-2">
+			<Button
+				className="button flex justify-center items-center"
+				size="sm"
+				isIconOnly>
+				<img
+					width="25"
+					height="25"
+					src="https://img.icons8.com/ios-glyphs/100/camera--v1.png"
+					alt="#"
+				/>
+			</Button>
+		</div>
+	);
 };

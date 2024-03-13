@@ -1,5 +1,6 @@
 import '@/styles/button.scss';
 import '@/styles/globals.scss';
+import '@/styles/scrollbar.scss';
 import '@/styles/variables.scss';
 import '@/styles/detailInfo.scss';
 import { getUserDataBySession } from './api/sessionUtils';
@@ -17,7 +18,8 @@ export default async function RootLayout({
 	};
 
 	//? add presents to user
-	//? add adding new posts
+	//? add showing user posts
+	//? add adding picture to posts
 
 	return (
 		<html lang="en">
