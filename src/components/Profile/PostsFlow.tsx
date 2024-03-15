@@ -19,7 +19,7 @@ export default function PostsFlow() {
 }
 
 const AddNewPost = () => {
-	const [showNewPostEditor, setShowNewPostEditor] = useState<boolean>(false);
+	const [showNewPostEditor, setShowNewPostEditor] = useState<boolean>(true);
 	const openEditor = () => setShowNewPostEditor(true);
 	const closeEditor = () => setShowNewPostEditor(false);
 

@@ -7,7 +7,7 @@ interface Props {
 
 export default function AddNewPostButton({ openEditor }: Props) {
 	return (
-		<Button className="button text-base" onClick={openEditor}>
+		<Button className="min-h-[40px] button text-base" onClick={openEditor}>
 			Add new post
 		</Button>
 	);

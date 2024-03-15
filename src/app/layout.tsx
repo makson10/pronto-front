@@ -20,6 +20,7 @@ export default async function RootLayout({
 	//? add presents to user
 	//? add showing user posts
 	//? add adding picture to posts
+	//? rewrite all functions to arrow functions
 
 	return (
 		<html lang="en">
