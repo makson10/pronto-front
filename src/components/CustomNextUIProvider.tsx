@@ -5,6 +5,8 @@ interface Props {
 	children: React.ReactNode;
 }
 
-export default function CustomNextUIProvider({ children }: Props) {
+const CustomNextUIProvider = ({ children }: Props) => {
 	return <NextUIProvider>{children}</NextUIProvider>;
-}
+};
+
+export default CustomNextUIProvider;

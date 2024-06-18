@@ -1,4 +1,4 @@
-import { FullUser } from './userTypes';
+import { FullUser } from './user';
 
 export interface Store {
 	user: FullUser | null;

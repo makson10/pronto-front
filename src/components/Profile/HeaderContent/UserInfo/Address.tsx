@@ -4,7 +4,7 @@ interface Props {
 	city: string | null;
 }
 
-const AddressInfo = ({ city }: Props) => (
+const Address = ({ city }: Props) => (
 	<div className="flex flex-row gap-2" aria-label="pronto-address">
 		<Image
 			className="w-[24px]"
@@ -18,4 +18,4 @@ const AddressInfo = ({ city }: Props) => (
 	</div>
 );
 
-export default AddressInfo;
+export default Address;

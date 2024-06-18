@@ -6,7 +6,7 @@ interface Props {
 	setCity: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-export default function EditCity({ city, setCity }: Props) {
+const EditCity = ({ city, setCity }: Props) => {
 	return (
 		<EditField
 			title="City"
@@ -14,4 +14,6 @@ export default function EditCity({ city, setCity }: Props) {
 			<Input size="sm" defaultValue={city || ''} onValueChange={setCity} />
 		</EditField>
 	);
-}
+};
+
+export default EditCity;

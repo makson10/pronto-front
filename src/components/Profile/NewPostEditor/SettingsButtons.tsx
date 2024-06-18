@@ -1,4 +1,3 @@
-import { Button } from '@nextui-org/react';
 import PasteTextButton from './PasteTextButton';
 import AttachPictureButton from './AttachPictureButton';
 

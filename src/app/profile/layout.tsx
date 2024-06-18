@@ -13,7 +13,7 @@ interface Props {
 	};
 }
 
-export default function Layout({ children, params: { userId } }: Props) {
+const Layout = ({ children, params: { userId } }: Props) => {
 	const storedUserId = store.getState().user?.id;
 
 	return (
@@ -31,4 +31,6 @@ export default function Layout({ children, params: { userId } }: Props) {
 			</div>
 		</LocalizationProvider>
 	);
-}
+};
+
+export default Layout;

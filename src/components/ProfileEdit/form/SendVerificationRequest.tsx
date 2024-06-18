@@ -13,10 +13,10 @@ interface ButtonProps {
 	setShouldShowSendButton: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function SendVerificationRequest({
+const SendVerificationRequest = ({
 	isVerifed,
 	sentVerificationRequest,
-}: MainProps) {
+}: MainProps) => {
 	const [shouldShowSendButton, setShouldShowSendButton] = useState(
 		!sentVerificationRequest
 	);
@@ -34,7 +34,7 @@ export default function SendVerificationRequest({
 			)}
 		</EditField>
 	);
-}
+};
 
 const SendRequestButton = ({ setShouldShowSendButton }: ButtonProps) => {
 	const isButtonDisabled = useRef<boolean>(false);
@@ -54,3 +54,5 @@ const SendRequestButton = ({ setShouldShowSendButton }: ButtonProps) => {
 		</Button>
 	);
 };
+
+export default SendVerificationRequest;

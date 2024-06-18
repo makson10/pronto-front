@@ -1,4 +1,4 @@
-export default function Footer() {
+const Footer = () => {
 	return (
 		<div className="justify-end px-[20%] flex flex-col gap-6 mb-4">
 			<div className="border-[1px] border-white"></div>
@@ -9,4 +9,6 @@ export default function Footer() {
 			</div>
 		</div>
 	);
-}
+};
+
+export default Footer;

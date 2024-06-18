@@ -10,7 +10,7 @@ interface Body {
 	newPassword: string;
 }
 
-export async function POST(request: Request) {
+export const POST = async (request: Request) => {
 	const { oldPassword, newPassword } = await request.json();
 	const userId = await getUserIdBySession();
 	if (!userId) return new Response('error', { status: 400 });
@@ -20,7 +20,7 @@ export async function POST(request: Request) {
 		oldPassword,
 		newPassword,
 	});
-}
+};
 
 const sendChangePasswordRequest = async (body: Body) => {
 	try {

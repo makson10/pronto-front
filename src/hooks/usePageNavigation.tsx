@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation';
 
-export default function usePageNavigation() {
+const usePageNavigation = () => {
 	const router = useRouter();
 
 	const goToHomePage = () => router.push('/');
@@ -8,4 +8,6 @@ export default function usePageNavigation() {
 	const goToPage = (path: string) => router.push(path);
 
 	return { goToHomePage, refreshPage, goToPage };
-}
+};
+
+export default usePageNavigation;

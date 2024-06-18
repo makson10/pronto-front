@@ -9,13 +9,13 @@ interface Props {
 	makeBorder?: boolean;
 }
 
-export default function UserProfileIcon({
+const ProfileIcon = ({
 	iconUrl = null,
 	altIconText = null,
 	width = 150,
 	height = 150,
 	makeBorder = false,
-}: Props) {
+}: Props) => {
 	return (
 		<div
 			className={style['icon-wrapper']}
@@ -39,4 +39,6 @@ export default function UserProfileIcon({
 			)}
 		</div>
 	);
-}
+};
+
+export default ProfileIcon;

@@ -11,7 +11,7 @@ interface FormTitleProps {
 	children: React.ReactNode;
 }
 
-export default function EditField({ title, description, children }: MainProps) {
+const EditField = ({ title, description, children }: MainProps) => {
 	return (
 		<EditFieldWrapper>
 			<div>
@@ -21,8 +21,10 @@ export default function EditField({ title, description, children }: MainProps) {
 			{children}
 		</EditFieldWrapper>
 	);
-}
+};
 
 const FormTitle = ({ children }: FormTitleProps) => {
 	return <p className="font-bold text-lg">{children}</p>;
 };
+
+export default EditField;

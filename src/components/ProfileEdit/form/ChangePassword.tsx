@@ -1,7 +1,7 @@
 import ChangePasswordModal from './ChangePassword/ChangePasswordModal';
 import EditField from './EditField';
 
-export default function ChangePassword() {
+const ChangePassword = () => {
 	return (
 		<EditField
 			title="Password"
@@ -14,4 +14,6 @@ export default function ChangePassword() {
 			<ChangePasswordModal />
 		</EditField>
 	);
-}
+};
+
+export default ChangePassword;

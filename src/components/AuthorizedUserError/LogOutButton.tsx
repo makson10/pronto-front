@@ -3,7 +3,7 @@ import usePageNavigation from '@/hooks/usePageNavigation';
 import axios from 'axios';
 import style from '@/styles/logOutButton.module.scss';
 
-export default function LogOutButton() {
+const LogOutButton = () => {
 	const { refreshPage } = usePageNavigation();
 
 	const handleClick = async () => {
@@ -36,4 +36,6 @@ export default function LogOutButton() {
 			Log out
 		</button>
 	);
-}
+};
+
+export default LogOutButton;

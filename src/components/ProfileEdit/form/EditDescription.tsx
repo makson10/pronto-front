@@ -7,10 +7,7 @@ interface Props {
 	setDescription: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-export default function EditDescription({
-	description,
-	setDescription,
-}: Props) {
+const EditDescription = ({ description, setDescription }: Props) => {
 	return (
 		<EditField
 			title="Description"
@@ -25,4 +22,6 @@ export default function EditDescription({
 			/>
 		</EditField>
 	);
-}
+};
+
+export default EditDescription;

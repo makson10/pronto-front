@@ -2,7 +2,7 @@
 import pagesLinks from '@/assets/pagesLinks';
 import PageLink from './pageField';
 
-export default function PagesList() {
+const PagesList = () => {
 	return (
 		<div className="pt-12 w-1/5">
 			<div className="py-4 flex flex-col items-center gap-2">
@@ -21,4 +21,6 @@ export default function PagesList() {
 			</div>
 		</div>
 	);
-}
+};
+
+export default PagesList;

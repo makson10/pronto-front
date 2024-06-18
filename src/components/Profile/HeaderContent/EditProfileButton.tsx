@@ -1,16 +1,19 @@
 'use client';
+import { Button } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 
-export default function EditProfileButton() {
+const EditProfileButton = () => {
 	const router = useRouter();
 	const handleClick = () => router.push('/profile/edit');
 
 	return (
-		<button
-			className="min-w-[116px] bg-white text-black font-bold py-2 px-4 rounded transition duration-200 ease-in-out hover:bg-gray-300"
+		<Button
+			className="button"
 			onClick={handleClick}
 			aria-label="edit-profile-button">
 			Edit profile
-		</button>
+		</Button>
 	);
-}
+};
+
+export default EditProfileButton;

@@ -1,9 +1,8 @@
 'use client';
-import usePageNavigation from '@/hooks/usePageNavigation';
 import LogOutButton from './LogOutButton';
-import style from '@/styles/authorizedUserError.module.scss';
+import GoHomePageButton from './GoHomePageButton';
 
-export default function AuthorizedUserError() {
+const AuthorizedUserError = () => {
 	return (
 		<div className="flex flex-col justify-center items-center">
 			<div className="flex flex-col items-center gap-6">
@@ -17,14 +16,6 @@ export default function AuthorizedUserError() {
 			</div>
 		</div>
 	);
-}
-
-const GoHomePageButton = () => {
-	const { goToHomePage } = usePageNavigation();
-
-	return (
-		<button className={style['go-home-button']} onClick={goToHomePage}>
-			Go home page
-		</button>
-	);
 };
+
+export default AuthorizedUserError;

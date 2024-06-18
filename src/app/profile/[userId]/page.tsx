@@ -7,7 +7,9 @@ interface Props {
 	};
 }
 
-export default async function ProfilePage({ params: { userId } }: Props) {
+const ProfilePage = async ({ params: { userId } }: Props) => {
 	const profile = await getProfile(userId);
 	return <Profile profile={profile} />;
-}
+};
+
+export default ProfilePage;

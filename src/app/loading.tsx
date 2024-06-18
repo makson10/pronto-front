@@ -1,6 +1,8 @@
 'use client';
 import LoadingSpinner from '@/components/LoadingSpinner';
 
-export default function Loading() {
+const Loading = () => {
 	return <LoadingSpinner />;
-}
+};
+
+export default Loading;

@@ -1,13 +1,13 @@
 'use client';
 import { useRef } from 'react';
 import { store } from './store';
-import { Store } from '@/types/storeTypes';
+import { Store } from '@/types/store';
 
 interface Props {
 	initialValues: Store;
 }
 
-export default function StoreInitializer({ initialValues }: Props) {
+const StoreInitializer = ({ initialValues }: Props) => {
 	const initialized = useRef(false);
 	if (!initialized.current) {
 		store.setState(initialValues);
@@ -15,4 +15,6 @@ export default function StoreInitializer({ initialValues }: Props) {
 	}
 
 	return null;
-}
+};
+
+export default StoreInitializer;

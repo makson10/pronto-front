@@ -10,7 +10,7 @@ interface Body {
 	newIconUrl: string;
 }
 
-export async function POST(request: Request) {
+export const POST = async (request: Request) => {
 	const userId = await getUserIdBySession();
 
 	await deleteAllOldIcons(userId);
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
 
 	revalidateTag('getuserprofile');
 	return new Response('success', { status: 200 });
-}
+};
 
 const deleteAllOldIcons = async (userId: number) => {
 	const oldIconsUrl = await list({ prefix: 'userIcons/' + userId }).then(

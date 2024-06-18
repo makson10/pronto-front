@@ -2,7 +2,7 @@
 import { ChangeEvent, useState } from 'react';
 import style from '@/styles/searchBox.module.scss';
 
-export default function SearchBox() {
+const SearchBox = () => {
 	const [searchTerm, setSearchTerm] = useState<string>('');
 
 	const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -32,4 +32,6 @@ export default function SearchBox() {
 			</button>
 		</div>
 	);
-}
+};
+
+export default SearchBox;

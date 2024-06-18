@@ -1,33 +1,46 @@
 import { useEffect, useState } from 'react';
 import { Button, Textarea } from '@nextui-org/react';
 import { ShowMessageBox } from '@/components/MessageBox';
-import axios from 'axios';
 import SettingsButtons from './SettingsButtons';
+import { store } from '@/context/store';
+import axios from 'axios';
 
 interface Props {
 	closeEditor: (event?: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default function NewPostEditor({ closeEditor }: Props) {
+const textareaStyle = {
+	base: 'w-full min-h-[230px]',
+	inputWrapper:
+		'min-h-full bg-gray-900 border-3 border-[--border-main-color] data-[hover=true]:bg-gray-900 group-data-[focus=true]:bg-gray-900 flex justify-start',
+	innerWrapper: 'flex flex-col gap-2 h-4/5',
+	input: 'min-h-full group-data-[has-value=true]:text-white textarea-scrollbar',
+};
+
+const NewPostEditor = ({ closeEditor }: Props) => {
 	const [newPostText, setNewPostText] = useState<string>('');
 	const [newPostPicture, setNewPostPicture] = useState<File | null>(null);
 	const [errorMessage, setErrorMessage] = useState<string>('');
 
-	const makeNewPost = async () => {
+	const addPost = async () => {
 		const isDataValid = validateNewPostData();
 		if (!isDataValid) return;
 
 		const newPost = { text: newPostText, picture: newPostPicture };
-		await axios.post('/api/makenewpost', { newPost });
+		await axios.post('/api/addpost', newPost);
 		closeEditor();
 	};
 
 	const validateNewPostData = () => {
 		if (!newPostText) {
-			setErrorMessage('New post text is empty');
-		} else if (newPostPicture && newPostPicture.size > 4 * 1024 * 1024) {
-			setErrorMessage('Picture size is too large');
-		} else return true;
+			return setErrorMessage('New post text is empty');
+		}
+
+		if (newPostPicture && newPostPicture.size > 4 * 1024 * 1024) {
+			return setErrorMessage('Picture size is too large');
+		}
+
+		return true;
 	};
 
 	useEffect(() => {
@@ -55,19 +68,13 @@ export default function NewPostEditor({ closeEditor }: Props) {
 					<Button className="button" onClick={closeEditor}>
 						Discard new post
 					</Button>
-					<Button className="button" onClick={makeNewPost}>
+					<Button className="button" onClick={addPost}>
 						Post
 					</Button>
 				</div>
 			</div>
 		</>
 	);
-}
-
-const textareaStyle = {
-	base: 'w-full min-h-[230px]',
-	inputWrapper:
-		'min-h-full bg-gray-900 border-3 border-[--border-main-color] data-[hover=true]:bg-gray-900 group-data-[focus=true]:bg-gray-900 flex justify-start',
-	innerWrapper: 'flex flex-col gap-2 h-4/5',
-	input: 'min-h-full group-data-[has-value=true]:text-white textarea-scrollbar',
 };
+
+export default NewPostEditor;

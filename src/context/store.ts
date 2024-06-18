@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Store } from '@/types/storeTypes';
+import { Store } from '@/types/store';
 
 export const initialValues = {
 	user: null,

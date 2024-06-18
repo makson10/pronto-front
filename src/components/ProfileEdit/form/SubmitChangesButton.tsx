@@ -4,10 +4,12 @@ interface Props {
 	handleSubmit: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export default function SubmitChangesButton({ handleSubmit }: Props) {
+const SubmitChangesButton = ({ handleSubmit }: Props) => {
 	return (
 		<Button className="button" onClick={handleSubmit}>
 			Submit changes
 		</Button>
 	);
-}
+};
+
+export default SubmitChangesButton;

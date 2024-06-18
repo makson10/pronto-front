@@ -7,11 +7,11 @@ interface Props {
 	styleVariant?: 1 | 2;
 }
 
-export default function ChangePasswordVisibilityButton({
+const ChangePasswordVisibilityButton = ({
 	isPasswordVisible,
 	setIsPasswordVisible,
 	styleVariant = 1,
-}: Props) {
+}: Props) => {
 	const togglePasswordVisible = (event: any) => {
 		event.preventDefault();
 		setIsPasswordVisible((prevValue) => !prevValue);
@@ -33,4 +33,6 @@ export default function ChangePasswordVisibilityButton({
 			/>
 		</button>
 	);
-}
+};
+
+export default ChangePasswordVisibilityButton;

@@ -5,7 +5,7 @@ interface Props {
 	dateOfBirth: string | null;
 }
 
-export default function DateOfBirth({ age, dateOfBirth }: Props) {
+const DateOfBirth = ({ age, dateOfBirth }: Props) => {
 	if (age && dateOfBirth)
 		return (
 			<>
@@ -18,4 +18,6 @@ export default function DateOfBirth({ age, dateOfBirth }: Props) {
 				<Separator />
 			</>
 		);
-}
+};
+
+export default DateOfBirth;

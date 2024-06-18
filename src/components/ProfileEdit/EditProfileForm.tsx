@@ -18,10 +18,7 @@ interface Props {
 	defaultFormValues: Profile;
 }
 
-export default function EditProfileForm({
-	сhangeIcon,
-	defaultFormValues,
-}: Props) {
+const EditProfileForm = ({ сhangeIcon, defaultFormValues }: Props) => {
 	const [
 		needToShowSuccessEditDataMessage,
 		setNeedToShowSuccessEditDataMessage,
@@ -82,4 +79,6 @@ export default function EditProfileForm({
 			</div>
 		</>
 	);
-}
+};
+
+export default EditProfileForm;

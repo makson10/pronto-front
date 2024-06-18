@@ -1,21 +1,23 @@
 import ProfileHeader from '@/components/Profile/ProfileHeader';
-import ProfileContentWrapper from '@/components/Profile/ProfileContentWrapper';
-import PostsFlow from '@/components/Profile/PostsFlow';
-import DetailInfo from '@/components/Profile/DetailInfo';
-import { Profile } from '@/types/profile';
+import PresentsList from '@/components/Profile/Presents/PresentsList';
+import ProfileContentWrapper from './ProfileContentWrapper';
+import PostsFlow from '@/components/Profile/Posts/PostsFlow';
+import { Profile as ProfileType } from '@/types/profile';
 
 interface Props {
-	profile: Profile;
+	profile: ProfileType;
 }
 
-export default function Profile({ profile }: Props) {
+const Profile = ({ profile }: Props) => {
 	return (
 		<div className="w-full flex-[1] flex flex-col gap-4">
 			<ProfileHeader profile={profile} />
 			<ProfileContentWrapper>
 				<PostsFlow />
-				<DetailInfo profile={profile} />
+				<PresentsList profile={profile} />
 			</ProfileContentWrapper>
 		</div>
 	);
-}
+};
+
+export default Profile;

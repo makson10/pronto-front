@@ -15,7 +15,7 @@ interface NewProfileData {
 	city: string;
 }
 
-export async function POST(request: Request) {
+export const POST = async (request: Request) => {
 	const newProfileData = await request.json();
 	const userId = await getUserIdBySession();
 

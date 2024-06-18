@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const dynamic = 'force-dynamic';
 
-export async function POST() {
+export const POST = async () => {
 	const sessionId = getSessionIdFromCookie();
 	if (!sessionId) return null;
 	const cookieForSending = encodeCookie('sessionId', sessionId);

@@ -5,7 +5,7 @@ interface Props {
 	children: React.ReactNode;
 }
 
-export default function Layout({ children }: Props) {
+const Layout = ({ children }: Props) => {
 	return (
 		<div className="flex flex-col min-h-screen">
 			<SecondaryHeader />
@@ -15,4 +15,6 @@ export default function Layout({ children }: Props) {
 			<Footer />
 		</div>
 	);
-}
+};
+
+export default Layout;

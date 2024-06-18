@@ -7,20 +7,15 @@ import { getUserDataBySession } from './api/sessionUtils';
 import StoreInitializer from '@/context/StoreInitializer';
 import CustomNextUIProvider from '@/components/CustomNextUIProvider';
 
-export default async function RootLayout({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
+const RootLayout = async ({ children }: { children: React.ReactNode }) => {
 	const user = await getUserDataBySession();
-	const storeInitialValues = {
-		user,
-	};
+	const storeInitialValues = { user };
 
 	//? add presents to user
 	//? add showing user posts
 	//? add adding picture to posts
-	//? rewrite all functions to arrow functions
+	//? change browser page title depending on current route
+	//? solve bug with login button in header after login
 
 	return (
 		<html lang="en">
@@ -37,4 +32,6 @@ export default async function RootLayout({
 			</body>
 		</html>
 	);
-}
+};
+
+export default RootLayout;

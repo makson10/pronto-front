@@ -1,14 +1,18 @@
 import { Profile } from '@/types/profile';
-import DateOfBirth from './DetailInfo/DateOfBirth';
-import City from './DetailInfo/City';
-import Description from './DetailInfo/Description';
-import Presents from './DetailInfo/Presents';
+import DateOfBirth from '../HeaderContent/DateOfBirth';
+import City from '../HeaderContent/City';
+import Description from '../HeaderContent/Description';
+import Presents from '../Presents';
 
 interface Props {
 	profile: Profile;
 }
 
-export default function DetailInfo({ profile }: Props) {
+const defaultPresents = [
+	{ title: 'Create award', recievedAt: new Date().toString() },
+];
+
+const PresentsList = ({ profile }: Props) => {
 	return (
 		<div
 			className="w-[35%] h-fit bg-[--main-color] border-[4px] border-[--border-main-color] rounded-xl p-4 flex flex-col gap-4"
@@ -19,8 +23,6 @@ export default function DetailInfo({ profile }: Props) {
 			<Presents presents={defaultPresents} />
 		</div>
 	);
-}
+};
 
-const defaultPresents = [
-	{ title: 'Create award', recievedAt: new Date().toString() },
-];
+export default PresentsList;

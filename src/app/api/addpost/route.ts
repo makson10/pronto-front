@@ -1,29 +1,27 @@
-import axios from 'axios';
 import { NextResponse } from 'next/server';
 import { getUserIdBySession } from '../sessionUtils';
+import axios from 'axios';
 
 export const dynamic = 'force-dynamic';
 
 interface Body {
-	userId: number;
-	newPost: {
-		text: string;
-		picture: string | null;
-	};
+	authorId: number;
+	text: string;
+	picture: string | null;
 }
 
-export async function POST(request: Request) {
+export const POST = async (request: Request) => {
 	const body = await request.json();
 	const userId = await getUserIdBySession();
 	if (!userId) return new Response('error', { status: 400 });
 
-	return await sendMakeNewPostRequest({ userId, ...body });
-}
+	return await sendMakeNewPostRequest({ authorId: userId, ...body });
+};
 
 const sendMakeNewPostRequest = async (body: Body) => {
 	try {
 		await axios.post(
-			process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/profile/makenewpost',
+			process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/posts/addpost',
 			body
 		);
 		return NextResponse.json('success', { status: 200 });

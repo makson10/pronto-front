@@ -7,7 +7,7 @@ interface Props {
 	profile: Profile;
 }
 
-export default function EditPage({ profile }: Props) {
+const EditPage = ({ profile }: Props) => {
 	return (
 		<div className="w-full flex-[1] px-[15%] py-[3%]">
 			<Header
@@ -15,7 +15,12 @@ export default function EditPage({ profile }: Props) {
 				name={profile.name}
 				profileId={profile.profileId}
 			/>
-			<EditProfileForm defaultFormValues={profile} сhangeIcon={<ChangeIcon />} />
+			<EditProfileForm
+				defaultFormValues={profile}
+				сhangeIcon={<ChangeIcon />}
+			/>
 		</div>
 	);
-}
+};
+
+export default EditPage;

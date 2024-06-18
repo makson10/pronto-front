@@ -1,7 +1,7 @@
 import { getUserIdBySession } from '../api/sessionUtils';
 import { RedirectType, redirect } from 'next/navigation';
 
-export default async function Profile() {
+const Profile = async () => {
 	let userId = '';
 
 	try {
@@ -11,4 +11,6 @@ export default async function Profile() {
 	}
 
 	if (userId) redirect('/profile/' + userId, RedirectType.replace);
-}
+};
+
+export default Profile;

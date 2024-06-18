@@ -1,11 +1,13 @@
 import PagesList from './pagesList/pagesList';
 import RecommendationPostFlow from './recommendationPostFlow/recommendationPostFlow';
 
-export default function Homepage() {
+const Homepage = () => {
 	return (
 		<div className="flex-[2_1_auto] flex mx-[15%]">
 			<PagesList />
-            <RecommendationPostFlow />
+			<RecommendationPostFlow />
 		</div>
 	);
-}
+};
+
+export default Homepage;

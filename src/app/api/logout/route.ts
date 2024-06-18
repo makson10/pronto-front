@@ -7,13 +7,13 @@ import axios from 'axios';
 
 export const dynamic = 'force-dynamic';
 
-export async function POST() {
+export const POST = async () => {
 	const logOutResponse = await sendLogOutRequest();
 	if (!logOutResponse.data.okay) return new Response('error', { status: 400 });
 
 	deleteSession();
 	return new Response('success', { status: 200 });
-}
+};
 
 const sendLogOutRequest = async () => {
 	const sessionId = getSessionIdFromCookie();

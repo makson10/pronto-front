@@ -6,7 +6,7 @@ interface Props {
 	goToPath: string;
 }
 
-export default function PageLink({ title, icon, goToPath }: Props) {
+const PageLink = ({ title, icon, goToPath }: Props) => {
 	return (
 		<Link className="text-xl" href={goToPath}>
 			<div className="flex flex-row gap-3">
@@ -15,4 +15,6 @@ export default function PageLink({ title, icon, goToPath }: Props) {
 			</div>
 		</Link>
 	);
-}
+};
+
+export default PageLink;

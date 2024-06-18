@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import style from '@/styles/registerButton.module.scss';
 
-export default function RegisterButton() {
+const RegisterButton = () => {
 	return (
 		<div className="flex flex-row gap-2">
 			<Link href={'/signup'} className={style['button']}>
@@ -13,4 +13,6 @@ export default function RegisterButton() {
 			</Link>
 		</div>
 	);
-}
+};
+
+export default RegisterButton;

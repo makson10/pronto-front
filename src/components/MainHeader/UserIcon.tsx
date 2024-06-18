@@ -1,4 +1,4 @@
-import RegisterButton from '../RegisterButton';
+import RegisterButton from './RegisterButton';
 import UserIconDropdownMenu from './UserIconDropdownMenu';
 import { getUserDataBySession, getProfile } from '@/app/api/sessionUtils';
 

@@ -4,7 +4,7 @@ interface Props {
 	city: string | null;
 }
 
-export default function City({ city }: Props) {
+const City = ({ city }: Props) => {
 	if (city)
 		return (
 			<>
@@ -15,4 +15,6 @@ export default function City({ city }: Props) {
 				<Separator />
 			</>
 		);
-}
+};
+
+export default City;

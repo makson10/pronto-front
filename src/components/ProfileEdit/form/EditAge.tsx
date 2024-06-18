@@ -8,7 +8,7 @@ interface Props {
 	setDateOfBirth: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-export default function EditAge({ dateOfBirth, setDateOfBirth }: Props) {
+const EditAge = ({ dateOfBirth, setDateOfBirth }: Props) => {
 	return (
 		<EditField
 			title="Date of birth"
@@ -29,4 +29,6 @@ export default function EditAge({ dateOfBirth, setDateOfBirth }: Props) {
 			/>
 		</EditField>
 	);
-}
+};
+
+export default EditAge;

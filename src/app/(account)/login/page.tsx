@@ -1,9 +1,9 @@
 'use client';
 import { store } from '@/context/store';
-import AuthorizedUserError from '@/components/AuthorizedUserError';
+import AuthorizedUserError from '@/components/AuthorizedUserError/AuthorizedUserError';
 import LogInForm from './LogInForm';
 
-export default function LogIn() {
+const LogIn = () => {
 	const user = store.getState().user;
 	if (user) return <AuthorizedUserError />;
 
@@ -12,4 +12,6 @@ export default function LogIn() {
 			<LogInForm />
 		</div>
 	);
-}
+};
+
+export default LogIn;

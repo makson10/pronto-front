@@ -3,7 +3,7 @@ import { getUserIdBySession } from '../sessionUtils';
 import { list, del } from '@vercel/blob';
 import axios from 'axios';
 
-export async function POST() {
+export const POST = async () => {
 	const userId = await getUserIdBySession();
 	await deleteOldIcons(userId);
 	await sendDeleteIconRequest(userId);

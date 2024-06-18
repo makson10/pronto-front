@@ -4,17 +4,17 @@ interface Props {
 	description: string | null;
 }
 
-export default function Description({ description }: Props) {
+const Description = ({ description }: Props) => {
 	if (description)
 		return (
 			<>
 				<div>
-					<p className="detailInfoTitle">
-						Description
-					</p>
+					<p className="detailInfoTitle">Description</p>
 					<p className="detailInfoText">{description}</p>
 				</div>
 				<Separator />
 			</>
 		);
-}
+};
+
+export default Description;

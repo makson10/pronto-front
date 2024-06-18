@@ -6,7 +6,7 @@ interface Props {
 	reset: () => void;
 }
 
-export default function Error({ error, reset }: Props) {
+const Error = ({ error, reset }: Props) => {
 	const router = useRouter();
 
 	const handleClick = () => router.push('/');
@@ -26,4 +26,6 @@ export default function Error({ error, reset }: Props) {
 			</button>
 		</div>
 	);
-}
+};
+
+export default Error;

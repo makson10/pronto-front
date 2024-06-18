@@ -8,14 +8,14 @@ import {
 	DropdownMenu,
 	DropdownItem,
 } from '@nextui-org/react';
-import UserProfileIcon from '../UserProfileIcon';
+import UserProfileIcon from '../ProfileIcon';
 
 interface Props {
 	icon: string | null;
 	altText: string | null;
 }
 
-export default function UserIconDropdownMenu({ icon, altText }: Props) {
+const UserIconDropdownMenu = ({ icon, altText }: Props) => {
 	const { goToPage, refreshPage } = usePageNavigation();
 
 	const goToProfilePage = () => goToPage('/profile');
@@ -28,7 +28,7 @@ export default function UserIconDropdownMenu({ icon, altText }: Props) {
 
 	return (
 		<Dropdown>
-			<DropdownTrigger className={'max-h-[45px] max-w-[45px]'}>
+			<DropdownTrigger className="max-h-[45px] max-w-[45px] cursor-pointer">
 				<div>
 					<UserProfileIcon
 						iconUrl={icon}
@@ -44,4 +44,6 @@ export default function UserIconDropdownMenu({ icon, altText }: Props) {
 			</DropdownMenu>
 		</Dropdown>
 	);
-}
+};
+
+export default UserIconDropdownMenu;

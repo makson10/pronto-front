@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 import PasswordRequirementsHint from '@/components/PasswordRequirementsHint';
 import ChangePasswordVisibilityButton from '@/components/ChangePasswordVisibilityButton';
-import { SignUpUser } from '@/types/userTypes';
+import { SignUpUser } from '@/types/user';
 import usePageNavigation from '@/hooks/usePageNavigation';
 import { getAndStoreUser } from '@/context/storeUtils';
 import { signUpValidationScheme } from '@/assets/validationScheme';
@@ -11,7 +11,7 @@ import { ShowMessageBox } from '@/components/MessageBox';
 import axios from 'axios';
 import style from '@/styles/authorizeForm.module.scss';
 
-export default function SignUpForm() {
+const SignUpForm = () => {
 	const { goToHomePage } = usePageNavigation();
 	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
 	const [errorMessageText, setErrorMessageText] = useState<string>('fuck');
@@ -171,4 +171,6 @@ export default function SignUpForm() {
 			</form>
 		</>
 	);
-}
+};
+
+export default SignUpForm;
