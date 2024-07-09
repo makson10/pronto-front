@@ -1,18 +1,24 @@
+'use client';
 import { Post as PostType } from '@/types/posts';
+import { formatDate } from './formatDate';
 
 interface Props {
-	data: PostType;
 	authorFullName: string;
 	authorIcon: JSX.Element;
+	data: PostType;
 }
 
 export default function Post({ authorFullName, authorIcon, data }: Props) {
 	return (
-		<div className="bg-[--border-main-color] rounded-xl p-4">
-			<p>{authorFullName}</p>
-			<p>{new Date(data.createdAt).toDateString()}</p>
-			<p>{data.text}</p>
-			{authorIcon}
+		<div className="flex flex-col gap-3 bg-[--second-bg-color] border-[--border-main-color] border-[4px] rounded-xl p-4">
+			<div className="w-fit flex flex-row gap-2">
+				<div className="relative min-w-fit w-fit max-w-fit">{authorIcon}</div>
+				<div>
+					<p className="text-lg">{authorFullName}</p>
+					<p className="text-sm opacity-50">{formatDate(data.createdAt)}</p>
+				</div>
+			</div>
+			<p className="text-lg">{data.text}</p>
 		</div>
 	);
 }

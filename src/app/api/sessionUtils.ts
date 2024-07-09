@@ -77,7 +77,7 @@ export const getUserDataByUserId = async (userId: number | string) => {
 
 export const getProfile = async (userId: number | string): Promise<Profile> => {
 	const req = await fetch(
-		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/profile',
+		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/profile/getprofile',
 		{
 			method: 'POST',
 			body: JSON.stringify({ userId }),

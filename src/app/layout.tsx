@@ -12,10 +12,9 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
 	const storeInitialValues = { user };
 
 	//? add presents to user
-	//? add showing user posts
 	//? add adding picture to posts
 	//? change browser page title depending on current route
-	//? solve bug with login button in header after login
+	//? solve all bugs
 
 	return (
 		<html lang="en">

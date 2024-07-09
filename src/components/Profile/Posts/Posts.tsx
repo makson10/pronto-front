@@ -1,7 +1,7 @@
 import Post from './Post';
-import ProfileIcon from '@/components/ProfileIcon';
 import { Posts as PostsType } from '@/types/posts';
 import { Profile } from '@/types/profile';
+import PostProfileIcon from './PostProfileIcon';
 import axios from 'axios';
 
 const Posts = async () => {
@@ -19,7 +19,10 @@ const Posts = async () => {
 					key={index}
 					authorFullName={author.name}
 					authorIcon={
-						<ProfileIcon iconUrl={author.icon} altIconText={author.name[0]} />
+						<PostProfileIcon
+							iconUrl={author.icon}
+							altIconText={author.name[0]}
+						/>
 					}
 					data={post}
 				/>

@@ -27,3 +27,17 @@
 	border-color: var(--first-bg-color);
 	border-width: 4px;
 }
+
+.post-profile-empty-icon {
+	border-radius: 100%;
+}
+
+.post-profile-user-icon {
+	width: 50px;
+	height: 50px;
+	display: grid;
+	place-items: center;
+	border-radius: 100%;
+	background-color: rgb(78, 78, 78);
+	font-size: 2rem;
+}

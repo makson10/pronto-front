@@ -8,6 +8,7 @@ interface Props {
 }
 
 const EditPage = ({ profile }: Props) => {
+    console.log(profile);
 	return (
 		<div className="w-full flex-[1] px-[15%] py-[3%]">
 			<Header
