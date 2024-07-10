@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server';
-import { getUserIdBySession } from '../sessionUtils';
 import axios from 'axios';
 
 export const dynamic = 'force-dynamic';
 
 export const POST = async (request: Request) => {
-	const userId = await getUserIdBySession();
+	const userId = await request.json();
 	if (!userId) return new Response('error', { status: 400 });
 
 	return await getUserPosts(userId);

@@ -9,11 +9,12 @@ import Separator from '@/components/ProfileEdit/form/Separator';
 
 export default function PostsFlow() {
 	const userId = store.getState().user?.id;
-	const { userId: requestedUserId } = useParams<{ userId: string }>();
+	const requestedUserId = parseInt(useParams<{ userId: string }>().userId);
 
 	return (
-		<div className="w-[65%] flex-[1] bg-[--main-color] border-[4px] border-[--border-main-color] rounded-xl p-4">
-			{parseInt(requestedUserId) === userId && <AddNewPost />}
+		<div className="w-[65%] flex-[1] flex flex-col gap-4 bg-[--main-color] border-[4px] border-[--border-main-color] rounded-xl p-4">
+			{requestedUserId === userId && <AddNewPost />}
+			<Posts profileId={requestedUserId} />
 		</div>
 	);
 }
@@ -24,14 +25,13 @@ const AddNewPost = () => {
 	const closeEditor = () => setShowNewPostEditor(false);
 
 	return (
-		<div className="h-[75%] flex flex-col gap-4 items-start">
+		<div className="h-fit flex flex-col gap-4 items-start">
 			{showNewPostEditor ? (
 				<NewPostEditor closeEditor={closeEditor} />
 			) : (
 				<>
 					<AddNewPostButton openEditor={openEditor} />
 					<Separator />
-					<Posts />
 				</>
 			)}
 		</div>

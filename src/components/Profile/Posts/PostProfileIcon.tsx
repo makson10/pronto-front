@@ -17,7 +17,7 @@ const PostProfileIcon = ({ iconUrl = null, altIconText = null }: Props) => {
 		/>
 	) : (
 		<div className={style['post-profile-user-icon']} data-makeborder={true}>
-			{altIconText}
+			<p className={style['post-profile-empty-icon-text']}>{altIconText}</p>
 		</div>
 	);
 };

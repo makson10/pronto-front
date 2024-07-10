@@ -13,6 +13,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
 
 	//? add presents to user
 	//? add adding picture to posts
+	//? add post managment buttons
 	//? change browser page title depending on current route
 	//? solve all bugs
 

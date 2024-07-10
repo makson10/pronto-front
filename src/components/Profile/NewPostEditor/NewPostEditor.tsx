@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button, Textarea } from '@nextui-org/react';
 import { ShowMessageBox } from '@/components/MessageBox';
 import SettingsButtons from './SettingsButtons';
-import { store } from '@/context/store';
 import axios from 'axios';
 
 interface Props {
@@ -21,17 +20,22 @@ const NewPostEditor = ({ closeEditor }: Props) => {
 	const [newPostText, setNewPostText] = useState<string>('');
 	const [newPostPicture, setNewPostPicture] = useState<File | null>(null);
 	const [errorMessage, setErrorMessage] = useState<string>('');
+	const postButtonRef = useRef<HTMLButtonElement>(null);
+
+	const eventListenerHandler = (e: KeyboardEvent) => {
+		if (!e.ctrlKey || e.key !== 'Enter') return;
+		postButtonRef.current?.click();
+	};
 
 	const addPost = async () => {
-		const isDataValid = validateNewPostData();
-		if (!isDataValid) return;
+		if (!isNewPostDataValid()) return;
 
 		const newPost = { text: newPostText, picture: newPostPicture };
 		await axios.post('/api/addpost', newPost);
 		closeEditor();
 	};
 
-	const validateNewPostData = () => {
+	const isNewPostDataValid = () => {
 		if (!newPostText) {
 			return setErrorMessage('New post text is empty');
 		}
@@ -47,6 +51,14 @@ const NewPostEditor = ({ closeEditor }: Props) => {
 		if (!errorMessage) return;
 		setTimeout(() => setErrorMessage(''), 4000);
 	}, [errorMessage]);
+
+	useEffect(() => {
+		document.addEventListener('keyup', eventListenerHandler);
+
+		return () => {
+			document.removeEventListener('keyup', eventListenerHandler);
+		};
+	}, []);
 
 	return (
 		<>
@@ -68,7 +80,7 @@ const NewPostEditor = ({ closeEditor }: Props) => {
 					<Button className="button" onClick={closeEditor}>
 						Discard new post
 					</Button>
-					<Button className="button" onClick={addPost}>
+					<Button className="button" onClick={addPost} ref={postButtonRef}>
 						Post
 					</Button>
 				</div>

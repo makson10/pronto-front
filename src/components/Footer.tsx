@@ -4,7 +4,11 @@ const Footer = () => {
 			<div className="border-[1px] border-white"></div>
 			<div className="flex flex-row justify-between">
 				<p>pronto © 2023-2024</p>
-				<p>О pronto Правила Разработчикам</p>
+				<div className="flex flex-row gap-2">
+					<button>Правила</button>
+					<button>Разработчикам</button>
+					<button>О pronto</button>
+				</div>
 				<p>Русский | English</p>
 			</div>
 		</div>
