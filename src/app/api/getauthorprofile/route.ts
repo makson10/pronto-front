@@ -1,3 +1,4 @@
+import { Profile } from '@/types/profile';
 import axios from 'axios';
 
 export const dynamic = 'force-dynamic';
@@ -10,12 +11,12 @@ export const POST = async (request: Request) => {
 
 const sendGetUserByIdRequest = async (authorId: string) => {
 	try {
-		const req = await axios.post(
-			process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/profile/getprofile',
-			{ userId: authorId }
-		);
-
-		return req.data;
+		return await axios
+			.post<Profile>(
+				process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/profile/getprofile',
+				{ userId: authorId }
+			)
+			.then((res) => res.data);
 	} catch (error) {
 		throw new Error('Error during request');
 	}

@@ -1,4 +1,7 @@
-import { encodeCookie, getSessionIdFromCookie } from '../sessionUtils';
+import {
+	encodeCookie,
+	getSessionIdFromCookie,
+} from '@/assets/sessionUtils';
 import axios from 'axios';
 
 export const dynamic = 'force-dynamic';
@@ -10,7 +13,7 @@ export const POST = async () => {
 
 	const user = await sendGetUserRequest(cookieForSending);
 	return Response.json(user, { status: 200 });
-}
+};
 
 const sendGetUserRequest = async (cookie: string) => {
 	const req = await axios.post(

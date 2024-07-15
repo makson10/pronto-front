@@ -27,6 +27,7 @@ const ProfileIcon = ({
 			{iconUrl ? (
 				<Image
 					className={style['empty-icon']}
+					priority={true}
 					src={iconUrl}
 					alt="#"
 					width={150}

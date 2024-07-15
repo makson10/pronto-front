@@ -10,6 +10,7 @@ import { logInValidationScheme } from '@/assets/validationScheme';
 import { ShowMessageBox } from '@/components/MessageBox';
 import axios from 'axios';
 import style from '@/styles/authorizeForm.module.scss';
+import Link from 'next/link';
 
 const LogInForm = () => {
 	const { goToHomePage } = usePageNavigation();
@@ -65,7 +66,7 @@ const LogInForm = () => {
 				<ShowMessageBox message={errorMessageText} isError={true} />
 			)}
 
-			<form className="flex flex-col gap-10 w-1/4" onSubmit={handleSubmit}>
+			<form className="flex flex-col gap-8 w-1/4" onSubmit={handleSubmit}>
 				<div className="flex flex-col gap-4">
 					<div className={style['inputWrapper']}>
 						<div className={style['placeholderWrapper']}>
@@ -115,6 +116,11 @@ const LogInForm = () => {
 								setIsPasswordVisible={setIsPasswordVisible}
 							/>
 						</div>
+					</div>
+					<div className="flex flex-row justify-end">
+						<button className="text-sm text-gray-500 transition hover:text-white">
+							<Link href={'/signup'}>Not signed up yet? Sign up →</Link>
+						</button>
 					</div>
 				</div>
 

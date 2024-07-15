@@ -1,4 +1,4 @@
-import { getUserIdBySession, getProfile } from '@/app/api/sessionUtils';
+import { getUserIdBySession, getProfile } from '@/assets/sessionUtils';
 import EditPage from '@/components/ProfileEdit/EditPage';
 
 const Edit = async () => {

@@ -1,5 +1,8 @@
 import { SignUpUser } from '@/types/user';
-import { getSessionFromRequest, setNewSession } from '../sessionUtils';
+import {
+	getSessionFromRequest,
+	setNewSession,
+} from '@/assets/sessionUtils';
 import { NextResponse } from 'next/server';
 import axios from 'axios';
 

@@ -10,6 +10,7 @@ const PostProfileIcon = ({ iconUrl = null, altIconText = null }: Props) => {
 	return iconUrl ? (
 		<Image
 			className={style['post-profile-empty-icon']}
+			priority={true}
 			src={iconUrl}
 			alt="#"
 			width={50}

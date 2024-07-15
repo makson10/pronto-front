@@ -1,5 +1,8 @@
 import { SignUpUser } from '@/types/user';
-import { getSessionFromRequest, setNewSession } from '../sessionUtils';
+import {
+	getSessionFromRequest,
+	setNewSession,
+} from '@/assets/sessionUtils';
 import axios from 'axios';
 import { NextResponse } from 'next/server';
 
@@ -9,7 +12,7 @@ export const POST = async (request: Request) => {
 	const body = await request.json();
 	const user = body.user;
 	return await sendSignUpRequest(user);
-}
+};
 
 const sendSignUpRequest = async (user: SignUpUser) => {
 	try {

@@ -1,6 +1,5 @@
-'use client';
+import { formatDate } from '../../../assets/formatDate';
 import { Post as PostType } from '@/types/posts';
-import { formatDate } from './formatDate';
 
 interface Props {
 	authorFullName: string;
@@ -8,7 +7,7 @@ interface Props {
 	data: PostType;
 }
 
-export default function Post({ authorFullName, authorIcon, data }: Props) {
+const Post = ({ authorFullName, authorIcon, data }: Props) => {
 	return (
 		<div className="flex flex-col gap-3 bg-[--second-bg-color] border-[--border-main-color] border-[4px] rounded-xl p-4">
 			<div className="w-fit flex flex-row gap-2">
@@ -21,4 +20,6 @@ export default function Post({ authorFullName, authorIcon, data }: Props) {
 			<p className="text-lg">{data.text}</p>
 		</div>
 	);
-}
+};
+
+export default Post;

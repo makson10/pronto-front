@@ -1,4 +1,4 @@
-import { getProfile } from '@/app/api/sessionUtils';
+import { getProfile } from '@/assets/sessionUtils';
 import Profile from './Profile';
 
 interface Props {

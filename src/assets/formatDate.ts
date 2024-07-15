@@ -1,9 +1,5 @@
-const chooseMonthPostfix = (monthIndex: number) => {
-	return monthIndex === 2 || monthIndex === 7 ? 'а' : 'я';
-};
-
 const estimateDayFromPost = (postDate: Date) => {
-	return (+new Date() - +postDate) / (1000 * 60 * 60 * 24);
+	return Math.floor((+new Date() - +postDate) / (1000 * 60 * 60 * 24));
 };
 
 const getFullPostDate = (postDate: Date) => {
@@ -27,7 +23,7 @@ export const formatDate = (timestamp: string) => {
 		return 'Today';
 	}
 
-	if (dayFromPost > 1 && dayFromPost < 3) {
+	if (dayFromPost >= 1 && dayFromPost < 3) {
 		return `${dayFromPost} days ago`;
 	}
 

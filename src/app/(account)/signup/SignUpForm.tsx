@@ -10,6 +10,7 @@ import { signUpValidationScheme } from '@/assets/validationScheme';
 import { ShowMessageBox } from '@/components/MessageBox';
 import axios from 'axios';
 import style from '@/styles/authorizeForm.module.scss';
+import Link from 'next/link';
 
 const SignUpForm = () => {
 	const { goToHomePage } = usePageNavigation();
@@ -67,7 +68,7 @@ const SignUpForm = () => {
 				<ShowMessageBox message={errorMessageText} isError={true} />
 			)}
 
-			<form className="flex flex-col gap-10" onSubmit={handleSubmit}>
+			<form className="flex flex-col gap-8" onSubmit={handleSubmit}>
 				<div className="flex flex-col gap-4">
 					<div className="flex flex-row justify-between gap-12">
 						<div className={style['inputWrapper']}>
@@ -159,6 +160,11 @@ const SignUpForm = () => {
 								setIsPasswordVisible={setIsPasswordVisible}
 							/>
 						</div>
+					</div>
+					<div className="flex flex-row justify-end">
+						<button className="text-sm text-gray-500 transition hover:text-white">
+							<Link href={'/login'}>Already signed up? Log in →</Link>
+						</button>
 					</div>
 				</div>
 

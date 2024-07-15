@@ -1,20 +1,23 @@
 'use client';
 import { useState } from 'react';
 import { useParams } from 'next/navigation';
-import Posts from './Posts';
 import AddNewPostButton from './AddNewPostButton';
 import NewPostEditor from '../NewPostEditor/NewPostEditor';
 import { store } from '@/context/store';
 import Separator from '@/components/ProfileEdit/form/Separator';
 
-export default function PostsFlow() {
+interface Props {
+	children: React.ReactNode;
+}
+
+export default function PostsFlow({ children }: Props) {
 	const userId = store.getState().user?.id;
 	const requestedUserId = parseInt(useParams<{ userId: string }>().userId);
 
 	return (
 		<div className="w-[65%] flex-[1] flex flex-col gap-4 bg-[--main-color] border-[4px] border-[--border-main-color] rounded-xl p-4">
 			{requestedUserId === userId && <AddNewPost />}
-			<Posts profileId={requestedUserId} />
+			{children}
 		</div>
 	);
 }

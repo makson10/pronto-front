@@ -1,6 +1,6 @@
 import RegisterButton from './RegisterButton';
 import UserIconDropdownMenu from './UserIconDropdownMenu';
-import { getUserDataBySession, getProfile } from '@/app/api/sessionUtils';
+import { getUserDataBySession, getProfile } from '@/assets/sessionUtils';
 
 const UserIcon = async () => {
 	const user = await getUserDataBySession();

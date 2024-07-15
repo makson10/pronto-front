@@ -1,5 +1,5 @@
 import { revalidateTag } from 'next/cache';
-import { getUserIdBySession } from '../sessionUtils';
+import { getUserIdBySession } from '@/assets/sessionUtils';
 import { list, del } from '@vercel/blob';
 import axios from 'axios';
 
@@ -10,7 +10,7 @@ export const POST = async () => {
 
 	revalidateTag('getuserprofile');
 	return new Response('success', { status: 200 });
-}
+};
 
 const deleteOldIcons = async (userId: number) => {
 	const oldIconsUrl = await list({ prefix: 'userIcons/' + userId }).then(

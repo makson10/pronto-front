@@ -1,5 +1,5 @@
 import { revalidateTag } from 'next/cache';
-import { getUserIdBySession } from '../sessionUtils';
+import { getUserIdBySession } from '@/assets/sessionUtils';
 import axios from 'axios';
 
 export const dynamic = 'force-dynamic';
@@ -22,7 +22,7 @@ export const POST = async (request: Request) => {
 	sendEditProfileDataRequest({ userId, newProfileData });
 	revalidateTag('getuserprofile');
 	return new Response('success', { status: 200 });
-}
+};
 
 const sendEditProfileDataRequest = async (body: Body) => {
 	return await axios.post(

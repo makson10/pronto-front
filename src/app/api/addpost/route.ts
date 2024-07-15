@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getUserIdBySession } from '../sessionUtils';
+import { getUserIdBySession } from '@/assets/sessionUtils';
 import axios from 'axios';
 
 export const dynamic = 'force-dynamic';

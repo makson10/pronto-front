@@ -3,7 +3,7 @@ import '@/styles/globals.scss';
 import '@/styles/scrollbar.scss';
 import '@/styles/variables.scss';
 import '@/styles/detailInfo.scss';
-import { getUserDataBySession } from './api/sessionUtils';
+import { getUserDataBySession } from '@/assets/sessionUtils';
 import StoreInitializer from '@/context/StoreInitializer';
 import CustomNextUIProvider from '@/components/CustomNextUIProvider';
 
@@ -16,6 +16,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
 	//? add post managment buttons
 	//? change browser page title depending on current route
 	//? solve all bugs
+	//? add age to profile header
 
 	return (
 		<html lang="en">

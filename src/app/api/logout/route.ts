@@ -2,7 +2,7 @@ import {
 	deleteSession,
 	encodeCookie,
 	getSessionIdFromCookie,
-} from '../sessionUtils';
+} from '@/assets/sessionUtils';
 import axios from 'axios';
 
 export const dynamic = 'force-dynamic';

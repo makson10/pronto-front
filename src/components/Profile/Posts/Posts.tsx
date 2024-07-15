@@ -1,23 +1,17 @@
 import Post from './Post';
+import PostProfileIcon from './PostProfileIcon';
+import NoPostsMessage from './NoPostsMessage';
 import { Posts as PostsType } from '@/types/posts';
 import { Profile } from '@/types/profile';
-import PostProfileIcon from './PostProfileIcon';
 import axios from 'axios';
-import NoPostsMessage from './NoPostsMessage';
 
 interface Props {
-	profileId: number;
+	author: Profile;
+	posts: PostsType;
 }
 
-const Posts = async ({ profileId }: Props) => {
-	const { data: posts } = await axios.post<PostsType>(
-		'/api/getposts',
-		profileId
-	);
+const Posts = async ({ author, posts }: Props) => {
 	if (!posts.length) return <NoPostsMessage />;
-
-	const author = (await axios.post<Profile>('/api/getauthorprofile', profileId))
-		.data;
 
 	return (
 		<div className="w-full h-fit flex flex-col gap-6">

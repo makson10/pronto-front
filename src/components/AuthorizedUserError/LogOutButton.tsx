@@ -18,13 +18,11 @@ const LogOutButton = () => {
 	};
 
 	const makeLogOutRequest = async () => {
-		await axios.post('/api/logout').then(console.log);
+		await axios.post('/api/logout');
 	};
 
 	const makeGetUserRequestRevalidation = async () => {
-		await axios
-			.post('/api/revalidatetag', { tag: 'getuserbysessionrequest' })
-			.then(console.log);
+		await axios.post('/api/revalidatetag', { tag: 'getuserbysessionrequest' });
 	};
 
 	const removeUserDataFromStore = () => {

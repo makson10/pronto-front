@@ -1,4 +1,4 @@
-import { getUserIdBySession } from '../api/sessionUtils';
+import { getUserIdBySession } from '@/assets/sessionUtils';
 import { RedirectType, redirect } from 'next/navigation';
 
 const Profile = async () => {
