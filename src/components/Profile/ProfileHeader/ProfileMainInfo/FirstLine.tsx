@@ -1,12 +1,7 @@
-interface Props {
-	data: {
-		name: string;
-		isVerifed: boolean;
-		createdAt: string;
-	};
-}
+import { store } from '@/context/store';
 
-const Name = ({ data: { name, isVerifed, createdAt } }: Props) => {
+const FirstLine = () => {
+	const { name, isVerifed, createdAt } = store.getState().profile!;
 	const userRegistrationDate = new Date(createdAt).toLocaleDateString();
 
 	return (
@@ -24,4 +19,4 @@ const Name = ({ data: { name, isVerifed, createdAt } }: Props) => {
 
 const VerifedUserIcon = () => <div className="w-[20px]">✔</div>;
 
-export default Name;
+export default FirstLine;

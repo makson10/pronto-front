@@ -6,17 +6,24 @@ import '@/styles/detailInfo.scss';
 import { getUserDataBySession } from '@/assets/sessionUtils';
 import StoreInitializer from '@/context/StoreInitializer';
 import CustomNextUIProvider from '@/components/CustomNextUIProvider';
+import { store } from '@/context/store';
 
-const RootLayout = async ({ children }: { children: React.ReactNode }) => {
+interface Props {
+	children: React.ReactNode;
+}
+
+const RootLayout = async ({ children }: Props) => {
 	const user = await getUserDataBySession();
-	const storeInitialValues = { user };
+	const profile = store.getState().profile;
+	const storeInitialValues = { user, profile };
 
-	//? add presents to user
-	//? add adding picture to posts
-	//? add post managment buttons
-	//? change browser page title depending on current route
-	//? solve all bugs
+	//? make loading screen on /profile route
 	//? add age to profile header
+	//? add post managment buttons
+	//? add adding picture to posts
+	//? change browser page title depending on current route
+	//? add presents to user
+	//? solve bugs
 
 	return (
 		<html lang="en">
