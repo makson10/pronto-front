@@ -17,9 +17,7 @@ const RootLayout = async ({ children }: Props) => {
 	const profile = store.getState().profile;
 	const storeInitialValues = { user, profile };
 
-	//? make loading screen on /profile route
-	//? add age to profile header
-	//? add post managment buttons
+	//? add post managment buttons(add postId in back)
 	//? add adding picture to posts
 	//? change browser page title depending on current route
 	//? add presents to user

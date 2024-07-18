@@ -6,7 +6,7 @@ const ProfileHeaderIcon = () => {
 
 	return (
 		<div>
-			<div className="relative -top-[75%]" aria-label="profile-icon">
+			<div className="relative -top-[5%]" aria-label="profile-icon">
 				<ProfileIcon iconUrl={icon} altIconText={name[0]} makeBorder={true} />
 			</div>
 		</div>

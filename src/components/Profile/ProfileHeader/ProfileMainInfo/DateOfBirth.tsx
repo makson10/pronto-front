@@ -19,7 +19,7 @@ const DateOfBirth = ({ age, dateOfBirth }: Props) => {
 
 			{age ? (
 				<p>
-					{new Date(dateOfBirth!).toLocaleDateString()}({age})
+					{new Date(dateOfBirth!).toLocaleDateString()} ({age} years)
 				</p>
 			) : (
 				<p className="text-gray-500">Not specified</p>

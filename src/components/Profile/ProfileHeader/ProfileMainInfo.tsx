@@ -8,11 +8,13 @@ const ProfileMainInfo = () => {
 	const { age, dateOfBirth, description, city } = store.getState().profile!;
 
 	return (
-		<div className="flex flex-col gap-1">
+		<div className="flex flex-col gap-4">
 			<FirstLine />
-			<Description description={description} />
-			<Address city={city} />
-			<DateOfBirth age={age} dateOfBirth={dateOfBirth} />
+			<div className="flex flex-col gap-2">
+				<Description description={description} />
+				<Address city={city} />
+				<DateOfBirth age={age} dateOfBirth={dateOfBirth} />
+			</div>
 		</div>
 	);
 };

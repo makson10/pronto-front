@@ -13,7 +13,6 @@ const SettingsButtons = ({ setText, setPicture }: Props) => {
 
 	const pasteText = async () => {
 		await navigator.clipboard.readText().then((textFromClipboard) => {
-			console.log(textFromClipboard);
 			setText((text) => text + textFromClipboard);
 		});
 	};
