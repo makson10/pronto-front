@@ -17,7 +17,7 @@ const RootLayout = async ({ children }: Props) => {
 	const profile = store.getState().profile;
 	const storeInitialValues = { user, profile };
 
-	//? add post managment buttons(add postId in back)
+	//? make router.refresh() anywhere need
 	//? add adding picture to posts
 	//? change browser page title depending on current route
 	//? add presents to user

@@ -3,6 +3,7 @@ import { Button, Textarea } from '@nextui-org/react';
 import { ShowMessageBox } from '@/components/MessageBox';
 import SettingsButtons from './SettingsButtons';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 interface Props {
 	closeEditor: (event?: React.MouseEvent<HTMLButtonElement>) => void;
@@ -21,6 +22,7 @@ const NewPostEditor = ({ closeEditor }: Props) => {
 	const [newPostPicture, setNewPostPicture] = useState<File | null>(null);
 	const [errorMessage, setErrorMessage] = useState<string>('');
 	const postButtonRef = useRef<HTMLButtonElement>(null);
+	const router = useRouter();
 
 	const eventListenerHandler = (e: KeyboardEvent) => {
 		if (!e.ctrlKey || e.key !== 'Enter') return;
@@ -33,6 +35,7 @@ const NewPostEditor = ({ closeEditor }: Props) => {
 		const newPost = { text: newPostText, picture: newPostPicture };
 		await axios.post('/api/addpost', newPost);
 		closeEditor();
+		router.refresh();
 	};
 
 	const isNewPostDataValid = () => {
