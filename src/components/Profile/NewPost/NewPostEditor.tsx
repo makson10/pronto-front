@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { Button, Textarea } from '@nextui-org/react';
 import { ShowMessageBox } from '@/components/MessageBox';
-import SettingsButtons from './SettingsButtons';
-import axios from 'axios';
+import OptionData from './OptionData';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 interface Props {
 	closeEditor: (event?: React.MouseEvent<HTMLButtonElement>) => void;
@@ -72,9 +72,10 @@ const NewPostEditor = ({ closeEditor }: Props) => {
 				value={newPostText}
 				onValueChange={setNewPostText}
 				endContent={
-					<SettingsButtons
-						setText={setNewPostText}
-						setPicture={setNewPostPicture}
+					<OptionData
+						setNewPostText={setNewPostText}
+						setNewPostPicture={setNewPostPicture}
+						charactersAmount={newPostText.length}
 					/>
 				}
 			/>

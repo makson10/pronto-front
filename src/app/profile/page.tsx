@@ -2,14 +2,7 @@ import { getUserIdBySession } from '@/assets/sessionUtils';
 import { RedirectType, redirect } from 'next/navigation';
 
 const Profile = async () => {
-	let userId = '';
-
-	try {
-		userId = await getUserIdBySession();
-	} catch (error) {
-		throw new Error('Not available to unauthorized users');
-	}
-
+	const userId = await getUserIdBySession();
 	if (userId) redirect('/profile/' + userId, RedirectType.replace);
 };
 

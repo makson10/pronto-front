@@ -9,6 +9,7 @@ import {
 	DropdownItem,
 } from '@nextui-org/react';
 import UserProfileIcon from '../ProfileIcon';
+import { useRouter } from 'next/navigation';
 
 interface Props {
 	icon: string | null;
@@ -16,14 +17,14 @@ interface Props {
 }
 
 const UserIconDropdownMenu = ({ icon, altText }: Props) => {
-	const { goToPage, refreshPage } = usePageNavigation();
+	const router = useRouter();
 
-	const goToProfilePage = () => goToPage('/profile');
+	const goToProfilePage = () => router.push('/profile');
 	const logOutUser = async () => {
 		await axios.post('/api/logout');
 		await axios.post('/api/revalidatetag', { tag: 'getuserbysessionrequest' });
 		resetUserData();
-		refreshPage();
+		router.refresh();
 	};
 
 	return (

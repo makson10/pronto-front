@@ -1,10 +1,7 @@
 'use client';
-import { useState } from 'react';
 import { useParams } from 'next/navigation';
-import AddNewPostButton from './AddNewPostButton';
-import NewPostEditor from '../NewPostEditor/NewPostEditor';
 import { store } from '@/context/store';
-import Separator from '@/components/ProfileEdit/form/Separator';
+import AddNewPost from '../NewPost/AddNewPost';
 
 interface Props {
 	children: React.ReactNode;
@@ -25,22 +22,3 @@ export default function PostsFlow({ children }: Props) {
 		</div>
 	);
 }
-
-const AddNewPost = () => {
-	const [showNewPostEditor, setShowNewPostEditor] = useState<boolean>(false);
-	const openEditor = () => setShowNewPostEditor(true);
-	const closeEditor = () => setShowNewPostEditor(false);
-
-	return (
-		<div className="h-fit flex flex-col gap-4 items-start">
-			{showNewPostEditor ? (
-				<NewPostEditor closeEditor={closeEditor} />
-			) : (
-				<>
-					<AddNewPostButton openEditor={openEditor} />
-					<Separator />
-				</>
-			)}
-		</div>
-	);
-};

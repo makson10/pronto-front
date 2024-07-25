@@ -11,9 +11,10 @@ import { ShowMessageBox } from '@/components/MessageBox';
 import axios from 'axios';
 import style from '@/styles/authorizeForm.module.scss';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const LogInForm = () => {
-	const { goToHomePage } = usePageNavigation();
+	const router = useRouter();
 	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
 	const [errorMessageText, setErrorMessageText] = useState<string>('fuck');
 	const [needToShowErrorMessage, setNeedToShowErrorMessage] =
@@ -53,7 +54,8 @@ const LogInForm = () => {
 		try {
 			await axios.post('/api/login', { user });
 			await getAndStoreUser();
-			goToHomePage();
+			router.push('/');
+			router.refresh();
 		} catch (error: any) {
 			setErrorMessageText(error.response.data);
 			setNeedToShowErrorMessage(true);

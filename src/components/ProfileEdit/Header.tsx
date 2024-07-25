@@ -25,7 +25,6 @@ const Header = ({ iconUrl, name, profileId }: Props) => {
 
 const GoBackButton = () => {
 	const router = useRouter();
-
 	const handleClick = () => router.back();
 
 	return (

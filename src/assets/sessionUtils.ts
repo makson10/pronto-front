@@ -110,7 +110,9 @@ export const getUserIdBySession = async () => {
 			},
 			next: { revalidate: 3600, tags: ['getUserIdBySession'] },
 		}
-	);
+	).catch((err) => {
+		throw new Error('Not available to unauthorized users');
+	});
 
 	const userId = await req.json().then((data) => data.userId);
 	return userId;

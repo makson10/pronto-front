@@ -17,11 +17,10 @@ const RootLayout = async ({ children }: Props) => {
 	const profile = store.getState().profile;
 	const storeInitialValues = { user, profile };
 
-	//? make router.refresh() anywhere need
+	//? make character limit in newPostEditor
 	//? add adding picture to posts
-	//? change browser page title depending on current route
 	//? add presents to user
-	//? solve bugs
+	//? change browser page title depending on current route
 
 	return (
 		<html lang="en">

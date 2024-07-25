@@ -7,9 +7,11 @@ interface Props {
 
 const AddNewPostButton = ({ openEditor }: Props) => {
 	return (
-		<Button className="min-h-[40px] button text-base" onClick={openEditor}>
-			Add new post
-		</Button>
+		<div className="w-full flex flex-row justify-end">
+			<Button className="min-h-[40px] button text-base" onClick={openEditor}>
+				Add new post
+			</Button>
+		</div>
 	);
 };
 

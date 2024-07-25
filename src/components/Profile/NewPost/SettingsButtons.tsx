@@ -19,8 +19,8 @@ const SettingsButtons = ({ setText, setPicture }: Props) => {
 
 	return (
 		<div className="flex flex-row gap-2">
-			<AttachPictureButton attachFunction={attachPicture} />
 			<PasteTextButton pasteFunction={pasteText} />
+			<AttachPictureButton attachFunction={attachPicture} />
 		</div>
 	);
 };
