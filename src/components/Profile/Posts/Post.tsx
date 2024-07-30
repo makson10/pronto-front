@@ -4,6 +4,7 @@ import { formatDate } from '../../../assets/formatDate';
 import PostManagementButton from './PostManagementButton';
 import { Post as PostType } from '@/types/posts';
 import { store } from '@/context/store';
+import Image from 'next/image';
 
 interface Props {
 	authorFullName: string;
@@ -23,7 +24,7 @@ const Post = ({ authorFullName, authorIcon, data }: Props) => {
 
 	return (
 		<div
-			className="flex flex-col gap-3 bg-[--second-bg-color] border-[--border-main-color] border-[4px] rounded-xl p-4"
+			className="flex flex-col gap-4 bg-[--second-bg-color] border-[--border-main-color] border-[4px] rounded-xl p-4"
 			id={data.postId.toString()}>
 			<div className="flex flex-row justify-between">
 				<div className="flex flex-row gap-2">
@@ -37,7 +38,7 @@ const Post = ({ authorFullName, authorIcon, data }: Props) => {
 					<PostManagementButton postId={data.postId} />
 				)}
 			</div>
-			<div className="text-base whitespace-pre-line flex flex-col gap-2">
+			<div className="text-lg whitespace-pre-line flex flex-col gap-2">
 				{!needToShowEntireText ? (
 					<>
 						<p>{data.text.slice(0, MAX_DISPLAYABLE_CHARACTER_AMOUNT)}</p>
@@ -58,6 +59,11 @@ const Post = ({ authorFullName, authorIcon, data }: Props) => {
 					</>
 				)}
 			</div>
+			{data.picture && (
+				<div className="mt-1 flex flex-row justify-center">
+					<Image src={data.picture} alt="#" width={200} height={200} />
+				</div>
+			)}
 		</div>
 	);
 };

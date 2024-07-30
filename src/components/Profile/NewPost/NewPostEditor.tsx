@@ -90,6 +90,7 @@ const NewPostEditor = ({ closeEditor }: Props) => {
 					<OptionData
 						setNewPostText={setNewPostText}
 						setNewPostPicture={setNewPostPicture}
+						newPostPicture={newPostPicture}
 						charactersAmount={newPostText.length}
 					/>
 				}

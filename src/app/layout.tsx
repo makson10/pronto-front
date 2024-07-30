@@ -20,7 +20,7 @@ const RootLayout = async ({ children }: Props) => {
 	const storeInitialValues = { user, profile };
 
 	// TODO:
-	//? add showing picture in posts and during making the post
+	//? add fullscreen new post picture preview(swiper)
 	//? add presents to user
 
 	return (

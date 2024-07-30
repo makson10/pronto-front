@@ -1,7 +1,7 @@
 import { ShowMessageBox } from '@/components/MessageBox';
 import { Button } from '@nextui-org/react';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 interface Props {
 	newIcon: File;
@@ -28,16 +28,11 @@ const SubmitChangeIcon = ({
 	}, [needToShowOverlimitError]);
 
 	const checkNewIconValid = async () => {
-		if (!checkNewIconSize()) {
-			return setNeedToShowOverlimitError(true);
-		}
-
+		if (!checkNewIconSize()) return setNeedToShowOverlimitError(true);
 		submitChangeIcon();
 	};
 
-	const checkNewIconSize = () => {
-		return newIcon.size < 4 * 1024 * 1024;
-	};
+	const checkNewIconSize = () => newIcon.size < 4 * 1024 * 1024;
 
 	const submitChangeIcon = async () => {
 		await axios.post('/api/storenewicon', newIcon);
