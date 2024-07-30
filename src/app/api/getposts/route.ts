@@ -13,13 +13,12 @@ export const POST = async (request: Request) => {
 };
 
 const getUserPosts = async (userId: number) => {
-	const url =
-		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/posts/' + userId;
-
 	try {
 		return await axios
 			.get<Posts>(
-				process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/posts/' + userId
+				process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL +
+					'/posts/author/' +
+					userId
 			)
 			.then((res) => res.data);
 	} catch (error: any) {

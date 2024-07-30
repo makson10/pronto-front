@@ -12,8 +12,8 @@ const PasteTextButton = ({ pasteFunction }: Props) => {
 			size="sm"
 			isIconOnly>
 			<img
-				width="25"
-				height="25"
+				width="30"
+				height="30"
 				src="https://img.icons8.com/ios-glyphs/100/paste.png"
 				alt="#"
 			/>

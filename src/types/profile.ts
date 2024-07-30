@@ -9,4 +9,5 @@ export type Profile = {
 	isVerifed: boolean;
 	sentVerificationRequest: boolean;
 	icon: string | null;
+	isAuthorWatchProfile?: boolean;
 };

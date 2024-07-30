@@ -15,12 +15,13 @@ interface Props {
 const RootLayout = async ({ children }: Props) => {
 	const user = await getUserDataBySession();
 	const profile = store.getState().profile;
+
+	if (profile) profile.isAuthorWatchProfile = user.id === profile?.profileId;
 	const storeInitialValues = { user, profile };
 
-	//? make character limit in newPostEditor
-	//? add adding picture to posts
+	// TODO:
+	//? add showing picture in posts and during making the post
 	//? add presents to user
-	//? change browser page title depending on current route
 
 	return (
 		<html lang="en">

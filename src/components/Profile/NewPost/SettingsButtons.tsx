@@ -1,5 +1,6 @@
 import PasteTextButton from './PasteTextButton';
 import AttachPictureButton from './AttachPictureButton';
+import { ChangeEvent } from 'react';
 
 interface Props {
 	setText: React.Dispatch<React.SetStateAction<string>>;
@@ -7,8 +8,8 @@ interface Props {
 }
 
 const SettingsButtons = ({ setText, setPicture }: Props) => {
-	const attachPicture = () => {
-		setPicture(null);
+	const attachPicture = (e: ChangeEvent<HTMLInputElement>) => {
+		if (e.target.files) setPicture(e.target.files[0]);
 	};
 
 	const pasteText = async () => {

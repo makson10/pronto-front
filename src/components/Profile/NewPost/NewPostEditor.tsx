@@ -10,9 +10,9 @@ interface Props {
 }
 
 const textareaStyle = {
-	base: 'w-full min-h-[230px]',
+	base: 'w-full min-h-[270px]',
 	inputWrapper:
-		'min-h-full bg-gray-900 border-3 border-[--border-main-color] data-[hover=true]:bg-gray-900 group-data-[focus=true]:bg-gray-900 flex justify-start',
+		'min-h-full pb-0 bg-gray-900 border-3 border-[--border-main-color] data-[hover=true]:bg-gray-900 group-data-[focus=true]:bg-gray-900 flex justify-start',
 	innerWrapper: 'flex flex-col gap-2 h-4/5',
 	input: 'min-h-full group-data-[has-value=true]:text-white textarea-scrollbar',
 };
@@ -32,15 +32,30 @@ const NewPostEditor = ({ closeEditor }: Props) => {
 	const addPost = async () => {
 		if (!isNewPostDataValid()) return;
 
-		const newPost = { text: newPostText, picture: newPostPicture };
-		await axios.post('/api/addpost', newPost);
+		await storeNewPost();
 		closeEditor();
 		router.refresh();
+	};
+
+	const storeNewPost = async () => {
+		const pictureUrl = await storePostImage();
+		const newPost = { text: newPostText, picture: pictureUrl };
+		await axios.post('/api/addpost', newPost);
+	};
+
+	const storePostImage = async () => {
+		return await axios
+			.post('/api/storepostimage', newPostPicture)
+			.then((res) => res.data);
 	};
 
 	const isNewPostDataValid = () => {
 		if (!newPostText) {
 			return setErrorMessage('New post text is empty');
+		}
+
+		if (newPostText.length > 2000) {
+			return setErrorMessage('Post text too long(maximum 2000 characters)');
 		}
 
 		if (newPostPicture && newPostPicture.size > 4 * 1024 * 1024) {
