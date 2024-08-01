@@ -1,7 +1,7 @@
-import FirstLine from './ProfileMainInfo/FirstLine';
-import Description from './ProfileMainInfo/Description';
-import Address from './ProfileMainInfo/Address';
-import DateOfBirth from './ProfileMainInfo/DateOfBirth';
+import FirstLine from './MainInfo/FirstLine';
+import Description from './MainInfo/Description';
+import Address from './MainInfo/Address';
+import DateOfBirth from './MainInfo/DateOfBirth';
 import { store } from '@/context/store';
 
 const ProfileMainInfo = () => {
