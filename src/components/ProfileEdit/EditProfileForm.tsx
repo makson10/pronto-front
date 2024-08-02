@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SubmitChangesButton from './form/SubmitChangesButton';
 import EditAge from './form/EditAge';
 import EditProfileFormWrapper from './form/EditProfileFormWrapper';
@@ -7,7 +7,7 @@ import EditDescription from './form/EditDescription';
 import EditCity from './form/EditCity';
 import ChangePassword from './form/ChangePassword';
 import SendVerificationRequest from './form/SendVerificationRequest';
-import Separator from './form/Separator';
+import Separator from '../Separator';
 import SubmitChangesButtonWrapper from './form/SubmitChangesButtonWrapper';
 import { Profile } from '@/types/profile';
 import { ShowMessageBox } from '../MessageBox';
@@ -32,10 +32,18 @@ const EditProfileForm = ({ сhangeIcon, defaultFormValues }: Props) => {
 	);
 	const [newCity, setNewCity] = useState(defaultFormValues.city);
 
+	const [errorWithDescription, setErrorWithDescription] = useState(false);
+
 	const handleSubmit: React.MouseEventHandler<HTMLButtonElement> = async () => {
+		if (!isDescriptionValid()) return setErrorWithDescription(true);
+
 		const newProfileData = formNewProfileData();
 		await axios.post('/api/editprofiledata', newProfileData);
 		setNeedToShowSuccessEditDataMessage(true);
+	};
+
+	const isDescriptionValid = () => {
+		return newDescription && newDescription.length < 255;
 	};
 
 	const formNewProfileData = () => {
@@ -45,6 +53,8 @@ const EditProfileForm = ({ сhangeIcon, defaultFormValues }: Props) => {
 			city: newCity,
 		};
 	};
+
+	useEffect(() => setErrorWithDescription(false), [newDescription]);
 
 	return (
 		<>
@@ -63,6 +73,7 @@ const EditProfileForm = ({ сhangeIcon, defaultFormValues }: Props) => {
 					<EditDescription
 						description={newDescription}
 						setDescription={setNewDescription}
+						errorWithDescription={errorWithDescription}
 					/>
 					<EditCity city={newCity} setCity={setNewCity} />
 					<SubmitChangesButtonWrapper>

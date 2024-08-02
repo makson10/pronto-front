@@ -2,7 +2,7 @@ import ProfileHeader from '@/components/Profile/ProfileHeader/ProfileHeader';
 import ContentWrapper from './ContentWrapper';
 import PostsFlow from '@/components/Profile/Posts/PostsFlow';
 import Posts from '@/components/Profile/Posts/Posts';
-import Presents from '@/components/Profile/Presents/Presents';
+import FullProfileInfoAndPresents from '@/components/Profile/FullProfileInfoAndPresents/FullProfileInfoAndPresents';
 
 const Profile = async () => {
 	return (
@@ -12,7 +12,7 @@ const Profile = async () => {
 				<PostsFlow>
 					<Posts />
 				</PostsFlow>
-				<Presents />
+				<FullProfileInfoAndPresents />
 			</ContentWrapper>
 		</div>
 	);

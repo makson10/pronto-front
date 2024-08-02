@@ -8,7 +8,7 @@ const ProfileMainInfo = () => {
 	const { age, dateOfBirth, description, city } = store.getState().profile!;
 
 	return (
-		<div className="flex flex-col gap-4">
+		<div className="h-fit flex flex-col gap-4">
 			<FirstLine />
 			<div className="flex flex-col gap-2">
 				<Description description={description} />

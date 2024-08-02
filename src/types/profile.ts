@@ -10,4 +10,5 @@ export type Profile = {
 	sentVerificationRequest: boolean;
 	icon: string | null;
 	isAuthorWatchProfile?: boolean;
+	presents: Presents;
 };

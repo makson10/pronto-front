@@ -2,7 +2,6 @@ import '@/styles/button.scss';
 import '@/styles/globals.scss';
 import '@/styles/scrollbar.scss';
 import '@/styles/variables.scss';
-import '@/styles/detailInfo.scss';
 import 'swiper/css/bundle';
 import { getUserDataBySession } from '@/assets/sessionUtils';
 import StoreInitializer from '@/context/StoreInitializer';
@@ -17,11 +16,14 @@ const RootLayout = async ({ children }: Props) => {
 	const user = await getUserDataBySession();
 	const profile = store.getState().profile;
 
-	if (profile) profile.isAuthorWatchProfile = user.id === profile?.profileId;
+	if (user && profile)
+		profile.isAuthorWatchProfile = user.id === profile?.profileId;
 	const storeInitialValues = { user, profile };
 
 	// TODO:
-	//? add presents to user
+	//? fix log in double tab tap bug
+	//? make editDescription without enter
+	//? merge feature and main branch
 
 	return (
 		<html lang="en">

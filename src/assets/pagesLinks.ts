@@ -29,6 +29,11 @@ const pagesLinks = [
 		icon: 'https://img.icons8.com/ios/100/ffffff/news.png',
 		goToPath: 'https://www.bbc.com/',
 	},
+	{
+		title: 'Shop',
+		icon: 'https://img.icons8.com/pastel-glyph/100/ffffff/shopping-basket-2--v2.png',
+		goToPath: 'https://everythingshop.vercel.app/',
+	},
 ];
 
 export default pagesLinks;
