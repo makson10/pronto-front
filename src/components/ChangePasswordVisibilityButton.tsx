@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction } from 'react';
-import style from '@/styles/changePasswordVisibilityButton.module.scss';
 
 interface Props {
 	isPasswordVisible: boolean;
@@ -20,15 +19,15 @@ const ChangePasswordVisibilityButton = ({
 	return (
 		<button
 			tabIndex={-1}
-			className={style['change-password-visibility-button']}
+			className="rounded-md bg-[#737373] p-[0.3rem] data-[variant=second]:w-fit"
 			data-variant={styleVariant === 1 ? 'first' : 'second'}
 			onClick={togglePasswordVisible}>
 			<img
 				width="24"
 				height="24"
-				src={`https://img.icons8.com/material-outlined/24/${
-					styleVariant === 1 ? 'ffffff' : '000000'
-				}/${isPasswordVisible ? 'invisible.png' : 'visible--v1.png'}`}
+				src={`https://img.icons8.com/material-outlined/100/ffffff/${
+					isPasswordVisible ? 'invisible.png' : 'visible--v1.png'
+				}`}
 				alt="#"
 			/>
 		</button>

@@ -4,8 +4,8 @@ import '@/styles/scrollbar.scss';
 import '@/styles/variables.scss';
 import 'swiper/css/bundle';
 import { getUserDataBySession } from '@/assets/sessionUtils';
-import StoreInitializer from '@/context/StoreInitializer';
 import CustomNextUIProvider from '@/components/CustomNextUIProvider';
+import StoreInitializer from '@/context/StoreInitializer';
 import { store } from '@/context/store';
 
 interface Props {
@@ -19,11 +19,6 @@ const RootLayout = async ({ children }: Props) => {
 	if (user && profile)
 		profile.isAuthorWatchProfile = user.id === profile?.profileId;
 	const storeInitialValues = { user, profile };
-
-	// TODO:
-	//? fix log in double tab tap bug
-	//? make editDescription without enter
-	//? merge feature and main branch
 
 	return (
 		<html lang="en">

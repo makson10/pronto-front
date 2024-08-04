@@ -24,8 +24,8 @@ const NewPostEditor = ({ closeEditor }: Props) => {
 	const postButtonRef = useRef<HTMLButtonElement>(null);
 	const router = useRouter();
 
-	const eventListenerHandler = (e: KeyboardEvent) => {
-		if (!e.ctrlKey || e.key !== 'Enter') return;
+	const eventListenerHandler = (event: KeyboardEvent) => {
+		if (!event.ctrlKey || event.key !== 'Enter') return;
 		postButtonRef.current?.click();
 	};
 

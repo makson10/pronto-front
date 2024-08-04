@@ -2,7 +2,7 @@ import { Button } from '@nextui-org/react';
 import { ChangeEvent } from 'react';
 
 interface Props {
-	attachFunction: (e: ChangeEvent<HTMLInputElement>) => void;
+	attachFunction: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const AttachPictureButton = ({ attachFunction }: Props) => {

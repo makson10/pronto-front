@@ -49,7 +49,7 @@ const DropdownInput = ({ iconExist }: Props) => {
 			)}
 			<div className="flex flex-col gap-4">
 				<label htmlFor="dropdown-file" className="w-full">
-					<div className="cursor-pointer py-4 bg-gray-700 flex flex-row gap-2 justify-center items-center border-2 border-gray-400 rounded-lg">
+					<div className="cursor-pointer py-4 bg-[#17153B] flex flex-row gap-2 justify-center items-center border-3 border-gray-700 rounded-lg">
 						<img
 							width={24}
 							height={24}

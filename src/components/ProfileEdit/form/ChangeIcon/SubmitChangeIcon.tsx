@@ -1,6 +1,7 @@
-import { ShowMessageBox } from '@/components/MessageBox';
-import { Button } from '@nextui-org/react';
 import { useEffect, useState } from 'react';
+import { Button } from '@nextui-org/react';
+import { ShowMessageBox } from '@/components/MessageBox';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
 interface Props {
@@ -18,6 +19,7 @@ const SubmitChangeIcon = ({
 }: Props) => {
 	const [needToShowOverlimitError, setNeedToShowOverlimitError] =
 		useState<boolean>(false);
+	const router = useRouter();
 
 	useEffect(() => {
 		if (!needToShowOverlimitError) return;
@@ -38,6 +40,7 @@ const SubmitChangeIcon = ({
 		await axios.post('/api/storenewicon', newIcon);
 		setNeedToShowSuccessChangeIconMessage(true);
 		setNewIcon(null);
+		router.refresh();
 	};
 
 	return (

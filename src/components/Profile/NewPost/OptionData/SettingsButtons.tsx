@@ -8,8 +8,8 @@ interface Props {
 }
 
 const SettingsButtons = ({ setText, setPicture }: Props) => {
-	const attachPicture = (e: ChangeEvent<HTMLInputElement>) => {
-		if (e.target.files) setPicture(e.target.files[0]);
+	const attachPicture = (event: ChangeEvent<HTMLInputElement>) => {
+		if (event.target.files) setPicture(event.target.files[0]);
 	};
 
 	const pasteText = async () => {

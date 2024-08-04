@@ -120,7 +120,9 @@ const LogInForm = () => {
 						</div>
 					</div>
 					<div className="flex flex-row justify-end">
-						<button className="text-sm text-gray-500 transition hover:text-white">
+						<button
+							className="text-sm text-gray-500 transition hover:text-white"
+							tabIndex={-1}>
 							<Link href={'/signup'}>Not signed up yet? Sign up →</Link>
 						</button>
 					</div>

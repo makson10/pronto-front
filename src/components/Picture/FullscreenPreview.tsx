@@ -18,8 +18,8 @@ const FullscreenPreview = ({ picture, closeFullscreenPreview }: Props) => {
 	}, []);
 
 	useEffect(() => {
-		const escapeHandler = (e: KeyboardEvent) => {
-			if (e.key === 'Escape') closeFullscreenPreview();
+		const escapeHandler = (event: KeyboardEvent) => {
+			if (event.key === 'Escape') closeFullscreenPreview();
 		};
 
 		document.addEventListener('keydown', escapeHandler);
@@ -30,8 +30,8 @@ const FullscreenPreview = ({ picture, closeFullscreenPreview }: Props) => {
 	}, []);
 
 	useEffect(() => {
-		const handleClickOutsidePicture = (e: MouseEvent) => {
-			if (pictureRef.current && !pictureRef.current.contains(e.target)) {
+		const handleClickOutsidePicture = (event: MouseEvent) => {
+			if (pictureRef.current && !pictureRef.current.contains(event.target)) {
 				closeFullscreenPreview();
 			}
 		};

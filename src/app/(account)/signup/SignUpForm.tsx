@@ -162,7 +162,9 @@ const SignUpForm = () => {
 						</div>
 					</div>
 					<div className="flex flex-row justify-end">
-						<button className="text-sm text-gray-500 transition hover:text-white">
+						<button
+							className="text-sm text-gray-500 transition hover:text-white"
+							tabIndex={-1}>
 							<Link href={'/login'}>Already signed up? Log in →</Link>
 						</button>
 					</div>

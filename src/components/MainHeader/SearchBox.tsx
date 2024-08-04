@@ -1,6 +1,5 @@
 'use client';
 import { ChangeEvent, useState } from 'react';
-import style from '@/styles/searchBox.module.scss';
 
 const SearchBox = () => {
 	const [searchTerm, setSearchTerm] = useState<string>('');
@@ -14,13 +13,13 @@ const SearchBox = () => {
 	};
 
 	return (
-		<div className={style['search-box']}>
+		<div className="flex items-center rounded-xl bg-[#424242] px-2 my-[0.3rem]">
 			<input
 				type="text"
 				placeholder="Search..."
 				value={searchTerm}
 				onChange={handleSearchChange}
-				className={style['input']}
+				className="bg-transparent outline-none"
 			/>
 			<button onClick={handleSearchSubmit}>
 				<img

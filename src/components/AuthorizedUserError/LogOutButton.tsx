@@ -1,7 +1,6 @@
 import { store } from '@/context/store';
 import usePageNavigation from '@/hooks/usePageNavigation';
 import axios from 'axios';
-import style from '@/styles/logOutButton.module.scss';
 
 const LogOutButton = () => {
 	const { refreshPage } = usePageNavigation();
@@ -30,7 +29,10 @@ const LogOutButton = () => {
 	};
 
 	return (
-		<button onClick={handleClick} className={style['log-out-button']}>
+		<button
+			onClick={handleClick}
+			className="button px-4 pt-[0.6rem] pb-[0.7rem] rounded-[5px] text-base"
+			style={{ backgroundColor: 'rgb(29 78 216)' }}>
 			Log out
 		</button>
 	);
