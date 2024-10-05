@@ -1,7 +1,7 @@
 'use client';
 import MainHeader from '@/components/MainHeader/MainHeader';
-import SecondaryHeader from '@/components/SecondaryHeader';
-import Footer from '@/components/Footer';
+import SecondaryHeader from '@/components/common/SecondaryHeader';
+import Footer from '@/components/common/Footer';
 import { store } from '@/context/store';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';

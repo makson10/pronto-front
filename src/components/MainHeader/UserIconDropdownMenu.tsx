@@ -8,7 +8,7 @@ import {
 	DropdownMenu,
 	DropdownItem,
 } from '@nextui-org/react';
-import UserProfileIcon from '../ProfileIcon';
+import UserProfileIcon from '../common/ProfileIcon';
 import { useRouter } from 'next/navigation';
 
 interface Props {

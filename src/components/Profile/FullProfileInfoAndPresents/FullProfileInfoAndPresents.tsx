@@ -1,4 +1,4 @@
-import Separator from '@/components/Separator';
+import Separator from '@/components/common/Separator';
 import FullProfileInfo from './FullProfileInfo/FullProfileInfo';
 import Presents from './Presents/Presents';
 

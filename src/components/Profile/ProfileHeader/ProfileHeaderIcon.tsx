@@ -1,4 +1,4 @@
-import ProfileIcon from '@/components/ProfileIcon';
+import ProfileIcon from '@/components/common/ProfileIcon';
 import { store } from '@/context/store';
 
 const ProfileHeaderIcon = () => {

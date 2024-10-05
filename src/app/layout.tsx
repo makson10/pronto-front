@@ -4,7 +4,7 @@ import '@/styles/scrollbar.scss';
 import '@/styles/variables.scss';
 import 'swiper/css/bundle';
 import { getUserDataBySession } from '@/assets/sessionUtils';
-import CustomNextUIProvider from '@/components/CustomNextUIProvider';
+import CustomNextUIProvider from '@/components/common/CustomNextUIProvider';
 import StoreInitializer from '@/context/StoreInitializer';
 import { store } from '@/context/store';
 
@@ -19,6 +19,12 @@ const RootLayout = async ({ children }: Props) => {
 	if (user && profile)
 		profile.isAuthorWatchProfile = user.id === profile?.profileId;
 	const storeInitialValues = { user, profile };
+
+	// TODO:
+	//? loading during /profile
+	//? make sending messages with press enter
+	//? make input not to send request twice
+	//? make showing all messages
 
 	return (
 		<html lang="en">

@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import { CookieSerializeOptions } from 'cookie';
 import * as cookie from 'cookie';
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { Profile } from '@/types/profile';
 
 export const sessionCookieOptions: CookieSerializeOptions = {
@@ -116,4 +116,17 @@ export const getUserIdBySession = async () => {
 
 	const userId = await req.json().then((data) => data.userId);
 	return userId;
+};
+
+export const getUserIconById = async (companionId: number) => {
+	const req = await axios
+		.post(
+			process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/user/getusericonbyid',
+			{ companionId }
+		)
+		.catch((err) => {
+			throw new Error('Error during getting user icon');
+		});
+
+	return req.data;
 };

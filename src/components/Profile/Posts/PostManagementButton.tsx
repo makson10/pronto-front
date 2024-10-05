@@ -8,7 +8,7 @@ import {
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import { ShowMessageBox } from '@/components/MessageBox';
+import { ShowMessageBox } from '@/components/common/MessageBox';
 import { CopyPostLinkItemIcon, DeletePostItemIcon } from './ButtonIcons';
 
 interface Props {
