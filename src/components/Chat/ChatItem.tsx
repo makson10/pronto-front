@@ -11,7 +11,7 @@ const ChatItem = ({
 	chat: { companionId, companionName, lastMessageText },
 }: Props) => {
 	const router = useRouter();
-	const handleChatItemClick = () => router.push(`/chat/${companionId}`);
+	const handleChatItemClick = () => router.push(`/chat/${id}`);
 
 	return (
 		<div
@@ -31,8 +31,8 @@ const ChatItem = ({
 				</div>
 			</div>
 			<div className="flex flex-col">
-				<span className="text-white font-bold text-lg">{companionName}</span>
-				<span className="text-gray-300 text-base">{lastMessageText}</span>
+				<span className="text-white font-bold text-lg">{name}</span>
+				<span className="text-gray-300 text-base">{lastMessage}</span>
 			</div>
 		</div>
 	);

@@ -11,12 +11,9 @@ interface MessageListProps {
 
 const MessageList = ({ companionId }: MessageListProps) => {
 	const userId = store.getState().user?.id;
-	const [messages, setMessages] = useState<MessageType[] | null>(null);
+	const [messages, setMessages] = useState<MessageType[]>([]);
 	const messageListRef = useRef<HTMLDivElement>(null);
 	const didMount = useRef(false);
-
-	const handleMessages = (fetchedMessages: MessageType[]) =>
-		setMessages(fetchedMessages);
 
 	const liftChatDown = () => {
 		if (!messageListRef.current) return;
@@ -40,11 +37,14 @@ const MessageList = ({ companionId }: MessageListProps) => {
 			return;
 		}
 
-		socket?.emit('getMessages', { senderId: userId, receiverId: companionId });
-		socket?.on('updateMessages', handleMessages);
+		const handleMessages = (fetchedMessages: MessageType[]) =>
+			setMessages(fetchedMessages);
+
+		socket.emit('getMessages', { senderId: userId, receiverId: companionId });
+		socket.on('updateMessages', handleMessages);
 
 		return () => {
-			socket?.off('updateMessages', handleMessages);
+			socket.off('updateMessages', handleMessages);
 		};
 	}, [companionId]);
 
@@ -52,12 +52,10 @@ const MessageList = ({ companionId }: MessageListProps) => {
 
 	return (
 		<div
-			className="p-3 shadow-lg h-[625px] overflow-y-auto hide-scrollbar flex flex-col gap-4"
+			className="p-3 shadow-lg h-[620px] overflow-y-auto hide-scrollbar flex flex-col gap-4"
 			ref={messageListRef}>
-			{!messages ? (
+			{!messages.length ? (
 				<div className="m-auto text-lg">Loading...</div>
-			) : !messages.length ? (
-				<div className="m-auto text-lg">No messages yet</div>
 			) : (
 				messages.map((message, index) => (
 					<Message key={index} message={message} />

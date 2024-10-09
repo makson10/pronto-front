@@ -25,7 +25,7 @@ const NewMessageInput = ({ receiverId }: Props) => {
 			text: newMessageText || textareaRef.current?.value,
 		};
 
-		socket?.emit('newMessage', payload);
+		socket.emit('newMessage', payload);
 		clearInput();
 	};
 

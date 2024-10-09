@@ -1,6 +1,5 @@
 import { getUserChats } from '@/assets/sessionUtils';
 import ChatsList from '@/components/Chat/ChatsList';
-import HelpnessButton from '@/components/Chat/HelpnessButton';
 import SecondaryHeader from '@/components/common/SecondaryHeader';
 
 interface Props {

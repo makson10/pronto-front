@@ -21,10 +21,11 @@ const RootLayout = async ({ children }: Props) => {
 	const storeInitialValues = { user, profile };
 
 	// TODO:
-	//? rewrite snippets
-	//? rewrite session auth on next-auth
-	//? make google and smth else auth
-	//? make automacitaly connect websocket when page loaded
+	//? solve bug with non disconnecting socket
+	//? make chat list in db
+	//? make chat object in state manager for chat
+	//? loading during /profile
+	//? make input not to send request twice
 
 	return (
 		<html lang="en">
