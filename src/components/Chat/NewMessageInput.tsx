@@ -1,44 +1,57 @@
 'use client';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { ChangeEvent, useEffect, useState } from 'react';
 import { store } from '@/context/store';
-import { io } from 'socket.io-client';
+import socket from '@/socket/socket';
 
-const socket = io('http://localhost:4000');
+interface Props {
+	receiverId: number;
+}
 
-const NewMessageInput = () => {
+const NewMessageInput = ({ receiverId }: Props) => {
 	const user = store.getState().user;
 	const [newMessageText, setNewMessageText] = useState('');
+	const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-	useEffect(() => {
-		socket.on('updateMessages', (data: any) => {
-			console.log(data);
-		});
-
-		return () => {
-			socket.off('updateMessages');
-		};
-	}, []);
-
-	const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
+	const handleInput = (event: ChangeEvent<HTMLTextAreaElement>) =>
 		setNewMessageText(event.target.value);
-	};
 
 	const sendNewMessage = () => {
-		if (!newMessageText) return;
+		if (!newMessageText && !textareaRef.current?.value) return;
 
 		const payload = {
 			senderId: user?.id,
-			receiverId: 111111,
-			text: newMessageText,
+			receiverId: receiverId,
+			text: newMessageText || textareaRef.current?.value,
 		};
 
 		socket.emit('newMessage', payload);
+		clearInput();
 	};
 
+	const clearInput = () => {
+		if (textareaRef.current) {
+			textareaRef.current.value = '';
+		}
+
+		setNewMessageText('');
+	};
+
+	useEffect(() => {
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.ctrlKey && event.key === 'Enter') sendNewMessage();
+		};
+
+		document.addEventListener('keydown', handleKeyDown);
+
+		return () => {
+			document.removeEventListener('keydown', handleKeyDown);
+		};
+	}, []);
+
 	return (
-		<div className="h-full bg-[#2e2525] flex flex-row" onClick={sendNewMessage}>
-			<button className="px-1">
+		<div className="h-full bg-[#2e2525] flex flex-row">
+			<button className="px-2">
 				<Image
 					src="https://img.icons8.com/ios-filled/ffffff/100/attach.png"
 					alt="#"
@@ -46,11 +59,13 @@ const NewMessageInput = () => {
 					height={40}
 				/>
 			</button>
-			<input
-				className="bg-transparent w-full px-2 focus:outline-none"
+			<textarea
+				className="bg-transparent w-full p-2 resize-none focus:outline-none"
+				placeholder="Type a message..."
+				ref={textareaRef}
 				onChange={handleInput}
 			/>
-			<button className="px-2" onClick={sendNewMessage}>
+			<button className="pl-2 pr-4" onClick={sendNewMessage}>
 				<Image
 					src="https://img.icons8.com/external-creatype-outline-colourcreatype/ffffff/64/external-paper-user-interface-creatype-outline-colourcreatype.png"
 					alt="#"

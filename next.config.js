@@ -17,6 +17,10 @@ const nextConfig = {
             },
             {
                 protocol: "https",
+                hostname: 'static.wikia.nocookie.net'
+            },
+            {
+                protocol: "https",
                 hostname: process.env.VERCEL_BLOB_STORAGE_TOKEN + '.public.blob.vercel-storage.com'
             },
         ]

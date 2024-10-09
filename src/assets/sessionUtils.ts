@@ -108,7 +108,6 @@ export const getUserIdBySession = async () => {
 				'Content-Type': 'application/json',
 				Cookie: cookie,
 			},
-			next: { revalidate: 3600, tags: ['getUserIdBySession'] },
 		}
 	).catch((err) => {
 		throw new Error('Not available to unauthorized users');

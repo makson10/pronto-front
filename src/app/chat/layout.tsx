@@ -1,5 +1,4 @@
 import ChatsList from '@/components/Chat/ChatsList';
-import Footer from '@/components/common/Footer';
 import SecondaryHeader from '@/components/common/SecondaryHeader';
 
 interface Props {
@@ -16,7 +15,6 @@ const Layout = ({ children }: Props) => {
 					{children}
 				</div>
 			</div>
-			<Footer />
 		</div>
 	);
 };

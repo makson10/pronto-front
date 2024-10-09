@@ -1,18 +1,15 @@
 import NoChatSelected from './NoChatSelected';
 import CompanionChatWindow from './CompanionChatWindow';
-import { getUserDataByUserId } from '@/assets/sessionUtils';
 
 interface Props {
 	companionId?: number;
 }
 
-const ChatWindow = async ({ companionId }: Props) => {
-	const companion = companionId && (await getUserDataByUserId(companionId));
-
+const ChatWindow = ({ companionId }: Props) => {
 	return (
-		<div className="min-h-full w-[70%] bg-[#3E3232]">
+		<div className="w-[75%] bg-[#3E3232]">
 			{companionId ? (
-				<CompanionChatWindow companion={companion} />
+				<CompanionChatWindow companionId={companionId} />
 			) : (
 				<NoChatSelected />
 			)}

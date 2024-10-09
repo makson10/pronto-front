@@ -1,23 +1,28 @@
-import { getUserIconById } from '@/assets/sessionUtils';
 import ChatHeader from './ChatHeader';
+import MessageList from './MessageList';
 import NewMessageInput from './NewMessageInput';
-import { FullUser } from '@/types/user';
+import { getUserDataByUserId, getUserIconById } from '@/assets/sessionUtils';
 
 interface Props {
-	companion: FullUser;
+	companionId: number;
 }
 
-const CompanionChatWindow = async ({ companion }: Props) => {
-	const iconUrl = await getUserIconById(companion.id);
+const CompanionChatWindow = async ({ companionId }: Props) => {
+	const companion = await getUserDataByUserId(companionId);
+	const iconUrl = await getUserIconById(companionId);
 
 	return (
 		<div className="h-full flex flex-col">
 			<div className="h-[60px]">
-				<ChatHeader fullName={companion.fullName} iconUrl={iconUrl} />
+				<ChatHeader
+					fullName={companion.fullName}
+					senderId={companionId}
+					iconUrl={iconUrl}
+				/>
 			</div>
-			<div className="flex-[2_1_auto]"></div>
-			<div className="h-[8%]">
-				<NewMessageInput />
+			<MessageList companionId={companionId} />
+			<div className="min-h-[8%] max-h-[16%]">
+				<NewMessageInput receiverId={companionId} />
 			</div>
 		</div>
 	);

@@ -21,10 +21,11 @@ const RootLayout = async ({ children }: Props) => {
 	const storeInitialValues = { user, profile };
 
 	// TODO:
+	//? solve bug with non disconnecting socket
+	//? make chat list in db
+	//? make chat object in state manager for chat
 	//? loading during /profile
-	//? make sending messages with press enter
 	//? make input not to send request twice
-	//? make showing all messages
 
 	return (
 		<html lang="en">
