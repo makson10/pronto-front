@@ -13,7 +13,7 @@ const CompanionChatWindow = async ({ companionId }: Props) => {
 
 	return (
 		<div className="h-full flex flex-col">
-			<div className="h-[60px]">
+			<div className="h-[7.5%]">
 				<ChatHeader
 					fullName={companion.fullName}
 					senderId={companionId}

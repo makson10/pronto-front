@@ -46,20 +46,25 @@ const Message = ({
 			<div
 				className={`p-2 rounded-2xl shadow-md ${
 					isMessageFromMe ? 'bg-[#405D72]' : 'bg-[#6b7280]'
-				} max-w-[60%]`}>
+				} max-w-[60%] w-fit`}>
 				<div className="flex flex-row gap-2">
-					<p className="break-words w-[93%]">{text}</p>
-					<div className="flex flex-col justify-end">
-						<Image
-							className="text-xs min-w-[15px] min-h-[15px]"
-							src={`https://img.icons8.com/ios-filled/100/${
-								wasReaded ? '4761FF' : 'DDDDDD'
-							}/double-tick.png`}
-							alt="#"
-							width={15}
-							height={15}
-						/>
-					</div>
+					<p
+						className={`break-words ${isMessageFromMe ? 'w-[93%]' : 'w-full'}`}>
+						{text}
+					</p>
+					{isMessageFromMe && (
+						<div className="flex flex-col justify-end">
+							<Image
+								className="text-xs min-w-[15px] min-h-[15px]"
+								src={`https://img.icons8.com/ios-filled/100/${
+									wasReaded ? '4761FF' : 'DDDDDD'
+								}/double-tick.png`}
+								alt="#"
+								width={15}
+								height={15}
+							/>
+						</div>
+					)}
 				</div>
 			</div>
 			<p className="flex flex-col justify-end text-xs text-[#545a65]">

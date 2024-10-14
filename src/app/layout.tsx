@@ -3,10 +3,10 @@ import '@/styles/globals.scss';
 import '@/styles/scrollbar.scss';
 import '@/styles/variables.scss';
 import 'swiper/css/bundle';
-import { getUserDataBySession } from '@/assets/sessionUtils';
+import { getProfile, getUserDataBySession } from '@/assets/sessionUtils';
 import CustomNextUIProvider from '@/components/common/CustomNextUIProvider';
 import StoreInitializer from '@/context/StoreInitializer';
-import { store } from '@/context/store';
+import { SessionProvider } from 'next-auth/react';
 
 interface Props {
 	children: React.ReactNode;
@@ -14,18 +14,17 @@ interface Props {
 
 const RootLayout = async ({ children }: Props) => {
 	const user = await getUserDataBySession();
-	const profile = store.getState().profile;
+	const profile = user && (await getProfile(user!.id));
 
 	if (user && profile)
 		profile.isAuthorWatchProfile = user.id === profile?.profileId;
 	const storeInitialValues = { user, profile };
 
 	// TODO:
-	//? solve bug with non disconnecting socket
-	//? make chat list in db
-	//? make chat object in state manager for chat
-	//? loading during /profile
-	//? make input not to send request twice
+	//? rewrite snippets
+	//? rewrite session auth on next-auth
+	//? make google and smth else auth
+	//? make automacitaly connect websocket when page loaded
 
 	return (
 		<html lang="en">
@@ -35,10 +34,12 @@ const RootLayout = async ({ children }: Props) => {
 			</head>
 			<body>
 				<div id="portal" className="fixed z-[101] w-screen" />
-				<CustomNextUIProvider>
-					<StoreInitializer initialValues={storeInitialValues} />
-					{children}
-				</CustomNextUIProvider>
+				<SessionProvider>
+					<CustomNextUIProvider>
+						<StoreInitializer initialValues={storeInitialValues} />
+						{children}
+					</CustomNextUIProvider>
+				</SessionProvider>
 			</body>
 		</html>
 	);

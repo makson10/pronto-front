@@ -6,7 +6,9 @@ interface Props {
 	};
 }
 
-export default function CompanionChatPage({ params }: Props) {
+const CompanionChatPage = ({ params }: Props) => {
 	const { companionId } = params;
 	return <ChatWindow companionId={parseInt(companionId)} />;
-}
+};
+
+export default CompanionChatPage;

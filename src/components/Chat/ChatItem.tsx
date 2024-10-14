@@ -1,16 +1,17 @@
 'use client';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { Chat } from '@/types/chat';
 
 interface Props {
-	id: number;
-	name: string;
-	lastMessage: string;
+	chat: Chat;
 }
 
-export default function ChatItem({ id, lastMessage, name }: Props) {
+const ChatItem = ({
+	chat: { companionId, companionName, lastMessageText },
+}: Props) => {
 	const router = useRouter();
-	const handleChatItemClick = () => router.push(`/chat/${id}`);
+	const handleChatItemClick = () => router.push(`/chat/${companionId}`);
 
 	return (
 		<div
@@ -30,9 +31,11 @@ export default function ChatItem({ id, lastMessage, name }: Props) {
 				</div>
 			</div>
 			<div className="flex flex-col">
-				<span className="text-white font-bold text-lg">{name}</span>
-				<span className="text-gray-300 text-base">{lastMessage}</span>
+				<span className="text-white font-bold text-lg">{companionName}</span>
+				<span className="text-gray-300 text-base">{lastMessageText}</span>
 			</div>
 		</div>
 	);
-}
+};
+
+export default ChatItem;

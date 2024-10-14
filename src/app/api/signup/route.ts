@@ -1,8 +1,5 @@
 import { SignUpUser } from '@/types/user';
-import {
-	getSessionFromRequest,
-	setNewSession,
-} from '@/assets/sessionUtils';
+import { getSessionFromRequest, setNewSession } from '@/assets/sessionUtils';
 import axios from 'axios';
 import { NextResponse } from 'next/server';
 
@@ -17,7 +14,7 @@ export const POST = async (request: Request) => {
 const sendSignUpRequest = async (user: SignUpUser) => {
 	try {
 		const signUpResponse = await axios.post(
-			process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/user/signup',
+			process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/user/signup',
 			{ user }
 		);
 

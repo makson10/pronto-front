@@ -6,7 +6,7 @@ interface Props {
 	children: React.ReactNode;
 }
 
-export default function PostsFlow({ children }: Props) {
+const PostsFlow = ({ children }: Props) => {
 	const showAddNewPost = store.getState().profile?.isAuthorWatchProfile;
 
 	return (
@@ -15,4 +15,6 @@ export default function PostsFlow({ children }: Props) {
 			{children}
 		</div>
 	);
-}
+};
+
+export default PostsFlow;

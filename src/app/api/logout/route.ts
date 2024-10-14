@@ -21,7 +21,7 @@ const sendLogOutRequest = async () => {
 	const cookieForSending = encodeCookie('sessionId', sessionId);
 
 	return await axios.post(
-		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/user/logout',
+		process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/user/logout',
 		null,
 		{ headers: { Cookie: cookieForSending } }
 	);

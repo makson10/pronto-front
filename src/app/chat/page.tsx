@@ -1,5 +1,7 @@
 import ChatWindow from '@/components/Chat/ChatWindow';
 
-export default function ChatPage() {
+const ChatPage = () => {
 	return <ChatWindow />;
-}
+};
+
+export default ChatPage;
