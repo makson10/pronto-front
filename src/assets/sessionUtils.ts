@@ -3,17 +3,13 @@ import { CookieSerializeOptions } from 'cookie';
 import * as cookie from 'cookie';
 import axios, { AxiosResponse } from 'axios';
 import { Profile } from '@/types/profile';
-import { Chats } from '@/types/chat';
-import { FullUser } from '@/types/user';
 
 export const sessionCookieOptions: CookieSerializeOptions = {
 	secure: process.env.NODE_ENV === 'production',
 	maxAge: 28 * 24 * 60 * 60,
 };
 
-export const getSessionFromRequest = async (
-	request: AxiosResponse
-): Promise<string> => {
+export const getSessionFromRequest = async (request: AxiosResponse) => {
 	const signUpRequestCookie = request.headers['set-cookie']?.find((cookie) =>
 		cookie.match(/^sessionId/gim)
 	);
@@ -21,30 +17,31 @@ export const getSessionFromRequest = async (
 	return cookie.parse(signUpRequestCookie!).sessionId;
 };
 
-export const setNewSession = (sessionId: string): void => {
+export const setNewSession = (sessionId: string) => {
 	cookies().set('sessionId', sessionId, sessionCookieOptions);
 };
 
-export const getSessionIdFromCookie = (): string | null => {
+export const getSessionIdFromCookie = () => {
 	const sessionCookie = cookies().get('sessionId');
 	return sessionCookie?.value ? sessionCookie?.value : null;
 };
 
-export const encodeCookie = (key: string, value: string): string => {
+export const encodeCookie = (key: string, value: string) => {
 	return cookie.serialize(key, value);
 };
 
-export const deleteSession = (): void => {
+export const deleteSession = () => {
 	cookies().delete('sessionId');
 };
 
-export const getUserDataBySession = async (): Promise<FullUser | null> => {
+export const getUserDataBySession = async () => {
 	const sessionId = getSessionIdFromCookie();
 	if (!sessionId) return null;
 	const cookieForSending = encodeCookie('sessionId', sessionId);
 
 	const req = await fetch(
-		process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/user/getuserdatabysession',
+		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL +
+			'/user/getuserdatabysession',
 		{
 			method: 'POST',
 			credentials: 'include',
@@ -60,11 +57,9 @@ export const getUserDataBySession = async (): Promise<FullUser | null> => {
 	return user;
 };
 
-export const getUserDataByUserId = async (
-	userId: number | string
-): Promise<FullUser> => {
+export const getUserDataByUserId = async (userId: number | string) => {
 	const req = await fetch(
-		process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/user/getuserdatabyuserid',
+		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/user/getuserdatabyuserid',
 		{
 			method: 'POST',
 			credentials: 'include',
@@ -82,7 +77,7 @@ export const getUserDataByUserId = async (
 
 export const getProfile = async (userId: number | string): Promise<Profile> => {
 	const req = await fetch(
-		process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/profile/getprofile',
+		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/profile/getprofile',
 		{
 			method: 'POST',
 			body: JSON.stringify({ userId }),
@@ -97,7 +92,7 @@ export const getProfile = async (userId: number | string): Promise<Profile> => {
 	return profile;
 };
 
-export const getUserIdBySession = async (): Promise<number> => {
+export const getUserIdBySession = async () => {
 	const sessionId = getSessionIdFromCookie();
 	if (!sessionId)
 		throw new Error('No stored session was found', {
@@ -106,7 +101,7 @@ export const getUserIdBySession = async (): Promise<number> => {
 	const cookie = encodeCookie('sessionId', sessionId);
 
 	const req = await fetch(
-		process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/user/getuseridbysession',
+		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/user/getuseridbysession',
 		{
 			method: 'POST',
 			headers: {
@@ -119,39 +114,18 @@ export const getUserIdBySession = async (): Promise<number> => {
 	});
 
 	const userId = await req.json().then((data) => data.userId);
-	return parseInt(userId);
+	return userId;
 };
 
-export const getUserIconById = async (companionId: number): Promise<string> => {
+export const getUserIconById = async (companionId: number) => {
 	const req = await axios
-		.post(process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/user/getusericonbyid', {
-			companionId,
-		})
+		.post(
+			process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/user/getusericonbyid',
+			{ companionId }
+		)
 		.catch((err) => {
 			throw new Error('Error during getting user icon');
 		});
 
 	return req.data;
-};
-
-const sortChatsByTimestamp = (chats: Chats): Chats => {
-	return chats.sort(
-		(a, b) =>
-			new Date(b.lastMessageTimestamp).getTime() -
-			new Date(a.lastMessageTimestamp).getTime()
-	);
-};
-
-export const getUserChats = async (): Promise<Chats> => {
-	const userId = await getUserIdBySession();
-
-	const req = await axios
-		.post(process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/profile/getuserchats', {
-			userId,
-		})
-		.catch((err) => {
-			throw new Error('Error during getting user chats');
-		});
-
-	return sortChatsByTimestamp(req.data);
 };

@@ -3,10 +3,10 @@ import '@/styles/globals.scss';
 import '@/styles/scrollbar.scss';
 import '@/styles/variables.scss';
 import 'swiper/css/bundle';
-import { getProfile, getUserDataBySession } from '@/assets/sessionUtils';
+import { getUserDataBySession } from '@/assets/sessionUtils';
 import CustomNextUIProvider from '@/components/common/CustomNextUIProvider';
 import StoreInitializer from '@/context/StoreInitializer';
-import { SessionProvider } from 'next-auth/react';
+import { store } from '@/context/store';
 
 interface Props {
 	children: React.ReactNode;
@@ -14,7 +14,7 @@ interface Props {
 
 const RootLayout = async ({ children }: Props) => {
 	const user = await getUserDataBySession();
-	const profile = user && (await getProfile(user!.id));
+	const profile = store.getState().profile;
 
 	if (user && profile)
 		profile.isAuthorWatchProfile = user.id === profile?.profileId;
@@ -35,12 +35,10 @@ const RootLayout = async ({ children }: Props) => {
 			</head>
 			<body>
 				<div id="portal" className="fixed z-[101] w-screen" />
-				<SessionProvider>
-					<CustomNextUIProvider>
-						<StoreInitializer initialValues={storeInitialValues} />
-						{children}
-					</CustomNextUIProvider>
-				</SessionProvider>
+				<CustomNextUIProvider>
+					<StoreInitializer initialValues={storeInitialValues} />
+					{children}
+				</CustomNextUIProvider>
 			</body>
 		</html>
 	);

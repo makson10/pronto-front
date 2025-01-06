@@ -1,5 +1,3 @@
-import { Chats } from './chat';
-
 export type Profile = {
 	profileId: number;
 	name: string;
@@ -13,5 +11,4 @@ export type Profile = {
 	icon: string | null;
 	isAuthorWatchProfile?: boolean;
 	presents: Presents;
-	chats: Chats;
 };

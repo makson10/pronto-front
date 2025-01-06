@@ -21,7 +21,7 @@ export const POST = async (request: Request) => {
 const sendMakeNewPostRequest = async (body: Body) => {
 	try {
 		await axios.post(
-			process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/posts/addpost',
+			process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/posts/addpost',
 			body
 		);
 		return NextResponse.json('success', { status: 200 });

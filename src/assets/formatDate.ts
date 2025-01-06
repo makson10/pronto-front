@@ -1,8 +1,8 @@
-const estimateDayFromPost = (postDate: Date): number => {
+const estimateDayFromPost = (postDate: Date) => {
 	return Math.floor((+new Date() - +postDate) / (1000 * 60 * 60 * 24));
 };
 
-const getFullPostDate = (postDate: Date): string => {
+const getFullPostDate = (postDate: Date) => {
 	const todayDate = new Date();
 	let shownDate = '';
 
@@ -15,7 +15,7 @@ const getFullPostDate = (postDate: Date): string => {
 	return shownDate;
 };
 
-export const formatDate = (timestamp: string): string => {
+export const formatDate = (timestamp: string) => {
 	const postDate = new Date(timestamp);
 	const dayFromPost = estimateDayFromPost(postDate);
 

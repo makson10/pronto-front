@@ -42,25 +42,25 @@ const SignUpForm = () => {
 			}, 200);
 		},
 	});
-    
+
+	useEffect(() => {
+		if (!needToShowErrorMessage) return;
+
+		setTimeout(() => {
+			setNeedToShowErrorMessage(false);
+		}, 4000);
+	}, [needToShowErrorMessage]);
+
 	const signUpUser = async (user: SignUpUser) => {
-        try {
-            await axios.post('/api/signup', { user });
+		try {
+			await axios.post('/api/signup', { user });
 			await getAndStoreUser();
 			goToHomePage();
 		} catch (error: any) {
-            setErrorMessageText(error.response.data);
+			setErrorMessageText(error.response.data);
 			setNeedToShowErrorMessage(true);
 		}
 	};
-    
-    useEffect(() => {
-        if (!needToShowErrorMessage) return;
-
-        setTimeout(() => {
-            setNeedToShowErrorMessage(false);
-        }, 4000);
-    }, [needToShowErrorMessage]);
 
 	return (
 		<>

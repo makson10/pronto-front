@@ -23,7 +23,7 @@ const deleteOldIcons = async (userId: number) => {
 
 const sendDeleteIconRequest = async (userId: number) => {
 	return await axios.post(
-		process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/profile/deleteicon',
+		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/profile/deleteicon',
 		{ userId }
 	);
 };

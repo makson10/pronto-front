@@ -1,15 +1,14 @@
 'use client';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { Chat } from '@/types/chat';
 
 interface Props {
-	chat: Chat;
+	id: number;
+	name: string;
+	lastMessage: string;
 }
 
-const ChatItem = ({
-	chat: { companionId, companionName, lastMessageText },
-}: Props) => {
+export default function ChatItem({ id, lastMessage, name }: Props) {
 	const router = useRouter();
 	const handleChatItemClick = () => router.push(`/chat/${id}`);
 
@@ -36,6 +35,4 @@ const ChatItem = ({
 			</div>
 		</div>
 	);
-};
-
-export default ChatItem;
+}

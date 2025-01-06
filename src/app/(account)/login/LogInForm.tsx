@@ -1,23 +1,21 @@
 'use client';
+import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import PasswordRequirementsHint from '@/components/common/PasswordRequirementsHint';
 import ChangePasswordVisibilityButton from '@/components/common/ChangePasswordVisibilityButton';
-import { getAndStoreUser } from '@/context/storeUtils';
-import { ShowMessageBox } from '@/components/common/MessageBox';
-import { logInValidationScheme } from '@/assets/validationScheme';
-import { useFormik } from 'formik';
-import style from '@/styles/authorizeForm.module.scss';
 import { LoginUser } from '@/types/user';
+import { getAndStoreUser } from '@/context/storeUtils';
+import { logInValidationScheme } from '@/assets/validationScheme';
+import { ShowMessageBox } from '@/components/common/MessageBox';
 import axios from 'axios';
-import { signIn } from 'next-auth/react';
+import style from '@/styles/authorizeForm.module.scss';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const LogInForm = () => {
 	const router = useRouter();
 	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
-	const [errorMessageText, setErrorMessageText] =
-		useState<string>('Error occurred');
+	const [errorMessageText, setErrorMessageText] = useState<string>('fuck');
 	const [needToShowErrorMessage, setNeedToShowErrorMessage] =
 		useState<boolean>(false);
 
@@ -43,22 +41,6 @@ const LogInForm = () => {
 		},
 	});
 
-	const logInUser = async (user: LoginUser) => {
-		try {
-			signIn('credentials', {
-				...user,
-				redirect: false,
-			});
-			// await axios.post('/api/login', { user });
-			// await getAndStoreUser();
-			// router.push('/');
-			// router.refresh();
-		} catch (error: any) {
-			setErrorMessageText(error.response.data);
-			setNeedToShowErrorMessage(true);
-		}
-	};
-
 	useEffect(() => {
 		if (!needToShowErrorMessage) return;
 
@@ -66,6 +48,18 @@ const LogInForm = () => {
 			setNeedToShowErrorMessage(false);
 		}, 4000);
 	}, [needToShowErrorMessage]);
+
+	const logInUser = async (user: LoginUser) => {
+		try {
+			await axios.post('/api/login', { user });
+			await getAndStoreUser();
+			router.push('/');
+			router.refresh();
+		} catch (error: any) {
+			setErrorMessageText(error.response.data);
+			setNeedToShowErrorMessage(true);
+		}
+	};
 
 	return (
 		<>
