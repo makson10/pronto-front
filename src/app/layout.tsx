@@ -21,6 +21,11 @@ const RootLayout = async ({ children }: Props) => {
 	const storeInitialValues = { user, profile };
 
 	// TODO:
+	//? migrate to rtk
+	//? rewrite component to mui
+	//? add swagger on backend
+	//? make nestjs refactoring
+
 	//? solve bug with non disconnecting socket
 	//? make chat list in db
 	//? make chat object in state manager for chat
