@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Message from './Message';
-import { store } from '@/context/store';
+import { useAppSelector } from '@/store/hooks';
 import socket from '@/socket/socket';
 import { Message as MessageType } from '@/types/chat';
 
@@ -10,7 +10,7 @@ interface MessageListProps {
 }
 
 const MessageList = ({ companionId }: MessageListProps) => {
-	const userId = store.getState().user?.id;
+	const userId = useAppSelector((state) => state.user.data?.id);
 	const [messages, setMessages] = useState<MessageType[]>([]);
 	const messageListRef = useRef<HTMLDivElement>(null);
 	const didMount = useRef(false);

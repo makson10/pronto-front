@@ -2,7 +2,7 @@ import FirstLine from './MainInfo/FirstLine';
 import Description from './MainInfo/Description';
 import Address from './MainInfo/Address';
 import DateOfBirth from './MainInfo/DateOfBirth';
-import { store } from '@/context/store';
+import { store } from '@/store/store';
 
 const ProfileMainInfo = () => {
 	const { age, dateOfBirth, description, city } = store.getState().profile!;

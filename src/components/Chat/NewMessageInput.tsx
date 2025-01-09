@@ -1,7 +1,7 @@
 'use client';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { useAppSelector } from '@/store/hooks';
 import Image from 'next/image';
-import { store } from '@/context/store';
 import socket from '@/socket/socket';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const NewMessageInput = ({ receiverId }: Props) => {
-	const user = store.getState().user;
+	const user = useAppSelector((state) => state.user.data);
 	const [newMessageText, setNewMessageText] = useState('');
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
 

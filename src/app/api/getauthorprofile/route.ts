@@ -13,7 +13,7 @@ const sendGetUserByIdRequest = async (authorId: string) => {
 	try {
 		return await axios
 			.post<Profile>(
-				process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/profile/getprofile',
+				process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/profile/getprofile',
 				{ userId: authorId }
 			)
 			.then((res) => res.data);

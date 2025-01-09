@@ -3,10 +3,9 @@ import '@/styles/globals.scss';
 import '@/styles/scrollbar.scss';
 import '@/styles/variables.scss';
 import 'swiper/css/bundle';
-import { getUserDataBySession } from '@/assets/sessionUtils';
 import CustomNextUIProvider from '@/components/common/CustomNextUIProvider';
-import StoreInitializer from '@/context/StoreInitializer';
-import { store } from '@/context/store';
+import StoreProvider from '@/store/StoreProvider';
+import { getProfile, getUserDataBySession } from '@/assets/sessionUtils';
 
 interface Props {
 	children: React.ReactNode;
@@ -14,14 +13,13 @@ interface Props {
 
 const RootLayout = async ({ children }: Props) => {
 	const user = await getUserDataBySession();
-	const profile = store.getState().profile;
-
-	if (user && profile)
-		profile.isAuthorWatchProfile = user.id === profile?.profileId;
-	const storeInitialValues = { user, profile };
+	const profile = await getProfile(user?.id!);
 
 	// TODO:
+	//? end up making requestedProfileSlice and /profile/[profileId] page
+	//? make pre-commit testing
 	//? migrate to rtk
+	//? add cypress testing
 	//? rewrite component to mui
 	//? add swagger on backend
 	//? make nestjs refactoring
@@ -40,10 +38,9 @@ const RootLayout = async ({ children }: Props) => {
 			</head>
 			<body>
 				<div id="portal" className="fixed z-[101] w-screen" />
-				<CustomNextUIProvider>
-					<StoreInitializer initialValues={storeInitialValues} />
-					{children}
-				</CustomNextUIProvider>
+				<StoreProvider user={user} profile={profile}>
+					<CustomNextUIProvider>{children}</CustomNextUIProvider>
+				</StoreProvider>
 			</body>
 		</html>
 	);

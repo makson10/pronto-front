@@ -1,8 +1,11 @@
-import { store } from '@/context/store';
+import { useAppDispatch } from '@/store/hooks';
+import { removeUser } from '@/store/user/userSlice';
+import { removeProfile } from '@/store/profile/profileSlice';
 import usePageNavigation from '@/hooks/usePageNavigation';
 import axios from 'axios';
 
 const LogOutButton = () => {
+	const dispatch = useAppDispatch();
 	const { refreshPage } = usePageNavigation();
 
 	const handleClick = async () => {
@@ -25,7 +28,8 @@ const LogOutButton = () => {
 	};
 
 	const removeUserDataFromStore = () => {
-		store.getState().setInitialValues!();
+		dispatch(removeUser());
+		dispatch(removeProfile());
 	};
 
 	return (

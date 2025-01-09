@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { formatDate } from '../../../assets/formatDate';
 import PostManagementButton from './PostManagementButton';
 import { Post as PostType } from '@/types/posts';
-import { store } from '@/context/store';
+import { store } from '@/store/store';
 import FullscreenPreview from '../../Picture/FullscreenPreview';
 import DisplayedPicture from '../../Picture/DisplayedPicture';
 

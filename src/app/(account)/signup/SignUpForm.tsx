@@ -1,19 +1,21 @@
 'use client';
 import { useFormik } from 'formik';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import PasswordRequirementsHint from '@/components/common/PasswordRequirementsHint';
 import ChangePasswordVisibilityButton from '@/components/common/ChangePasswordVisibilityButton';
-import { SignUpUser } from '@/types/user';
-import usePageNavigation from '@/hooks/usePageNavigation';
-import { getAndStoreUser } from '@/context/storeUtils';
 import { signUpValidationScheme } from '@/assets/validationScheme';
 import { ShowMessageBox } from '@/components/common/MessageBox';
-import axios from 'axios';
 import style from '@/styles/authorizeForm.module.scss';
-import Link from 'next/link';
+import { SignUpUser } from '@/types/user';
+import axios from 'axios';
+import { setUser } from '@/store/user/userSlice';
+import { useAppDispatch } from '@/store/hooks';
 
 const SignUpForm = () => {
-	const { goToHomePage } = usePageNavigation();
+	const dispatch = useAppDispatch();
+	const router = useRouter();
 	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
 	const [errorMessageText, setErrorMessageText] = useState<string>('fuck');
 	const [needToShowErrorMessage, setNeedToShowErrorMessage] =
@@ -53,9 +55,15 @@ const SignUpForm = () => {
 
 	const signUpUser = async (user: SignUpUser) => {
 		try {
-			await axios.post('/api/signup', { user });
-			await getAndStoreUser();
-			goToHomePage();
+			const res = await axios.post('/api/signup', { user });
+
+			if (!res.data.okay) {
+				throw new Error('Error during signup');
+			}
+
+			router.push('/');
+			dispatch(setUser(res.data.user));
+			router.refresh();
 		} catch (error: any) {
 			setErrorMessageText(error.response.data);
 			setNeedToShowErrorMessage(true);
@@ -165,7 +173,9 @@ const SignUpForm = () => {
 						<button
 							className="text-sm text-gray-500 transition hover:text-white"
 							tabIndex={-1}>
-							<Link href={'/login'}>Already signed up? Log in →</Link>
+							<Link href={'/login'} tabIndex={-1}>
+								Already signed up? Log in →
+							</Link>
 						</button>
 					</div>
 				</div>

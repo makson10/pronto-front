@@ -1,8 +1,10 @@
+import { useAppSelector } from '@/store/hooks';
 import Present from './Present';
-import { store } from '@/context/store';
 
 const Presents = () => {
-	const authorPresents = store.getState().profile?.presents;
+	const authorPresents = useAppSelector(
+		(state) => state.profile.data?.presents
+	);
 
 	return (
 		<div className="flex flex-col gap-2">

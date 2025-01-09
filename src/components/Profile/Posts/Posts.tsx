@@ -2,15 +2,15 @@ import Post from './Post';
 import PostProfileIcon from './PostProfileIcon';
 import NoPostsMessage from './NoPostsMessage';
 import { Posts as PostsType } from '@/types/posts';
-import { store } from '@/context/store';
 import axios from 'axios';
+import { useAppSelector } from '@/store/hooks';
 
 const Posts = async () => {
-	const author = store.getState().profile!;
+	const author = useAppSelector((state) => state.profile.data);
 
 	const { data: posts } = await axios.post<PostsType>(
 		process.env.NEXT_PUBLIC_FRONT_BASE_URL + '/api/getposts',
-		author.profileId.toString()
+		author?.profileId.toString()
 	);
 
 	if (!posts.length) return <NoPostsMessage />;
@@ -20,11 +20,11 @@ const Posts = async () => {
 			{posts.map((post, index) => (
 				<Post
 					key={index}
-					authorFullName={author.name}
+					authorFullName={author?.name || 'Guest'}
 					authorIcon={
 						<PostProfileIcon
-							iconUrl={author.icon}
-							altIconText={author.name[0]}
+							iconUrl={author?.icon}
+							altIconText={author?.name[0]}
 						/>
 					}
 					data={post}

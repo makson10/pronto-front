@@ -1,4 +1,4 @@
-import { store } from '@/context/store';
+import { store } from '@/store/store';
 
 const FirstLine = () => {
 	const { name, isVerifed, createdAt } = store.getState().profile!;

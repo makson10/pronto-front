@@ -1,6 +1,4 @@
 'use client';
-import { resetUserData } from '@/context/storeUtils';
-import usePageNavigation from '@/hooks/usePageNavigation';
 import axios from 'axios';
 import {
 	Dropdown,
@@ -10,6 +8,9 @@ import {
 } from '@nextui-org/react';
 import UserProfileIcon from '../common/ProfileIcon';
 import { useRouter } from 'next/navigation';
+import { useAppDispatch } from '@/store/hooks';
+import { removeUser } from '@/store/user/userSlice';
+import { removeProfile } from '@/store/profile/profileSlice';
 
 interface Props {
 	icon: string | null;
@@ -17,13 +18,16 @@ interface Props {
 }
 
 const UserIconDropdownMenu = ({ icon, altText }: Props) => {
+	const dispatch = useAppDispatch();
 	const router = useRouter();
 
 	const goToProfilePage = () => router.push('/profile');
 	const logOutUser = async () => {
 		await axios.post('/api/logout');
 		await axios.post('/api/revalidatetag', { tag: 'getuserbysessionrequest' });
-		resetUserData();
+		dispatch(removeUser());
+		dispatch(removeProfile());
+
 		router.refresh();
 	};
 

@@ -2,9 +2,9 @@
 import MainHeader from '@/components/MainHeader/MainHeader';
 import SecondaryHeader from '@/components/common/SecondaryHeader';
 import Footer from '@/components/common/Footer';
-import { store } from '@/context/store';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { useAppSelector } from '@/store/hooks';
 
 interface Props {
 	children: React.ReactNode;
@@ -14,7 +14,7 @@ interface Props {
 }
 
 const Layout = ({ children, params: { userId } }: Props) => {
-	const storedUserId = store.getState().user?.id;
+	const storedUserId = useAppSelector((state) => state.user.data?.id);
 
 	return (
 		<LocalizationProvider dateAdapter={AdapterDayjs}>

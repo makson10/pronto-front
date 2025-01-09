@@ -14,13 +14,13 @@ export const POST = async (request: Request) => {
 
 const getDeletingPost = async (postId: string): Promise<Post> => {
 	return await axios
-		.get(process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/posts/' + postId)
+		.get(process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/posts/' + postId)
 		.then((res) => res.data);
 };
 
 const sendDeletePostRequest = async (postId: number) => {
 	return await axios.post(
-		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/posts/deletepost',
+		process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/posts/deletepost',
 		{ postId }
 	);
 };

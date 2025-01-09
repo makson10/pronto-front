@@ -1,5 +1,5 @@
 import ProfileIcon from '@/components/common/ProfileIcon';
-import { store } from '@/context/store';
+import { store } from '@/store/store';
 
 const ProfileHeaderIcon = () => {
 	const { icon, name } = store.getState().profile!;

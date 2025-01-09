@@ -1,21 +1,18 @@
+'use client';
+import { useAppSelector } from '@/store/hooks';
 import RegisterButton from './RegisterButton';
 import UserIconDropdownMenu from './UserIconDropdownMenu';
-import {
-	getUserDataBySession,
-	getProfile,
-	getSessionIdFromCookie,
-} from '@/assets/sessionUtils';
 
-const UserIcon = async () => {
-	const doesUserLogined = getSessionIdFromCookie();
-	if (!doesUserLogined) return <RegisterButton />;
+const UserIcon = () => {
+	const user = useAppSelector((state) => state.user.data);
+	const profile = useAppSelector((state) => state.profile.data);
 
-	const user = await getUserDataBySession();
-	const profile = await getProfile(user.id);
+	if (!user) return <RegisterButton />;
+
 	return (
 		<UserIconDropdownMenu
-			icon={profile.icon}
-			altText={user.firstName[0].toUpperCase()}
+			icon={profile?.icon || null}
+			altText={user?.firstName[0].toUpperCase() || ''}
 		/>
 	);
 };

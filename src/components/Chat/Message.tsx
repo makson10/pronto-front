@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { store } from '@/context/store';
 import { getUserIconById } from '@/assets/sessionUtils';
 import { Message as MessageType } from '@/types/chat';
+import { useAppSelector } from '@/store/hooks';
 
 interface MessageProps {
 	message: MessageType;
@@ -15,7 +15,7 @@ const DEFAULT_GUEST_ICON_PHOTO_URL =
 const Message = ({
 	message: { text, senderId, timestamp, wasReaded },
 }: MessageProps) => {
-	const user = store.getState().user;
+	const user = useAppSelector((state) => state.user.data);
 	const isMessageFromMe = user?.id === senderId;
 	const [senderIconUrl, setSenderIconUrl] = useState(
 		DEFAULT_GUEST_ICON_PHOTO_URL

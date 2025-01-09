@@ -1,11 +1,11 @@
 'use client';
-import { store } from '@/context/store';
+import { useAppSelector } from '@/store/hooks';
 import AddToFriendButton from './AddToFriendButton';
 import EditProfileButton from './EditProfileButton';
 
 const InterectiveButton = () => {
-	const userId = store.getState().user?.id;
-	const profileId = store.getState().profile?.profileId;
+	const userId = useAppSelector((state) => state.user.data?.id);
+	const profileId = useAppSelector((state) => state.profile.data?.profileId);
 
 	return (
 		<div className="mr-4 flex-[1] flex flex-row justify-end items-center">
