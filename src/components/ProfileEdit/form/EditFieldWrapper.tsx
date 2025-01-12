@@ -1,8 +1,6 @@
-interface Props {
-	children: React.ReactNode;
-}
+import { PropsWithChildren } from 'react';
 
-const EditFieldWrapper = ({ children }: Props) => {
+const EditFieldWrapper = ({ children }: PropsWithChildren) => {
 	return <div className="w-[60%] flex flex-col gap-6">{children}</div>;
 };
 

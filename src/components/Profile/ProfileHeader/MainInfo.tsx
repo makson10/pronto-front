@@ -1,11 +1,14 @@
+'use client';
 import FirstLine from './MainInfo/FirstLine';
 import Description from './MainInfo/Description';
 import Address from './MainInfo/Address';
 import DateOfBirth from './MainInfo/DateOfBirth';
-import { store } from '@/store/store';
+import { useAppSelector } from '@/store/hooks';
 
 const ProfileMainInfo = () => {
-	const { age, dateOfBirth, description, city } = store.getState().profile!;
+	const { age, dateOfBirth, description, city } = useAppSelector(
+		(state) => state.requestedProfile.data
+	)!;
 
 	return (
 		<div className="h-fit flex flex-col gap-4">

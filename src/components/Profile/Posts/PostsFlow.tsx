@@ -1,11 +1,11 @@
 'use client';
-import { useAppSelector } from '@/store/hooks';
-import AddNewPost from '../NewPost/AddNewPost';
 import { PropsWithChildren } from 'react';
+import AddNewPost from '../NewPost/AddNewPost';
+import { useAppSelector } from '@/store/hooks';
 
 export default function PostsFlow({ children }: PropsWithChildren) {
 	const shouldShowAddNewPost = useAppSelector(
-		(state) => state.profile.data?.isAuthorWatchProfile
+		(state) => state.requestedProfile.isAuthorWatchProfile
 	);
 
 	return (

@@ -19,14 +19,8 @@ export const profileSlice = createSlice({
 		removeProfile: (state) => {
 			state.data = null;
 		},
-		setIsAuthorWatchProfile: (state, action) => {
-			if (state.data) {
-				state.data.isAuthorWatchProfile = action.payload;
-			}
-		},
 	},
 });
 
-export const { setProfile, removeProfile, setIsAuthorWatchProfile } =
-	profileSlice.actions;
+export const { setProfile, removeProfile } = profileSlice.actions;
 export default profileSlice.reducer;

@@ -1,5 +1,5 @@
 import { revalidateTag } from 'next/cache';
-import { getUserIdBySession } from '@/assets/sessionUtils';
+import { getUserIdBySession } from '@/store/user/userUtils';
 import { list, del } from '@vercel/blob';
 import axios from 'axios';
 

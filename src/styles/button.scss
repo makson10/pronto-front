@@ -2,6 +2,6 @@
 
 @layer components {
 	.button {
-		@apply font-bold text-base flex flex-col justify-center;
+		@apply bg-white font-bold text-base flex flex-col justify-center;
 	}
 }

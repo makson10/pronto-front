@@ -5,7 +5,9 @@ import EditProfileButton from './EditProfileButton';
 
 const InterectiveButton = () => {
 	const userId = useAppSelector((state) => state.user.data?.id);
-	const profileId = useAppSelector((state) => state.profile.data?.profileId);
+	const profileId = useAppSelector(
+		(state) => state.requestedProfile.data?.profileId
+	);
 
 	return (
 		<div className="mr-4 flex-[1] flex flex-row justify-end items-center">

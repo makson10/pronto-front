@@ -1,11 +1,8 @@
+import { PropsWithChildren } from 'react';
 import ChatsList from '@/components/Chat/ChatsList';
 import SecondaryHeader from '@/components/common/SecondaryHeader';
 
-interface Props {
-	children: React.ReactNode;
-}
-
-const Layout = ({ children }: Props) => {
+const Layout = ({ children }: PropsWithChildren) => {
 	return (
 		<div className="flex flex-col min-h-screen">
 			<SecondaryHeader />

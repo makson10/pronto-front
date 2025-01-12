@@ -1,12 +1,14 @@
 import { Profile } from '@/types/profile';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 interface RequestedProfileSlice {
-	profile: Profile | null;
+	isAuthorWatchProfile: boolean;
+	data: Profile | null;
 }
 
 const initialState: RequestedProfileSlice = {
-	profile: null,
+	isAuthorWatchProfile: false,
+	data: null,
 };
 
 export const requestedProfileSlice = createSlice({
@@ -14,14 +16,21 @@ export const requestedProfileSlice = createSlice({
 	initialState,
 	reducers: {
 		setRequestedProfile: (state, action) => {
-			state.profile = action.payload;
+			state.data = action.payload;
 		},
 		removeRequestedProfile: (state) => {
-			state.profile = initialState.profile;
+			state.isAuthorWatchProfile = initialState.isAuthorWatchProfile;
+			state.data = initialState.data;
+		},
+		setIsAuthorWatchProfile: (state, action) => {
+			state.isAuthorWatchProfile = action.payload;
 		},
 	},
 });
 
-export const { setRequestedProfile, removeRequestedProfile } =
-	requestedProfileSlice.actions;
+export const {
+	setRequestedProfile,
+	removeRequestedProfile,
+	setIsAuthorWatchProfile,
+} = requestedProfileSlice.actions;
 export default requestedProfileSlice.reducer;

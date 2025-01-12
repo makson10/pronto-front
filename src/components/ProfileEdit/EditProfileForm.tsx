@@ -14,11 +14,11 @@ import { ShowMessageBox } from '../common/MessageBox';
 import axios from 'axios';
 
 interface Props {
-	сhangeIcon: React.ReactNode;
+	changeIcon: React.ReactNode;
 	defaultFormValues: Profile;
 }
 
-const EditProfileForm = ({ сhangeIcon, defaultFormValues }: Props) => {
+const EditProfileForm = ({ changeIcon, defaultFormValues }: Props) => {
 	const [
 		needToShowSuccessEditDataMessage,
 		setNeedToShowSuccessEditDataMessage,
@@ -64,7 +64,7 @@ const EditProfileForm = ({ сhangeIcon, defaultFormValues }: Props) => {
 			<div className="mt-8">
 				<EditProfileFormWrapper>
 					<Separator />
-					{сhangeIcon}
+					{changeIcon}
 					<Separator />
 					<EditAge
 						dateOfBirth={newDateOfBirth}

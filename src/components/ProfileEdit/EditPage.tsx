@@ -9,7 +9,7 @@ interface Props {
 
 const EditPage = ({ profile }: Props) => {
 	return (
-		<div className="w-full flex-[1] px-[15%] py-[3%]">
+		<div className="w-full flex-[1] px-[10%] py-[3%]">
 			<Header
 				iconUrl={profile.icon}
 				name={profile.name}
@@ -17,7 +17,7 @@ const EditPage = ({ profile }: Props) => {
 			/>
 			<EditProfileForm
 				defaultFormValues={profile}
-				сhangeIcon={<ChangeIcon />}
+				changeIcon={<ChangeIcon />}
 			/>
 		</div>
 	);

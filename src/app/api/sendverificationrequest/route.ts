@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getUserIdBySession } from '@/assets/sessionUtils';
+import { getUserIdBySession } from '@/store/user/userUtils';
 import { revalidateTag } from 'next/cache';
 
 export const dynamic = 'force-dynamic';

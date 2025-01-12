@@ -1,11 +1,8 @@
 import { cookies } from 'next/headers';
-import { CookieSerializeOptions } from 'cookie';
 import * as cookie from 'cookie';
-import axios, { AxiosResponse } from 'axios';
-import { Profile } from '@/types/profile';
-import { FullUser } from '@/types/user';
+import { AxiosResponse } from 'axios';
 
-export const sessionCookieOptions: CookieSerializeOptions = {
+export const sessionCookieOptions: cookie.CookieSerializeOptions = {
 	secure: process.env.NODE_ENV === 'production',
 	maxAge: 28 * 24 * 60 * 60,
 };
@@ -33,99 +30,4 @@ export const encodeCookie = (key: string, value: string) => {
 
 export const deleteSession = () => {
 	cookies().delete('sessionId');
-};
-
-export const getUserDataBySession = async (): Promise<FullUser | null> => {
-	const sessionId = getSessionIdFromCookie();
-	if (!sessionId) return null;
-	const cookieForSending = encodeCookie('sessionId', sessionId);
-
-	const req = await fetch(
-		process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/user/getuserdatabysession',
-		{
-			method: 'POST',
-			credentials: 'include',
-			headers: {
-				'Content-Type': 'application/json',
-				Cookie: cookieForSending,
-			},
-			next: { revalidate: 3600, tags: ['getUserBySessionRequest'] },
-		}
-	);
-
-	const user = await req.json();
-	return user;
-};
-
-export const getUserDataByUserId = async (userId: number) => {
-	const req = await fetch(
-		process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/user/getuserdatabyuserid',
-		{
-			method: 'POST',
-			credentials: 'include',
-			body: JSON.stringify({ userId }),
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			next: { revalidate: 3600, tags: ['getUserByUserIdRequest'] },
-		}
-	);
-
-	const user = await req.json();
-	return user;
-};
-
-export const getProfile = async (userId: number): Promise<Profile | null> => {
-	if (!userId) return null;
-
-	const req = await fetch(
-		process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/profile/getprofile',
-		{
-			method: 'POST',
-			body: JSON.stringify({ userId }),
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			next: { revalidate: 3600, tags: ['getuserprofile'] },
-		}
-	);
-
-	return await req.json();
-};
-
-export const getUserIdBySession = async () => {
-	const sessionId = getSessionIdFromCookie();
-	if (!sessionId)
-		throw new Error('No stored session was found', {
-			cause: "It seems you aren't authorized",
-		});
-	const cookie = encodeCookie('sessionId', sessionId);
-
-	const req = await fetch(
-		process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/user/getuseridbysession',
-		{
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Cookie: cookie,
-			},
-		}
-	).catch((err) => {
-		throw new Error('Not available to unauthorized users');
-	});
-
-	const userId = await req.json().then((data) => data.userId);
-	return userId;
-};
-
-export const getUserIconById = async (companionId: number) => {
-	const req = await axios
-		.post(process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/user/getusericonbyid', {
-			companionId,
-		})
-		.catch((err) => {
-			throw new Error('Error during getting user icon');
-		});
-
-	return req.data;
 };

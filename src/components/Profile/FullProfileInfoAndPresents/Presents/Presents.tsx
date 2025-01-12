@@ -1,9 +1,10 @@
+'use client';
 import { useAppSelector } from '@/store/hooks';
 import Present from './Present';
 
 const Presents = () => {
 	const authorPresents = useAppSelector(
-		(state) => state.profile.data?.presents
+		(state) => state.requestedProfile.data?.presents
 	);
 
 	return (

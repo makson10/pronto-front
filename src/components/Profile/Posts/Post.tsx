@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { formatDate } from '../../../assets/formatDate';
 import PostManagementButton from './PostManagementButton';
 import { Post as PostType } from '@/types/posts';
-import { store } from '@/store/store';
 import FullscreenPreview from '../../Picture/FullscreenPreview';
 import DisplayedPicture from '../../Picture/DisplayedPicture';
+import { useAppSelector } from '@/store/hooks';
 
 interface Props {
 	authorFullName: string;
@@ -16,8 +16,9 @@ interface Props {
 const MAX_DISPLAYABLE_CHARACTER_AMOUNT = 700;
 
 const Post = ({ authorFullName, authorIcon, data }: Props) => {
-	const showPostManagementButton =
-		store.getState().profile?.isAuthorWatchProfile;
+	const showPostManagementButton = useAppSelector(
+		(state) => state.requestedProfile.isAuthorWatchProfile
+	);
 
 	const [needOpenFullscreenPreview, setNeedOpenFullscreenPreview] =
 		useState<boolean>(false);

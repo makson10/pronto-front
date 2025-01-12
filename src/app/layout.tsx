@@ -1,33 +1,32 @@
+import { PropsWithChildren } from 'react';
 import '@/styles/button.scss';
 import '@/styles/globals.scss';
 import '@/styles/scrollbar.scss';
 import '@/styles/variables.scss';
 import 'swiper/css/bundle';
 import CustomNextUIProvider from '@/components/common/CustomNextUIProvider';
+import { getUserDataBySession } from '@/store/user/userUtils';
+import { getProfile } from '@/store/profile/profileUtils';
 import StoreProvider from '@/store/StoreProvider';
-import { getProfile, getUserDataBySession } from '@/assets/sessionUtils';
 
-interface Props {
-	children: React.ReactNode;
-}
-
-const RootLayout = async ({ children }: Props) => {
+const RootLayout = async ({ children }: PropsWithChildren) => {
 	const user = await getUserDataBySession();
-	const profile = await getProfile(user?.id!);
+	const profile = user?.id ? await getProfile(user.id) : null;
 
 	// TODO:
-	//? end up making requestedProfileSlice and /profile/[profileId] page
+	//? return from backend and store profile after signup/login user
+	//? make good looking error page
+	//? hide No posts yet title when NewPostForm is open
+
 	//? make pre-commit testing
-	//? migrate to rtk
-	//? add cypress testing
 	//? rewrite component to mui
+	//? add cypress testing
 	//? add swagger on backend
 	//? make nestjs refactoring
 
 	//? solve bug with non disconnecting socket
 	//? make chat list in db
 	//? make chat object in state manager for chat
-	//? loading during /profile
 	//? make input not to send request twice
 
 	return (

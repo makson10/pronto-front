@@ -1,7 +1,7 @@
 import ChatHeader from './ChatHeader';
 import MessageList from './MessageList';
 import NewMessageInput from './NewMessageInput';
-import { getUserDataByUserId, getUserIconById } from '@/assets/sessionUtils';
+import { getUserDataByUserId, getUserIconById } from '@/store/user/userUtils';
 
 interface Props {
 	companionId: number;

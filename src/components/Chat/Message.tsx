@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { getUserIconById } from '@/assets/sessionUtils';
+import { getUserIconById } from '@/store/user/userUtils'; 
 import { Message as MessageType } from '@/types/chat';
 import { useAppSelector } from '@/store/hooks';
 
