@@ -16,9 +16,7 @@ const getUserPosts = async (userId: number) => {
 	try {
 		return await axios
 			.get<Posts>(
-				process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL +
-					'/posts/author/' +
-					userId
+				process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/posts/author/' + userId
 			)
 			.then((res) => res.data);
 	} catch (error: any) {

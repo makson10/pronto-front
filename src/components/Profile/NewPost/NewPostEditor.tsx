@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Button, Textarea } from '@nextui-org/react';
-import { ShowMessageBox } from '@/components/MessageBox';
+import { ShowMessageBox } from '@/components/common/MessageBox';
 import OptionData from './OptionData';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';

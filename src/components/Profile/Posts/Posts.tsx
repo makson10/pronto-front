@@ -2,11 +2,16 @@ import Post from './Post';
 import PostProfileIcon from './PostProfileIcon';
 import NoPostsMessage from './NoPostsMessage';
 import { Posts as PostsType } from '@/types/posts';
-import { store } from '@/context/store';
+import { getProfile } from '@/store/profile/profileUtils'; 
 import axios from 'axios';
+import { Profile } from '@/types/profile';
 
-const Posts = async () => {
-	const author = store.getState().profile!;
+interface Props {
+	profileId: number;
+}
+
+const Posts = async ({ profileId }: Props) => {
+	const author = (await getProfile(profileId)) as Profile;
 
 	const { data: posts } = await axios.post<PostsType>(
 		process.env.NEXT_PUBLIC_FRONT_BASE_URL + '/api/getposts',

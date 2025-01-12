@@ -1,4 +1,4 @@
-import ChangePasswordVisibilityButton from '@/components/ChangePasswordVisibilityButton';
+import ChangePasswordVisibilityButton from '@/components/common/ChangePasswordVisibilityButton';
 
 interface Props {
 	isPasswordVisible: boolean;

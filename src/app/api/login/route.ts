@@ -1,6 +1,6 @@
 import { SignUpUser } from '@/types/user';
 import {
-	getSessionFromRequest,
+	extructSessionFromRequest,
 	setNewSession,
 } from '@/assets/sessionUtils';
 import { NextResponse } from 'next/server';
@@ -17,14 +17,17 @@ export const POST = async (request: Request) => {
 const sendLogInRequest = async (user: SignUpUser) => {
 	try {
 		const logInResponse = await axios.post(
-			process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/user/login',
+			process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/user/login',
 			{ user }
 		);
 
-		const newSession = await getSessionFromRequest(logInResponse);
-		setNewSession(newSession);
+		const session = await extructSessionFromRequest(logInResponse);
+		setNewSession(session);
 
-		return NextResponse.json('success', { status: 200 });
+		return NextResponse.json(
+			{ okay: logInResponse.data.okay, user: logInResponse.data.user },
+			{ status: 200 }
+		);
 	} catch (error: any) {
 		return NextResponse.json(error.response.data.message, { status: 400 });
 	}

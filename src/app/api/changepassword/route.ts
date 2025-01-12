@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getUserIdBySession } from '@/assets/sessionUtils';
+import { getUserIdBySession } from '@/store/user/userUtils';
 import axios from 'axios';
 
 export const dynamic = 'force-dynamic';
@@ -25,7 +25,7 @@ export const POST = async (request: Request) => {
 const sendChangePasswordRequest = async (body: Body) => {
 	try {
 		await axios.post(
-			process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/profile/changepassword',
+			process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/profile/changepassword',
 			body
 		);
 		return NextResponse.json('success', { status: 200 });

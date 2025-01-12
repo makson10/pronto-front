@@ -1,6 +1,8 @@
 const NoPostsMessage = () => {
 	return (
-		<div className="font-bold text-2xl text-center m-12">No posts yet</div>
+		<div className="h-full flex justify-center items-center font-bold text-2xl text-center">
+			No posts yet
+		</div>
 	);
 };
 

@@ -1,14 +1,10 @@
 'use client';
+import { PropsWithChildren } from 'react';
 import EditFieldWrapper from './EditFieldWrapper';
 
-interface MainProps {
+interface MainProps extends PropsWithChildren {
 	title: string;
 	description: string | React.ReactNode;
-	children: React.ReactNode;
-}
-
-interface FormTitleProps {
-	children: React.ReactNode;
 }
 
 const EditField = ({ title, description, children }: MainProps) => {
@@ -23,7 +19,7 @@ const EditField = ({ title, description, children }: MainProps) => {
 	);
 };
 
-const FormTitle = ({ children }: FormTitleProps) => {
+const FormTitle = ({ children }: PropsWithChildren) => {
 	return <p className="font-bold text-lg">{children}</p>;
 };
 

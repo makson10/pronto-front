@@ -1,8 +1,6 @@
-interface Props {
-	children: React.ReactNode;
-}
+import { PropsWithChildren } from 'react';
 
-const ProfileContentWrapper = ({ children }: Props) => {
+const ProfileContentWrapper = ({ children }: PropsWithChildren) => {
 	return <div className="flex flex-row gap-4">{children}</div>;
 };
 

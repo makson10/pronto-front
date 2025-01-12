@@ -1,5 +1,5 @@
 import { del, list, put } from '@vercel/blob';
-import { getUserIdBySession } from '@/assets/sessionUtils';
+import { getUserIdBySession } from '@/store/user/userUtils'; 
 import { revalidateTag } from 'next/cache';
 import axios from 'axios';
 
@@ -43,7 +43,7 @@ const storeNewIcon = async (userId: number, file: any) => {
 
 const sendChangeIconRequest = async (body: Body) => {
 	return await axios.post(
-		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/profile/changeicon',
+		process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/profile/changeicon',
 		body
 	);
 };

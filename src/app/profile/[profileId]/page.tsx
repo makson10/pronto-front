@@ -1,20 +1,29 @@
+import RequestedProfileProvider from '@/store/requestedProfile/RequestedProfileProvider';
 import ProfileHeader from '@/components/Profile/ProfileHeader/ProfileHeader';
 import ContentWrapper from './ContentWrapper';
 import PostsFlow from '@/components/Profile/Posts/PostsFlow';
 import Posts from '@/components/Profile/Posts/Posts';
 import FullProfileInfoAndPresents from '@/components/Profile/FullProfileInfoAndPresents/FullProfileInfoAndPresents';
+import { getProfile } from '@/store/profile/profileUtils'; 
 
-const Profile = async () => {
+interface Props {
+	params: Promise<{ profileId: string }>;
+}
+
+const Profile = async ({ params }: Props) => {
+	const profileId = parseInt((await params).profileId);
+	const profile = await getProfile(profileId);
+
 	return (
-		<div className="w-full flex-[1] flex flex-col gap-4">
+		<RequestedProfileProvider profile={profile}>
 			<ProfileHeader />
 			<ContentWrapper>
 				<PostsFlow>
-					<Posts />
+					<Posts profileId={profileId} />
 				</PostsFlow>
 				<FullProfileInfoAndPresents />
 			</ContentWrapper>
-		</div>
+		</RequestedProfileProvider>
 	);
 };
 

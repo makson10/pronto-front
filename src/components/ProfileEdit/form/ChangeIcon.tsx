@@ -1,10 +1,12 @@
 import EditField from './EditField';
 import DropdownInput from './ChangeIcon/DropdownInput';
-import { getProfile, getUserIdBySession } from '@/assets/sessionUtils';
+import { getUserIdBySession } from '@/store/user/userUtils';
+import { getProfile } from '@/store/profile/profileUtils';
+import { Profile } from '@/types/profile';
 
 const ChangeIcon = async () => {
 	const userId = await getUserIdBySession();
-	const profile = await getProfile(userId);
+	const profile = (await getProfile(userId)) as Profile;
 
 	return (
 		<EditField

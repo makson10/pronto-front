@@ -1,5 +1,5 @@
 import { revalidateTag } from 'next/cache';
-import { getUserIdBySession } from '@/assets/sessionUtils';
+import { getUserIdBySession } from '@/store/user/userUtils';
 import axios from 'axios';
 
 export const dynamic = 'force-dynamic';
@@ -26,7 +26,7 @@ export const POST = async (request: Request) => {
 
 const sendEditProfileDataRequest = async (body: Body) => {
 	return await axios.post(
-		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL + '/profile/editdata',
+		process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/profile/editdata',
 		body
 	);
 };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Button } from '@nextui-org/react';
-import { ShowMessageBox } from '@/components/MessageBox';
+import { ShowMessageBox } from '@/components/common/MessageBox';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 

@@ -1,13 +1,18 @@
-import ProfileIcon from '@/components/ProfileIcon';
-import { store } from '@/context/store';
+'use client';
+import ProfileIcon from '@/components/common/ProfileIcon';
+import { useAppSelector } from '@/store/hooks';
 
 const ProfileHeaderIcon = () => {
-	const { icon, name } = store.getState().profile!;
+	const profile = useAppSelector((state) => state.requestedProfile?.data)!;
 
 	return (
 		<div className="flex flex-col justify-center">
 			<div aria-label="profile-icon">
-				<ProfileIcon iconUrl={icon} altIconText={name[0]} makeBorder={true} />
+				<ProfileIcon
+					iconUrl={profile.icon}
+					altIconText={profile.name[0]}
+					makeBorder={true}
+				/>
 			</div>
 		</div>
 	);

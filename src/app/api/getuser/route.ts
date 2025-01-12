@@ -1,7 +1,4 @@
-import {
-	encodeCookie,
-	getSessionIdFromCookie,
-} from '@/assets/sessionUtils';
+import { encodeCookie, getSessionIdFromCookie } from '@/assets/sessionUtils';
 import axios from 'axios';
 
 export const dynamic = 'force-dynamic';
@@ -17,8 +14,7 @@ export const POST = async () => {
 
 const sendGetUserRequest = async (cookie: string) => {
 	const req = await axios.post(
-		process.env.NEXT_PUBLIC_LOCAL_SERVER_BASE_URL +
-			'/user/getuserdatabysession',
+		process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/user/getuserdatabysession',
 		null,
 		{
 			headers: { Cookie: cookie },

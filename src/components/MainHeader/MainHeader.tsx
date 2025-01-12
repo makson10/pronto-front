@@ -1,4 +1,4 @@
-import Logo from '../Logo';
+import Logo from '../common/Logo';
 import SearchBox from './SearchBox';
 import UserIcon from './UserIcon';
 

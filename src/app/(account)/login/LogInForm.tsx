@@ -1,19 +1,20 @@
 'use client';
 import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
-import PasswordRequirementsHint from '@/components/PasswordRequirementsHint';
-import ChangePasswordVisibilityButton from '@/components/ChangePasswordVisibilityButton';
+import PasswordRequirementsHint from '@/components/common/PasswordRequirementsHint';
+import ChangePasswordVisibilityButton from '@/components/common/ChangePasswordVisibilityButton';
 import { LoginUser } from '@/types/user';
-import usePageNavigation from '@/hooks/usePageNavigation';
-import { getAndStoreUser } from '@/context/storeUtils';
-import { logInValidationScheme } from '@/assets/validationScheme';
-import { ShowMessageBox } from '@/components/MessageBox';
-import axios from 'axios';
-import style from '@/styles/authorizeForm.module.scss';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { logInValidationScheme } from '@/assets/validationScheme';
+import { ShowMessageBox } from '@/components/common/MessageBox';
+import style from '@/styles/authorizeForm.module.scss';
+import { useAppDispatch } from '@/store/hooks';
+import axios from 'axios';
+import { setUser } from '@/store/user/userSlice';
 
 const LogInForm = () => {
+	const dispatch = useAppDispatch();
 	const router = useRouter();
 	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
 	const [errorMessageText, setErrorMessageText] = useState<string>('fuck');
@@ -52,9 +53,14 @@ const LogInForm = () => {
 
 	const logInUser = async (user: LoginUser) => {
 		try {
-			await axios.post('/api/login', { user });
-			await getAndStoreUser();
+			const res = await axios.post('/api/login', { user });
+
+			if (!res.data.okay) {
+				throw new Error('Error during login');
+			}
+
 			router.push('/');
+			dispatch(setUser(res.data.user));
 			router.refresh();
 		} catch (error: any) {
 			setErrorMessageText(error.response.data);
@@ -123,7 +129,9 @@ const LogInForm = () => {
 						<button
 							className="text-sm text-gray-500 transition hover:text-white"
 							tabIndex={-1}>
-							<Link href={'/signup'}>Not signed up yet? Sign up →</Link>
+							<Link href={'/signup'} tabIndex={-1}>
+								Not signed up yet? Sign up →
+							</Link>
 						</button>
 					</div>
 				</div>

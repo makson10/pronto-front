@@ -1,8 +1,6 @@
-interface Props {
-	children: React.ReactNode;
-}
+import { PropsWithChildren } from 'react';
 
-const EditProfileFormWrapper = ({ children }: Props) => {
+const EditProfileFormWrapper = ({ children }: PropsWithChildren) => {
 	return <div className="flex flex-col gap-8 items-end">{children}</div>;
 };
 

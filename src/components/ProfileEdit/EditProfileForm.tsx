@@ -7,18 +7,18 @@ import EditDescription from './form/EditDescription';
 import EditCity from './form/EditCity';
 import ChangePassword from './form/ChangePassword';
 import SendVerificationRequest from './form/SendVerificationRequest';
-import Separator from '../Separator';
+import Separator from '../common/Separator';
 import SubmitChangesButtonWrapper from './form/SubmitChangesButtonWrapper';
 import { Profile } from '@/types/profile';
-import { ShowMessageBox } from '../MessageBox';
+import { ShowMessageBox } from '../common/MessageBox';
 import axios from 'axios';
 
 interface Props {
-	сhangeIcon: React.ReactNode;
+	changeIcon: React.ReactNode;
 	defaultFormValues: Profile;
 }
 
-const EditProfileForm = ({ сhangeIcon, defaultFormValues }: Props) => {
+const EditProfileForm = ({ changeIcon, defaultFormValues }: Props) => {
 	const [
 		needToShowSuccessEditDataMessage,
 		setNeedToShowSuccessEditDataMessage,
@@ -64,7 +64,7 @@ const EditProfileForm = ({ сhangeIcon, defaultFormValues }: Props) => {
 			<div className="mt-8">
 				<EditProfileFormWrapper>
 					<Separator />
-					{сhangeIcon}
+					{changeIcon}
 					<Separator />
 					<EditAge
 						dateOfBirth={newDateOfBirth}

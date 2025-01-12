@@ -1,10 +1,11 @@
+'use client';
 import DateOfBirth from '@/components/Profile/ProfileHeader/MainInfo/DateOfBirth';
 import Description from '@/components/Profile/ProfileHeader/MainInfo/Description';
 import Address from '@/components/Profile/ProfileHeader/MainInfo/Address';
-import { store } from '@/context/store';
+import { useAppSelector } from '@/store/hooks';
 
 const FullProfileInfo = () => {
-	const profile = store.getState().profile!;
+	const profile = useAppSelector((state) => state.requestedProfile.data)!;
 
 	return (
 		<div className="flex flex-col gap-2" id="fullProfileInfo">

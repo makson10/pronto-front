@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import ChangeIconButton from './ChangeIconButton';
-import { ShowMessageBox } from '@/components/MessageBox';
+import { ShowMessageBox } from '@/components/common/MessageBox';
 import NewIconPreview from './NewIconPreview';
 import SubmitChangeIcon from './SubmitChangeIcon';
 import DeleteIcon from './DeleteIcon';

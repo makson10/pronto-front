@@ -1,11 +1,8 @@
 'use client';
+import { PropsWithChildren } from 'react';
 import { NextUIProvider } from '@nextui-org/react';
 
-interface Props {
-	children: React.ReactNode;
-}
-
-const CustomNextUIProvider = ({ children }: Props) => {
+const CustomNextUIProvider = ({ children }: PropsWithChildren) => {
 	return <NextUIProvider>{children}</NextUIProvider>;
 };
 

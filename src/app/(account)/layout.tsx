@@ -1,11 +1,8 @@
-import Footer from '@/components/Footer';
-import SecondaryHeader from '@/components/SecondaryHeader';
+import { PropsWithChildren } from 'react';
+import Footer from '@/components/common/Footer';
+import SecondaryHeader from '@/components/common/SecondaryHeader';
 
-interface Props {
-	children: React.ReactNode;
-}
-
-const Layout = ({ children }: Props) => {
+const Layout = ({ children }: PropsWithChildren) => {
 	return (
 		<div className="flex flex-col min-h-screen">
 			<SecondaryHeader />
