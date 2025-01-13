@@ -14,6 +14,10 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
 	const profile = user?.id ? await getProfile(user.id) : null;
 
 	// TODO:
+	//? add readme.md
+	//? fix build errors
+	//? deploy front and back
+
 	//? return from backend and store profile after signup/login user
 	//? make good looking error page
 	//? hide No posts yet title when NewPostForm is open

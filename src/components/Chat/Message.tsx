@@ -1,7 +1,8 @@
+'use client';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { getUserIconById } from '@/store/user/userUtils'; 
+// import { getUserIconById } from '@/store/user/userUtils';
 import { Message as MessageType } from '@/types/chat';
 import { useAppSelector } from '@/store/hooks';
 
@@ -25,11 +26,11 @@ const Message = ({
 	const handleIconClick = () =>
 		router.push(`/profile/${isMessageFromMe ? user.id : senderId}`);
 
-	useEffect(() => {
-		getUserIconById(senderId).then((iconUrl) => {
-			setSenderIconUrl(iconUrl);
-		});
-	}, []);
+	// useEffect(() => {
+	// 	getUserIconById(senderId).then((iconUrl) => {
+	// 		setSenderIconUrl(iconUrl);
+	// 	});
+	// }, []);
 
 	return (
 		<div className="flex flex-row gap-3">

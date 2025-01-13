@@ -29,7 +29,7 @@ const Description = ({ description, showEntireDescription = false }: Props) => {
 
 	const mounted = useRef<boolean>(false);
 	const [userDescription, setUserDescription] = useState<string>(
-		showEntireDescription ? description : description.slice(0, MAX_TEXT_LENGTH)
+		showEntireDescription ? description : description.slice(0, MAX_TEXT_LENGTH),
 	);
 	const [descriptionFadeOutLetter, setDescriptionFadeOutLetter] = useState<
 		JSX.Element[]
