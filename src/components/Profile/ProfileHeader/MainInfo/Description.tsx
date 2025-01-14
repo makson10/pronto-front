@@ -48,7 +48,7 @@ const Description = ({ description, showEntireDescription = false }: Props) => {
 
 			const otherLetters = userDescription.slice(MAX_TEXT_LENGTH - 8).split('');
 			otherLetters.map((letter, index) => {
-				const letterOpacity = (9 - index) * 10;
+				const letterOpacity = (9 - index) * 10 ;
 				const letterOpacityStyle = {
 					color: 'rgba(255, 255, 255, 0.' + letterOpacity + ')',
 				};
