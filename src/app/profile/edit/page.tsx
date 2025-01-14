@@ -10,7 +10,7 @@ const Edit = async () => {
 
 	return (
 		<PageWrapper>
-			<EditPage profile={profile} />;
+			<EditPage profile={profile} />
 		</PageWrapper>
 	);
 };
