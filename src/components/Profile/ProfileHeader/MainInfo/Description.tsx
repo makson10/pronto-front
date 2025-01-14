@@ -2,12 +2,12 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
+const MAX_TEXT_LENGTH = 80;
+
 interface Props {
 	description: string | null;
 	showEntireDescription?: boolean;
 }
-
-const MAX_TEXT_LENGTH = 80;
 
 const Description = ({ description, showEntireDescription = false }: Props) => {
 	if (!description) {
