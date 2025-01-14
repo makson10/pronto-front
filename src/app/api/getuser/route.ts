@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 
 export const POST = async () => {
 	const sessionId = getSessionIdFromCookie();
-	if (!sessionId) return null;
+	if (!sessionId) return new Response('No session was found', { status: 400 });
 	const cookieForSending = encodeCookie('sessionId', sessionId);
 
 	const user = await sendGetUserRequest(cookieForSending);

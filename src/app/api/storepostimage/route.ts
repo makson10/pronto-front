@@ -8,7 +8,7 @@ export const POST = async (request: Request) => {
 	return await storePostPicture(image);
 };
 
-const getImageName = async () => {
+const getImageName = async (): Promise<string> => {
 	const imageId = Math.floor(Math.random() * 1000000);
 	const imageWithThisId = await list({ prefix: 'postImages/' + imageId }).then(
 		(res) => res.blobs

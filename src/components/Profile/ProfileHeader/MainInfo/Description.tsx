@@ -3,33 +3,16 @@ import { Fragment, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
 interface Props {
-	description: string | null;
+	description: string;
 	showEntireDescription?: boolean;
 }
 
 const MAX_TEXT_LENGTH = 80;
 
 const Description = ({ description, showEntireDescription = false }: Props) => {
-	if (!description) {
-		return (
-			<div
-				className="flex flex-row gap-2 items-center"
-				aria-label="pronto-description">
-				<Image
-					className="w-[24px] h-[24px] opacity-50"
-					src={'https://img.icons8.com/ffffff/ios/100/info-squared.png'}
-					alt="#"
-					width={100}
-					height={100}
-				/>
-				<p className="w-[75%] break-all text-gray-500">Not specified</p>
-			</div>
-		);
-	}
-
 	const mounted = useRef<boolean>(false);
 	const [userDescription, setUserDescription] = useState<string>(
-		showEntireDescription ? description : description.slice(0, MAX_TEXT_LENGTH)
+		showEntireDescription ? description : description.slice(0, MAX_TEXT_LENGTH),
 	);
 	const [descriptionFadeOutLetter, setDescriptionFadeOutLetter] = useState<
 		JSX.Element[]

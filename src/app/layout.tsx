@@ -14,11 +14,13 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
 	const profile = user?.id ? await getProfile(user.id) : null;
 
 	// TODO:
+	//? fix eslint errors
+	//? deploy front
+
 	//? return from backend and store profile after signup/login user
 	//? make good looking error page
 	//? hide No posts yet title when NewPostForm is open
 
-	//? make pre-commit testing
 	//? rewrite component to mui
 	//? add cypress testing
 	//? add swagger on backend
