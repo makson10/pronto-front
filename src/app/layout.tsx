@@ -15,7 +15,7 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
 
 	// TODO:
 	//? add readme.md
-	//? fix build errors
+	//? fix eslint errors
 	//? deploy front and back
 
 	//? return from backend and store profile after signup/login user
