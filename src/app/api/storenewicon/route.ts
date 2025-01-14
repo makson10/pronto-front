@@ -1,5 +1,5 @@
 import { del, list, put } from '@vercel/blob';
-import { getUserIdBySession } from '@/store/user/userUtils'; 
+import { getUserIdBySession } from '@/store/user/userUtils';
 import { revalidateTag } from 'next/cache';
 import axios from 'axios';
 
@@ -23,7 +23,7 @@ export const POST = async (request: Request) => {
 
 const deleteAllOldIcons = async (userId: number) => {
 	const oldIconsUrl = await list({ prefix: 'userIcons/' + userId }).then(
-		(list) => list.blobs.map((icon) => icon.url)
+		(list) => list.blobs.map((icon) => icon.url),
 	);
 
 	if (!oldIconsUrl.length) return;
@@ -44,6 +44,6 @@ const storeNewIcon = async (userId: number, file: any) => {
 const sendChangeIconRequest = async (body: Body) => {
 	return await axios.post(
 		process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/profile/changeicon',
-		body
+		body,
 	);
 };

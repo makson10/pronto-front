@@ -17,7 +17,7 @@ const MAX_DISPLAYABLE_CHARACTER_AMOUNT = 700;
 
 const Post = ({ authorFullName, authorIcon, data }: Props) => {
 	const showPostManagementButton = useAppSelector(
-		(state) => state.requestedProfile.isAuthorWatchProfile
+		(state) => state.requestedProfile.isAuthorWatchProfile,
 	);
 
 	const [needOpenFullscreenPreview, setNeedOpenFullscreenPreview] =

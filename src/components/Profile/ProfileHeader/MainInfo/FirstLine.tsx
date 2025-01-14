@@ -3,7 +3,7 @@ import { useAppSelector } from '@/store/hooks';
 
 const FirstLine = () => {
 	const { name, isVerifed, createdAt } = useAppSelector(
-		(state) => state.requestedProfile.data
+		(state) => state.requestedProfile.data,
 	)!;
 	const userRegistrationDate = new Date(createdAt).toLocaleDateString();
 

@@ -23,13 +23,13 @@ const EditDescription = ({
 	useEffect(() => {
 		descriptionInputRef.current?.addEventListener(
 			'keydown',
-			enterPreventHandler
+			enterPreventHandler,
 		);
 
 		return () => {
 			descriptionInputRef.current?.removeEventListener(
 				'keydown',
-				enterPreventHandler
+				enterPreventHandler,
 			);
 		};
 	}, []);

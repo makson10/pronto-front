@@ -4,7 +4,7 @@ import Present from './Present';
 
 const Presents = () => {
 	const authorPresents = useAppSelector(
-		(state) => state.requestedProfile.data?.presents
+		(state) => state.requestedProfile.data?.presents,
 	);
 
 	return (

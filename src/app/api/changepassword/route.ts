@@ -26,7 +26,7 @@ const sendChangePasswordRequest = async (body: Body) => {
 	try {
 		await axios.post(
 			process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/profile/changepassword',
-			body
+			body,
 		);
 		return NextResponse.json('success', { status: 200 });
 	} catch (error: any) {

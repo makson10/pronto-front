@@ -31,7 +31,7 @@ const ChangePasswordModal = () => {
 
 	const postPasswordChanges = async (
 		oldPassword: string,
-		newPassword: string
+		newPassword: string,
 	) => {
 		try {
 			await axios.post('/api/changepassword', {

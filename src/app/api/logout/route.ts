@@ -23,6 +23,6 @@ const sendLogOutRequest = async () => {
 	return await axios.post(
 		process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/user/logout',
 		null,
-		{ headers: { Cookie: cookieForSending } }
+		{ headers: { Cookie: cookieForSending } },
 	);
 };

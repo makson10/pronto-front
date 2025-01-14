@@ -5,7 +5,7 @@ import { useAppSelector } from '@/store/hooks';
 
 export default function PostsFlow({ children }: PropsWithChildren) {
 	const shouldShowAddNewPost = useAppSelector(
-		(state) => state.requestedProfile.isAuthorWatchProfile
+		(state) => state.requestedProfile.isAuthorWatchProfile,
 	);
 
 	return (

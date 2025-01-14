@@ -9,7 +9,7 @@ interface Props {
 export const ShowMessageBox = ({ message, isError = false }: Props) => {
 	return createPortal(
 		<MessageBox message={message} isError={isError} />,
-		document.querySelector('#portal')!
+		document.querySelector('#portal')!,
 	);
 };
 

@@ -18,7 +18,7 @@ const sendSignUpRequest = async (user: SignUpUser) => {
 	try {
 		const signUpResponse = await axios.post(
 			process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/user/signup',
-			{ user }
+			{ user },
 		);
 
 		const session = await extructSessionFromRequest(signUpResponse);
@@ -26,7 +26,7 @@ const sendSignUpRequest = async (user: SignUpUser) => {
 
 		return NextResponse.json(
 			{ okay: signUpResponse.data.okay, user: signUpResponse.data.user },
-			{ status: 200 }
+			{ status: 200 },
 		);
 	} catch (error: any) {
 		return NextResponse.json(error.response.data.message, { status: 400 });
