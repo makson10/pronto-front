@@ -2,31 +2,14 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
-const MAX_TEXT_LENGTH = 80;
-
 interface Props {
-	description: string | null;
+	description: string;
 	showEntireDescription?: boolean;
 }
 
-const Description = ({ description, showEntireDescription = false }: Props) => {
-	if (!description) {
-		return (
-			<div
-				className="flex flex-row gap-2 items-center"
-				aria-label="pronto-description">
-				<Image
-					className="w-[24px] h-[24px] opacity-50"
-					src={'https://img.icons8.com/ffffff/ios/100/info-squared.png'}
-					alt="#"
-					width={100}
-					height={100}
-				/>
-				<p className="w-[75%] break-all text-gray-500">Not specified</p>
-			</div>
-		);
-	}
+const MAX_TEXT_LENGTH = 80;
 
+const Description = ({ description, showEntireDescription = false }: Props) => {
 	const mounted = useRef<boolean>(false);
 	const [userDescription, setUserDescription] = useState<string>(
 		showEntireDescription ? description : description.slice(0, MAX_TEXT_LENGTH),
@@ -48,13 +31,15 @@ const Description = ({ description, showEntireDescription = false }: Props) => {
 
 			const otherLetters = userDescription.slice(MAX_TEXT_LENGTH - 8).split('');
 			otherLetters.map((letter, index) => {
-				const letterOpacity = (9 - index) * 10 ;
+				const letterOpacity = (9 - index) * 10;
 				const letterOpacityStyle = {
 					color: 'rgba(255, 255, 255, 0.' + letterOpacity + ')',
 				};
 
 				const letterElement = (
-					<span style={letterOpacityStyle} key={index}>{letter}</span>
+					<span style={letterOpacityStyle} key={index}>
+						{letter}
+					</span>
 				);
 
 				setDescriptionFadeOutLetter((state) => [...state, letterElement]);
