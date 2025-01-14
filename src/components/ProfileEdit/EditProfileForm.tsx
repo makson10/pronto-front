@@ -25,10 +25,10 @@ const EditProfileForm = ({ changeIcon, defaultFormValues }: Props) => {
 	] = useState(false);
 
 	const [newDateOfBirth, setNewDateOfBirth] = useState(
-		defaultFormValues.dateOfBirth
+		defaultFormValues.dateOfBirth,
 	);
 	const [newDescription, setNewDescription] = useState(
-		defaultFormValues.description
+		defaultFormValues.description,
 	);
 	const [newCity, setNewCity] = useState(defaultFormValues.city);
 

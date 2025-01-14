@@ -27,6 +27,6 @@ export const POST = async (request: Request) => {
 const sendEditProfileDataRequest = async (body: Body) => {
 	return await axios.post(
 		process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/profile/editdata',
-		body
+		body,
 	);
 };

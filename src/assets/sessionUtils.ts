@@ -9,7 +9,7 @@ export const sessionCookieOptions: cookie.CookieSerializeOptions = {
 
 export const extructSessionFromRequest = async (request: AxiosResponse) => {
 	const signUpRequestCookie = request.headers['set-cookie']?.find((cookie) =>
-		cookie.match(/^sessionId/gim)
+		cookie.match(/^sessionId/gim),
 	);
 
 	return cookie.parse(signUpRequestCookie!).sessionId;

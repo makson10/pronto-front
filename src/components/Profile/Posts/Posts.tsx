@@ -2,7 +2,7 @@ import Post from './Post';
 import PostProfileIcon from './PostProfileIcon';
 import NoPostsMessage from './NoPostsMessage';
 import { Posts as PostsType } from '@/types/posts';
-import { getProfile } from '@/store/profile/profileUtils'; 
+import { getProfile } from '@/store/profile/profileUtils';
 import axios from 'axios';
 import { Profile } from '@/types/profile';
 
@@ -15,7 +15,7 @@ const Posts = async ({ profileId }: Props) => {
 
 	const { data: posts } = await axios.post<PostsType>(
 		process.env.NEXT_PUBLIC_FRONT_BASE_URL + '/api/getposts',
-		author.profileId.toString()
+		author.profileId.toString(),
 	);
 
 	if (!posts.length) return <NoPostsMessage />;

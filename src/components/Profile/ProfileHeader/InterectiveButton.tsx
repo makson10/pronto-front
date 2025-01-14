@@ -6,7 +6,7 @@ import EditProfileButton from './EditProfileButton';
 const InterectiveButton = () => {
 	const userId = useAppSelector((state) => state.user.data?.id);
 	const profileId = useAppSelector(
-		(state) => state.requestedProfile.data?.profileId
+		(state) => state.requestedProfile.data?.profileId,
 	);
 
 	return (

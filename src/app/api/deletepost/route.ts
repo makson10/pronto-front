@@ -21,6 +21,6 @@ const getDeletingPost = async (postId: string): Promise<Post> => {
 const sendDeletePostRequest = async (postId: number) => {
 	return await axios.post(
 		process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/posts/deletepost',
-		{ postId }
+		{ postId },
 	);
 };

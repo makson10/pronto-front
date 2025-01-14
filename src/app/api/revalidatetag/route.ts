@@ -6,4 +6,4 @@ export const POST = async (request: Request) => {
 	const tag = await request.json().then((data) => data.tag);
 	revalidateTag(tag);
 	return new Response('success', { status: 200 });
-}
+};

@@ -4,7 +4,7 @@ import ContentWrapper from './ContentWrapper';
 import PostsFlow from '@/components/Profile/Posts/PostsFlow';
 import Posts from '@/components/Profile/Posts/Posts';
 import FullProfileInfoAndPresents from '@/components/Profile/FullProfileInfoAndPresents/FullProfileInfoAndPresents';
-import { getProfile } from '@/store/profile/profileUtils'; 
+import { getProfile } from '@/store/profile/profileUtils';
 
 interface Props {
 	params: Promise<{ profileId: string }>;

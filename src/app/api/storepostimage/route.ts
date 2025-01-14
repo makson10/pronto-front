@@ -11,7 +11,7 @@ export const POST = async (request: Request) => {
 const getImageName = async (): Promise<string> => {
 	const imageId = Math.floor(Math.random() * 1000000);
 	const imageWithThisId = await list({ prefix: 'postImages/' + imageId }).then(
-		(res) => res.blobs
+		(res) => res.blobs,
 	);
 
 	if (imageWithThisId.length) return getImageName();

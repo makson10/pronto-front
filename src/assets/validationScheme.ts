@@ -8,7 +8,7 @@ export const signUpValidationScheme = object({
 		.min(8, 'Password is too short')
 		.matches(
 			/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/gim,
-			'Password does not contain special characters'
+			'Password does not contain special characters',
 		),
 });
 
@@ -18,7 +18,7 @@ export const logInValidationScheme = object({
 		.min(8, 'Password is too short')
 		.matches(
 			/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/gim,
-			'Password does not contain special characters'
+			'Password does not contain special characters',
 		),
 });
 
@@ -28,10 +28,10 @@ export const changePasswordValidationScheme = object({
 		.min(8, 'Password is too short')
 		.matches(
 			/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/gim,
-			'Password does not contain special characters'
+			'Password does not contain special characters',
 		),
 	confirmNewPassword: string().oneOf(
 		[ref('newPassword')],
-		'Password does not match'
+		'Password does not match',
 	),
 });

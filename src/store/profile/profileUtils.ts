@@ -1,7 +1,7 @@
 import { Profile } from '@/types/profile';
 
 export const getProfile = async (
-	profileId: number
+	profileId: number,
 ): Promise<Profile | null> => {
 	if (!profileId) throw new Error('Profile not found');
 
@@ -14,7 +14,7 @@ export const getProfile = async (
 				'Content-Type': 'application/json',
 			},
 			next: { revalidate: 3600, tags: ['getuserprofile'] },
-		}
+		},
 	).then((response) => response.json());
 
 	if (res.error) throw new Error('Error occured during getting profile');

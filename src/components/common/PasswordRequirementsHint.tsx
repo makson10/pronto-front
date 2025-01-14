@@ -10,7 +10,7 @@ const RequirementsText = () => {
 
 const PasswordRequirementsHint = () => {
 	const handleClick = (
-		event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+		event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
 	) => event.preventDefault();
 
 	return (

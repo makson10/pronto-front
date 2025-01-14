@@ -18,7 +18,7 @@ const SendVerificationRequest = ({
 	sentVerificationRequest,
 }: MainProps) => {
 	const [shouldShowSendButton, setShouldShowSendButton] = useState(
-		!sentVerificationRequest
+		!sentVerificationRequest,
 	);
 
 	return (

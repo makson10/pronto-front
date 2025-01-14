@@ -14,7 +14,7 @@ export const POST = async () => {
 
 const deleteOldIcons = async (userId: number) => {
 	const oldIconsUrl = await list({ prefix: 'userIcons/' + userId }).then(
-		(list) => list.blobs.map((icon) => icon.url)
+		(list) => list.blobs.map((icon) => icon.url),
 	);
 
 	if (!oldIconsUrl.length) return;
@@ -24,6 +24,6 @@ const deleteOldIcons = async (userId: number) => {
 const sendDeleteIconRequest = async (userId: number) => {
 	return await axios.post(
 		process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/profile/deleteicon',
-		{ userId }
+		{ userId },
 	);
 };

@@ -17,7 +17,7 @@ export const getUserDataBySession = async (): Promise<FullUser | null> => {
 				Cookie: cookieForSending,
 			},
 			next: { revalidate: 3600, tags: ['getUserBySessionRequest'] },
-		}
+		},
 	);
 
 	const user = await req.json();
@@ -35,7 +35,7 @@ export const getUserDataByUserId = async (userId: number) => {
 				'Content-Type': 'application/json',
 			},
 			next: { revalidate: 3600, tags: ['getUserByUserIdRequest'] },
-		}
+		},
 	);
 
 	const user = await req.json();
@@ -55,7 +55,7 @@ export const getUserIdBySession = async () => {
 				'Content-Type': 'application/json',
 				Cookie: cookie,
 			},
-		}
+		},
 	).catch((err) => {
 		throw new Error('Error occured during logging in');
 	});

@@ -18,7 +18,7 @@ const sendLogInRequest = async (user: SignUpUser) => {
 	try {
 		const logInResponse = await axios.post(
 			process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/user/login',
-			{ user }
+			{ user },
 		);
 
 		const session = await extructSessionFromRequest(logInResponse);
@@ -26,7 +26,7 @@ const sendLogInRequest = async (user: SignUpUser) => {
 
 		return NextResponse.json(
 			{ okay: logInResponse.data.okay, user: logInResponse.data.user },
-			{ status: 200 }
+			{ status: 200 },
 		);
 	} catch (error: any) {
 		return NextResponse.json(error.response.data.message, { status: 400 });

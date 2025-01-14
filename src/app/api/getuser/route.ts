@@ -18,7 +18,7 @@ const sendGetUserRequest = async (cookie: string) => {
 		null,
 		{
 			headers: { Cookie: cookie },
-		}
+		},
 	);
 
 	return req.data;

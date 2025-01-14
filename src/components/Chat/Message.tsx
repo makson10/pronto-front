@@ -19,7 +19,7 @@ const Message = ({
 	const user = useAppSelector((state) => state.user.data);
 	const isMessageFromMe = user?.id === senderId;
 	const [senderIconUrl, setSenderIconUrl] = useState(
-		DEFAULT_GUEST_ICON_PHOTO_URL
+		DEFAULT_GUEST_ICON_PHOTO_URL,
 	);
 	const router = useRouter();
 

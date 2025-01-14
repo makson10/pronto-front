@@ -3,7 +3,7 @@ import { Fragment, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
 interface Props {
-	description: string;
+	description: string | null;
 	showEntireDescription?: boolean;
 }
 
@@ -12,13 +12,18 @@ const MAX_TEXT_LENGTH = 80;
 const Description = ({ description, showEntireDescription = false }: Props) => {
 	const mounted = useRef<boolean>(false);
 	const [userDescription, setUserDescription] = useState<string>(
-		showEntireDescription ? description : description.slice(0, MAX_TEXT_LENGTH),
+		!description
+			? ''
+			: showEntireDescription
+				? description
+				: description.slice(0, MAX_TEXT_LENGTH),
 	);
 	const [descriptionFadeOutLetter, setDescriptionFadeOutLetter] = useState<
 		JSX.Element[]
 	>([]);
 
 	useEffect(() => {
+		if (!description) return;
 		if (showEntireDescription) return;
 
 		if (!mounted.current) {
@@ -46,6 +51,8 @@ const Description = ({ description, showEntireDescription = false }: Props) => {
 			});
 		}
 	}, [userDescription]);
+
+	if (!description) return <NoDescriptionMessage />;
 
 	return (
 		<div
@@ -90,5 +97,20 @@ const SeeFullDescriptionButton = () => {
 		</button>
 	);
 };
+
+const NoDescriptionMessage = () => (
+	<div
+		className="flex flex-row gap-2 items-center"
+		aria-label="pronto-description">
+		<Image
+			className="w-[24px] h-[24px] opacity-50"
+			src={'https://img.icons8.com/ffffff/ios/100/info-squared.png'}
+			alt="#"
+			width={100}
+			height={100}
+		/>
+		<p className="w-[75%] break-all text-gray-500">Not specified</p>
+	</div>
+);
 
 export default Description;

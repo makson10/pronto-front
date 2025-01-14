@@ -17,7 +17,7 @@ const sendVerificationRequest = async (userId: number) => {
 	return await axios.post(
 		process.env.NEXT_PUBLIC_SERVER_BASE_URL +
 			'/profile/addusertoverificationrequestlist',
-		{ userId }
+		{ userId },
 	);
 };
 
