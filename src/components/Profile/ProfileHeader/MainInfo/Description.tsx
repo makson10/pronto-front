@@ -54,9 +54,7 @@ const Description = ({ description, showEntireDescription = false }: Props) => {
 				};
 
 				const letterElement = (
-					<span style={letterOpacityStyle} key={index}>
-						{letter}
-					</span>
+					<span style={letterOpacityStyle} key={index}>{letter}</span>
 				);
 
 				setDescriptionFadeOutLetter((state) => [...state, letterElement]);
