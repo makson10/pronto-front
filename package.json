@@ -38,7 +38,6 @@
 		"autoprefixer": "^10.0.1",
 		"eslint": "^9.18.0",
 		"eslint-config-next": "15.1.4",
-		"eslint-config-prettier": "^10.0.1",
 		"eslint-plugin-react": "^7.37.4",
 		"globals": "^15.14.0",
 		"husky": "^9.1.7",
@@ -53,7 +52,7 @@
 	},
 	"lint-staged": {
 		"*.{js,ts,jsx,tsx}": [
-			"prettier --write .",
+			"prettier --write",
 			"eslint --fix"
 		],
 		"*.{json,md,yml}": [

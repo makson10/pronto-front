@@ -1,5 +1,5 @@
 import { Spinner } from '@nextui-org/react';
-import style from '@/styles/loadingSpinner.module.scss';
+import style from '@/styles/loadingSpinner.module.css';
 
 const LoadingSpinner = () => {
 	return (

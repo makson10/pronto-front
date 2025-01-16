@@ -7,7 +7,7 @@ import PasswordRequirementsHint from '@/components/common/PasswordRequirementsHi
 import ChangePasswordVisibilityButton from '@/components/common/ChangePasswordVisibilityButton';
 import { signUpValidationScheme } from '@/assets/validationScheme';
 import { ShowMessageBox } from '@/components/common/MessageBox';
-import style from '@/styles/authorizeForm.module.scss';
+import style from '@/styles/authorizeForm.module.css';
 import { SignUpUser } from '@/types/user';
 import axios from 'axios';
 import { setUser } from '@/store/user/userSlice';

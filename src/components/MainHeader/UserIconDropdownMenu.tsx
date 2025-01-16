@@ -44,8 +44,16 @@ const UserIconDropdownMenu = ({ icon, altText }: Props) => {
 				</div>
 			</DropdownTrigger>
 			<DropdownMenu aria-label="user icon dropdown menu" className="text-black">
-				<DropdownItem onClick={goToProfilePage}>Profile</DropdownItem>
-				<DropdownItem onClick={logOutUser}>Log out</DropdownItem>
+				<DropdownItem
+					key={'user-icon-dropdown-menu-profile'}
+					onClick={goToProfilePage}>
+					Profile
+				</DropdownItem>
+				<DropdownItem
+					key={'user-icon-dropdown-menu-log-out'}
+					onClick={logOutUser}>
+					Log out
+				</DropdownItem>
 			</DropdownMenu>
 		</Dropdown>
 	);

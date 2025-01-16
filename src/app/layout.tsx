@@ -1,8 +1,8 @@
 import { PropsWithChildren } from 'react';
-import '@/styles/button.scss';
-import '@/styles/globals.scss';
-import '@/styles/scrollbar.scss';
-import '@/styles/variables.scss';
+import '@/styles/button.css';
+import '@/styles/globals.css';
+import '@/styles/scrollbar.css';
+import '@/styles/variables.css';
 import 'swiper/css/bundle';
 import CustomNextUIProvider from '@/components/common/CustomNextUIProvider';
 import { getUserDataBySession } from '@/store/user/userUtils';
@@ -14,10 +14,9 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
 	const profile = user?.id ? await getProfile(user.id) : null;
 
 	// TODO:
-	//? fix eslint errors
-	//? deploy front
-
-	//? return from backend and store profile after signup/login user
+	//! return from backend and store profile after signup/login user
+	//? not set user up in store if it returns error
+	//? fix eslint warnings
 	//? make good looking error page
 	//? hide No posts yet title when NewPostForm is open
 

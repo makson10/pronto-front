@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import style from '@/styles/userProfileIcon.module.scss';
+import style from '@/styles/userProfileIcon.module.css';
 
 interface Props {
 	iconUrl?: string | null;

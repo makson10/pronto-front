@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { logInValidationScheme } from '@/assets/validationScheme';
 import { ShowMessageBox } from '@/components/common/MessageBox';
-import style from '@/styles/authorizeForm.module.scss';
+import style from '@/styles/authorizeForm.module.css';
 import { useAppDispatch } from '@/store/hooks';
 import axios from 'axios';
 import { setUser } from '@/store/user/userSlice';

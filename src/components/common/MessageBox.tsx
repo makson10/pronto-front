@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import style from '@/styles/messageBox.module.scss';
+import style from '@/styles/messageBox.module.css';
 
 interface Props {
 	message: string;

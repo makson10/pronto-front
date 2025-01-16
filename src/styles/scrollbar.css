@@ -10,7 +10,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background-color: lighten($color: gray, $amount: 10);
+	background-color: rgba(128, 128, 128, 0.9);
 }
 
 ::-webkit-scrollbar-track {
