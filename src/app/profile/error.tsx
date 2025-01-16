@@ -1,4 +1,5 @@
 'use client';
+import { Box, Button, Container, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 
 interface Props {
@@ -8,23 +9,58 @@ interface Props {
 
 const Error = ({ error, reset }: Props) => {
 	const router = useRouter();
-
-	const handleClick = () => router.push('/');
+	const handleGoHome = () => router.push('/');
+	const handleGoToFeedback = () => router.push('/feedback');
 
 	return (
-		<div className="flex flex-col items-center gap-4">
-			<p className="text-3xl">
-				{parseInt(error.digest!) === 153975709
-					? 'Error happend'
-					: error.message}
-			</p>
-			{error.cause && <p className="text-xl">{error.cause}</p>}
-			<button
-				onClick={handleClick}
-				className="bg-white text-black font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105">
-				Go to home page
-			</button>
-		</div>
+		<Container sx={{ height: '100vh' }}>
+			<Box
+				sx={{
+					height: '100%',
+					display: 'flex',
+					flexDirection: 'column',
+					justifyContent: 'center',
+					alignItems: 'center',
+				}}>
+				<Box
+					sx={{
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+						gap: 6,
+					}}>
+					<Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+						<Typography variant="h3" align="center" color="error">
+							Error occured
+						</Typography>
+						<Typography variant="h6" align="center">
+							{error.message}
+						</Typography>
+					</Box>
+					<Box
+						sx={{
+							display: 'flex',
+							flexDirection: 'row',
+							alignItems: 'center',
+							gap: 2,
+						}}>
+						<Button
+							variant="contained"
+							sx={{ width: '50%', height: '100%' }}
+							color="success"
+							onClick={handleGoHome}>
+							Go home
+						</Button>
+						<Button
+							variant="contained"
+							sx={{ width: '50%', height: '100%' }}
+							onClick={handleGoToFeedback}>
+							Leave feedback
+						</Button>
+					</Box>
+				</Box>
+			</Box>
+		</Container>
 	);
 };
 

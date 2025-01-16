@@ -12,6 +12,7 @@ import style from '@/styles/authorizeForm.module.css';
 import { useAppDispatch } from '@/store/hooks';
 import axios from 'axios';
 import { setUser } from '@/store/user/userSlice';
+import { setProfile } from '@/store/profile/profileSlice';
 
 const LogInForm = () => {
 	const dispatch = useAppDispatch();
@@ -59,9 +60,9 @@ const LogInForm = () => {
 				throw new Error('Error during login');
 			}
 
-			router.push('/');
 			dispatch(setUser(res.data.user));
-			router.refresh();
+			dispatch(setProfile(res.data.profile));
+			router.push('/');
 		} catch (error: any) {
 			setErrorMessageText(error.response.data);
 			setNeedToShowErrorMessage(true);

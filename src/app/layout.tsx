@@ -1,4 +1,8 @@
 import { PropsWithChildren } from 'react';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 import '@/styles/button.css';
 import '@/styles/globals.css';
 import '@/styles/scrollbar.css';
@@ -14,13 +18,11 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
 	const profile = user?.id ? await getProfile(user.id) : null;
 
 	// TODO:
-	//! return from backend and store profile after signup/login user
 	//? not set user up in store if it returns error
 	//? fix eslint warnings
-	//? make good looking error page
 	//? hide No posts yet title when NewPostForm is open
 
-	//? rewrite component to mui
+	//* rewrite component to mui
 	//? add cypress testing
 	//? add swagger on backend
 	//? make nestjs refactoring
@@ -35,6 +37,7 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
 			<head>
 				<title>pronto</title>
 				<link rel="icon" type="image/x-icon" href="/short_logo.png" />
+				<meta name="viewport" content="initial-scale=1, width=device-width" />
 			</head>
 			<body>
 				<div id="portal" className="fixed z-[101] w-screen" />

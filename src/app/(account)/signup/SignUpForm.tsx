@@ -12,6 +12,7 @@ import { SignUpUser } from '@/types/user';
 import axios from 'axios';
 import { setUser } from '@/store/user/userSlice';
 import { useAppDispatch } from '@/store/hooks';
+import { setProfile } from '@/store/profile/profileSlice';
 
 const SignUpForm = () => {
 	const dispatch = useAppDispatch();
@@ -61,9 +62,9 @@ const SignUpForm = () => {
 				throw new Error('Error during signup');
 			}
 
-			router.push('/');
 			dispatch(setUser(res.data.user));
-			router.refresh();
+			dispatch(setProfile(res.data.profile));
+			router.push('/');
 		} catch (error: any) {
 			setErrorMessageText(error.response.data);
 			setNeedToShowErrorMessage(true);

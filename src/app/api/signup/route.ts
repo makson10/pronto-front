@@ -24,10 +24,7 @@ const sendSignUpRequest = async (user: SignUpUser) => {
 		const session = await extructSessionFromRequest(signUpResponse);
 		setNewSession(session);
 
-		return NextResponse.json(
-			{ okay: signUpResponse.data.okay, user: signUpResponse.data.user },
-			{ status: 200 },
-		);
+		return NextResponse.json(signUpResponse.data, { status: 200 });
 	} catch (error: any) {
 		return NextResponse.json(error.response.data.message, { status: 400 });
 	}
