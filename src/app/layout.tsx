@@ -8,10 +8,11 @@ import '@/styles/globals.css';
 import '@/styles/scrollbar.css';
 import '@/styles/variables.css';
 import 'swiper/css/bundle';
-import CustomNextUIProvider from '@/components/common/CustomNextUIProvider';
 import { getUserDataBySession } from '@/store/user/userUtils';
 import { getProfile } from '@/store/profile/profileUtils';
 import StoreProvider from '@/store/StoreProvider';
+import CustomThemeProvider from '@/components/common/CustomThemeProvider';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 
 const RootLayout = async ({ children }: PropsWithChildren) => {
 	const user = await getUserDataBySession();
@@ -27,6 +28,7 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
 	//? add swagger on backend
 	//? make nestjs refactoring
 
+	//? move image upload to backend
 	//? solve bug with non disconnecting socket
 	//? make chat list in db
 	//? make chat object in state manager for chat
@@ -42,7 +44,9 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
 			<body>
 				<div id="portal" className="fixed z-[101] w-screen" />
 				<StoreProvider user={user} profile={profile}>
-					<CustomNextUIProvider>{children}</CustomNextUIProvider>
+					<AppRouterCacheProvider>
+						<CustomThemeProvider>{children}</CustomThemeProvider>
+					</AppRouterCacheProvider>
 				</StoreProvider>
 			</body>
 		</html>

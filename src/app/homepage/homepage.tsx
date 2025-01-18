@@ -1,5 +1,5 @@
-import PagesList from '../../components/HomePage/pagesList/pagesList';
-import RecommendationPostFlow from '../../components/HomePage/recommendationPostFlow/recommendationPostFlow';
+import PagesList from '../../components/HomePage/PagesList/PagesList';
+import RecommendationPostFlow from '../../components/HomePage/RecommendationPostFlow/RecommendationPostFlow';
 
 const Homepage = () => {
 	return (

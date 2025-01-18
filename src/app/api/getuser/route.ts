@@ -4,7 +4,7 @@ import axios from 'axios';
 export const dynamic = 'force-dynamic';
 
 export const POST = async () => {
-	const sessionId = getSessionIdFromCookie();
+	const sessionId = await getSessionIdFromCookie();
 	if (!sessionId) return new Response('No session was found', { status: 400 });
 	const cookieForSending = encodeCookie('sessionId', sessionId);
 

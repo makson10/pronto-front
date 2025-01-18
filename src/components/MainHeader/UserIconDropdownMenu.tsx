@@ -1,16 +1,17 @@
 'use client';
-import axios from 'axios';
 import {
 	Dropdown,
 	DropdownTrigger,
 	DropdownMenu,
 	DropdownItem,
 } from '@nextui-org/react';
-import UserProfileIcon from '../common/ProfileIcon';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch } from '@/store/hooks';
 import { removeUser } from '@/store/user/userSlice';
 import { removeProfile } from '@/store/profile/profileSlice';
+import { Box } from '@mui/material';
+import UserProfileIcon from '../common/ProfileIcon';
+import axios from 'axios';
 
 interface Props {
 	icon: string | null;
@@ -33,15 +34,15 @@ const UserIconDropdownMenu = ({ icon, altText }: Props) => {
 
 	return (
 		<Dropdown>
-			<DropdownTrigger className="max-h-[45px] max-w-[45px] cursor-pointer">
-				<div>
+			<DropdownTrigger className="max-h-[40px] max-w-[40px] cursor-pointer">
+				<Box>
 					<UserProfileIcon
 						iconUrl={icon}
 						altIconText={altText}
-						width={45}
-						height={45}
+						width={40}
+						height={40}
 					/>
-				</div>
+				</Box>
 			</DropdownTrigger>
 			<DropdownMenu aria-label="user icon dropdown menu" className="text-black">
 				<DropdownItem

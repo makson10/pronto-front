@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import Image from 'next/image';
+import { Box, Typography } from '@mui/material';
 
 interface Props {
 	title: string;
@@ -9,10 +11,21 @@ interface Props {
 const PageLink = ({ title, icon, goToPath }: Props) => {
 	return (
 		<Link className="text-xl" href={goToPath}>
-			<div className="flex flex-row gap-3">
-				<img width="28" height="28" src={icon} alt="#" />
-				<p className="cursor-pointer transition-all hover:underline">{title}</p>
-			</div>
+			<Box display="flex" flexDirection="row" gap="0.75rem">
+				<Image width="28" height="28" src={icon} alt="#" />
+				<Typography
+					sx={{
+						fontSize: '1.25rem',
+						cursor: 'pointer',
+						transition: 'all',
+						':hover': {
+							textDecoration: 'underline',
+							textUnderlineOffset: '0.1rem',
+						},
+					}}>
+					{title}
+				</Typography>
+			</Box>
 		</Link>
 	);
 };

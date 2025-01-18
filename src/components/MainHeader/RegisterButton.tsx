@@ -1,20 +1,44 @@
-import Link from 'next/link';
+import { Box, Button, Divider, Link, Stack, Typography } from '@mui/material';
 
 const RegisterButton = () => {
 	return (
-		<div className="flex flex-row gap-2">
+		<Stack direction="row" spacing={1}>
 			<Link
-				href={'/signup'}
-				className="font-bold text-base flex flex-col justify-center px-[0.3rem] transition border-transparent border-2 hover:border-white">
-				Sign up
+				color="white"
+				display="flex"
+				flexDirection="column"
+				justifyContent="center"
+				height="100%"
+				sx={{
+					borderWidth: '2px',
+					borderColor: 'transparent',
+					px: '0.2rem',
+					'&:hover': { borderColor: 'white' },
+				}}
+				href="/signup">
+				<Typography fontWeight="bold">Sign Up</Typography>
 			</Link>
-			<p className="flex flex-col justify-center text-2xl">|</p>
+			<Divider
+				orientation="vertical"
+				variant="middle"
+				sx={{ bgcolor: 'white', width: '2px' }}
+			/>
 			<Link
-				href={'/login'}
-				className="font-bold text-base flex flex-col justify-center px-[0.3rem] transition border-transparent border-2 hover:border-white">
-				Log in
+				color="white"
+				display="flex"
+				flexDirection="column"
+				justifyContent="center"
+				height="100%"
+				sx={{
+					borderWidth: '2px',
+					borderColor: 'transparent',
+					px: '0.2rem',
+					'&:hover': { borderColor: 'white' },
+				}}
+				href="/login">
+				<Typography fontWeight="bold">Log In</Typography>
 			</Link>
-		</div>
+		</Stack>
 	);
 };
 

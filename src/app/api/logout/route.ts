@@ -11,12 +11,12 @@ export const POST = async () => {
 	const logOutResponse = await sendLogOutRequest();
 	if (!logOutResponse.data.okay) return new Response('error', { status: 400 });
 
-	deleteSession();
+	await deleteSession();
 	return new Response('success', { status: 200 });
 };
 
 const sendLogOutRequest = async () => {
-	const sessionId = getSessionIdFromCookie();
+	const sessionId = await getSessionIdFromCookie();
 	if (!sessionId) throw new Error('No session id given');
 	const cookieForSending = encodeCookie('sessionId', sessionId);
 

@@ -1,5 +1,7 @@
 'use client';
 import { ChangeEvent, useState } from 'react';
+import { IconButton, OutlinedInput } from '@mui/material';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 const SearchBox = () => {
 	const [searchTerm, setSearchTerm] = useState<string>('');
@@ -13,23 +15,24 @@ const SearchBox = () => {
 	};
 
 	return (
-		<div className="flex items-center rounded-xl bg-[#424242] px-2 my-[0.3rem]">
-			<input
-				type="text"
-				placeholder="Search..."
-				value={searchTerm}
-				onChange={handleSearchChange}
-				className="bg-transparent outline-none"
-			/>
-			<button onClick={handleSearchSubmit}>
-				<img
-					width="20"
-					height="20"
-					src="https://img.icons8.com/ios-filled/50/ffffff/search--v1.png"
-					alt="#"
-				/>
-			</button>
-		</div>
+		<OutlinedInput
+			id="search-input"
+			placeholder="Search..."
+			value={searchTerm}
+			onChange={handleSearchChange}
+			sx={{
+				borderRadius: '20px',
+				bgcolor: '#424242',
+				color: 'white',
+				width: '200px',
+				height: '36px',
+			}}
+			endAdornment={
+				<IconButton onClick={handleSearchSubmit}>
+					<SearchOutlinedIcon sx={{ color: 'white' }} />
+				</IconButton>
+			}
+		/>
 	);
 };
 

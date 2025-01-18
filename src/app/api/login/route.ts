@@ -22,7 +22,7 @@ const sendLogInRequest = async (user: SignUpUser) => {
 		);
 
 		const session = await extructSessionFromRequest(logInResponse);
-		setNewSession(session);
+		await setNewSession(session);
 
 		return NextResponse.json(logInResponse.data, { status: 200 });
 	} catch (error: any) {

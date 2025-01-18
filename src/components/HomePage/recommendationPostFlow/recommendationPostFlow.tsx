@@ -1,6 +1,10 @@
+import { Box } from '@mui/material';
+
 const RecommendationPostFlow = () => {
 	return (
-		<div className="w-4/5 px-8 pt-10">Recommendation will be shown here</div>
+		<Box width="80%" px="2rem" pt="2.5rem">
+			Recommendation will be shown here
+		</Box>
 	);
 };
 

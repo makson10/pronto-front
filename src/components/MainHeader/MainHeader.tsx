@@ -1,18 +1,28 @@
+import { Box, Link } from '@mui/material';
 import Logo from '../common/Logo';
 import SearchBox from './SearchBox';
 import UserIcon from './UserIcon';
 
 const MainHeader = () => {
 	return (
-		<div className="w-screen px-[20%] bg-[--header-bg-color]">
-			<div className="min-h-[64px] flex flex-row justify-between p-2">
-				<div className="flex flex-row justify-center gap-8">
+		<Box sx={{ bgcolor: 'var(--header-bg-color)', px: '20%' }}>
+			<Box
+				display="flex"
+				flexDirection="row"
+				justifyContent="space-between"
+				p={2}>
+				<Box
+					display="flex"
+					flexDirection="row"
+					justifyContent="center"
+					alignItems="center"
+					gap={4}>
 					<Logo />
 					<SearchBox />
-				</div>
+				</Box>
 				<UserIcon />
-			</div>
-		</div>
+			</Box>
+		</Box>
 	);
 };
 

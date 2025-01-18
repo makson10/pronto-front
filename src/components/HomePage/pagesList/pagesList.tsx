@@ -1,12 +1,18 @@
 'use client';
 import pagesLinks from '@/assets/pagesLinks';
-import PageLink from './pageField';
+import PageLink from './PageField';
+import { Box } from '@mui/material';
 
 const PagesList = () => {
 	return (
-		<div className="pt-12 w-1/5">
-			<div className="py-4 flex flex-col items-center gap-2">
-				<div className="flex flex-col gap-3">
+		<Box width="20%" pt="3rem">
+			<Box
+				py="1rem"
+				display="flex"
+				flexDirection="column"
+				alignItems="center"
+				gap="0.5rem">
+				<Box display="flex" flexDirection="column" gap="0.75rem">
 					{pagesLinks.map((pageLink, index) => (
 						<PageLink
 							key={index}
@@ -15,9 +21,9 @@ const PagesList = () => {
 							goToPath={pageLink.goToPath}
 						/>
 					))}
-				</div>
-			</div>
-		</div>
+				</Box>
+			</Box>
+		</Box>
 	);
 };
 

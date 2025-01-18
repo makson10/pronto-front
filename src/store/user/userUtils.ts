@@ -3,7 +3,7 @@ import { FullUser } from '@/types/user';
 import axios from 'axios';
 
 export const getUserDataBySession = async (): Promise<FullUser | null> => {
-	const sessionId = getSessionIdFromCookie();
+	const sessionId = await getSessionIdFromCookie();
 	if (!sessionId) return null;
 	const cookieForSending = encodeCookie('sessionId', sessionId);
 
@@ -43,7 +43,7 @@ export const getUserDataByUserId = async (userId: number) => {
 };
 
 export const getUserIdBySession = async () => {
-	const sessionId = getSessionIdFromCookie();
+	const sessionId = await getSessionIdFromCookie();
 	if (!sessionId) throw new Error('You are not logged in yet');
 	const cookie = encodeCookie('sessionId', sessionId);
 

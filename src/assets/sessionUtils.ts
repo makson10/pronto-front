@@ -15,12 +15,14 @@ export const extructSessionFromRequest = async (request: AxiosResponse) => {
 	return cookie.parse(signUpRequestCookie!).sessionId;
 };
 
-export const setNewSession = (sessionId: string) => {
-	cookies().set('sessionId', sessionId, sessionCookieOptions);
+export const setNewSession = async (sessionId: string) => {
+	const cookieStore = await cookies();
+	cookieStore.set('sessionId', sessionId, sessionCookieOptions);
 };
 
-export const getSessionIdFromCookie = () => {
-	const sessionCookie = cookies().get('sessionId');
+export const getSessionIdFromCookie = async () => {
+	const cookieStore = await cookies();
+	const sessionCookie = cookieStore.get('sessionId');
 	return sessionCookie?.value ? sessionCookie?.value : null;
 };
 
@@ -28,6 +30,7 @@ export const encodeCookie = (key: string, value: string) => {
 	return cookie.serialize(key, value);
 };
 
-export const deleteSession = () => {
-	cookies().delete('sessionId');
+export const deleteSession = async () => {
+	const cookieStore = await cookies();
+	cookieStore.delete('sessionId');
 };

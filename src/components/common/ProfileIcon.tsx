@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import style from '@/styles/userProfileIcon.module.css';
+import { Box } from '@mui/material';
 
 interface Props {
 	iconUrl?: string | null;
@@ -14,31 +14,41 @@ const ProfileIcon = ({
 	altIconText = null,
 	width = 150,
 	height = 150,
-	makeBorder = false,
 }: Props) => {
 	return (
-		<div
-			className={style['icon-wrapper']}
-			style={{
+		<Box
+			position="relative"
+			width="150px"
+			height="150px"
+			sx={{
 				scale: (width / 150) * 100 + '%',
 				left: (width - 150) / 2,
 				top: (height - 150) / 2,
 			}}>
 			{iconUrl ? (
 				<Image
-					className={style['empty-icon']}
+					className="min-h-full min-w-full rounded-full"
 					priority={true}
 					src={iconUrl}
 					alt="#"
-					width={150}
+					width={width}
 					height={height}
 				/>
 			) : (
-				<div className={style['user-icon']} data-makeborder={makeBorder}>
+				<Box
+					minHeight={height}
+					minWidth={width}
+					width="100%"
+					height="100%"
+					display="grid"
+					sx={{ placeItems: 'center' }}
+					borderRadius="100%"
+					bgcolor="#4e4e4e"
+					fontSize="3.5rem">
 					{altIconText}
-				</div>
+				</Box>
 			)}
-		</div>
+		</Box>
 	);
 };
 

@@ -1,16 +1,27 @@
+'use client';
 import { PropsWithChildren } from 'react';
 import Footer from '@/components/common/Footer';
 import SecondaryHeader from '@/components/common/SecondaryHeader';
+import { Box } from '@mui/material';
+import { useAppSelector } from '@/store/hooks';
+import AuthorizedUserError from '@/components/AuthorizedUserError/AuthorizedUserError';
 
 const Layout = ({ children }: PropsWithChildren) => {
+	const isAuthorized = useAppSelector((state) => state.user.authorized);
+
 	return (
-		<div className="flex flex-col min-h-screen">
+		<Box display={'flex'} flexDirection={'column'} minHeight={'100vh'}>
 			<SecondaryHeader />
-			<div className="flex-[2_1_auto] flex flex-col justify-center items-center">
-				{children}
-			</div>
+			<Box
+				flex={'2 1 auto'}
+				display={'flex'}
+				flexDirection={'column'}
+				justifyContent={'center'}
+				alignItems={'center'}>
+				{isAuthorized ? <AuthorizedUserError /> : children}
+			</Box>
 			<Footer />
-		</div>
+		</Box>
 	);
 };
 
