@@ -7,7 +7,7 @@ interface Props {
 	reset: () => void;
 }
 
-const Error = ({ error, reset }: Props) => {
+const Error = ({ error }: Props) => {
 	const router = useRouter();
 	const handleGoHome = () => router.push('/');
 	const handleGoToFeedback = () => router.push('/feedback');

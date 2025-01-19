@@ -27,7 +27,7 @@ const FullscreenPreview = ({ picture, closeFullscreenPreview }: Props) => {
 		return () => {
 			document.removeEventListener('keydown', escapeHandler);
 		};
-	}, []);
+	}, [closeFullscreenPreview]);
 
 	useEffect(() => {
 		const handleClickOutsidePicture = (event: MouseEvent) => {
@@ -41,7 +41,7 @@ const FullscreenPreview = ({ picture, closeFullscreenPreview }: Props) => {
 		return () => {
 			document.removeEventListener('click', handleClickOutsidePicture);
 		};
-	}, []);
+	}, [closeFullscreenPreview]);
 
 	return (
 		<div className="z-50 fixed top-[0] left-[0] w-screen h-screen overflow-x-hidden overflow-y-hidden bg-gray-900 bg-opacity-70">

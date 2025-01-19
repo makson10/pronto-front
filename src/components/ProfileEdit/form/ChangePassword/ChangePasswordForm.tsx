@@ -1,7 +1,7 @@
 import { Button, Input } from '@nextui-org/react';
-import ChangePasswordVisibility from './ChangePasswordVisibility';
 import PasswordRequirementsHint from '@/components/common/PasswordRequirementsHint';
 import { useState } from 'react';
+import ChangePasswordVisibilityButton from '@/components/common/ChangePasswordVisibilityButton';
 
 interface Props {
 	formik: any;
@@ -67,9 +67,10 @@ const ChangePasswordForm = ({ formik }: Props) => {
 					<Input
 						classNames={inputClassNames}
 						endContent={
-							<ChangePasswordVisibility
+							<ChangePasswordVisibilityButton
 								isPasswordVisible={isNewPasswordVisible}
 								setIsPasswordVisible={setIsNewPasswordVisible}
+								styleVariant={2}
 							/>
 						}
 						size="sm"
@@ -94,9 +95,10 @@ const ChangePasswordForm = ({ formik }: Props) => {
 					<Input
 						classNames={inputClassNames}
 						endContent={
-							<ChangePasswordVisibility
+							<ChangePasswordVisibilityButton
 								isPasswordVisible={isConfirmNewPasswordVisible}
 								setIsPasswordVisible={setIsConfirmNewPasswordVisible}
+								styleVariant={2}
 							/>
 						}
 						type={isConfirmNewPasswordVisible ? 'text' : 'password'}

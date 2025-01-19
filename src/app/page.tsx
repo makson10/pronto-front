@@ -1,14 +1,15 @@
 import Footer from '@/components/common/Footer';
 import MainHeader from '@/components/MainHeader/MainHeader';
-import Homepage from './homepage/homepage';
+import Homepage from './homepage/Homepage';
+import { Box } from '@mui/material';
 
-const Home = async () => {
+const Home = () => {
 	return (
-		<div className="flex flex-col min-h-screen">
+		<Box display={'flex'} flexDirection={'column'} minHeight={'100vh'}>
 			<MainHeader />
 			<Homepage />
 			<Footer />
-		</div>
+		</Box>
 	);
 };
 

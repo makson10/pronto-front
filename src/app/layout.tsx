@@ -19,14 +19,16 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
 	const profile = user?.id ? await getProfile(user.id) : null;
 
 	// TODO:
+	//?! throw non-authorized as HTTPError
+
 	//? not set user up in store if it returns error
 	//? fix eslint warnings
 	//? hide No posts yet title when NewPostForm is open
 
-	//* rewrite component to mui
-	//? add cypress testing
+	//* rewrite component to mui // rewrite /chat, authorizedUserError, common components
 	//? add swagger on backend
 	//? make nestjs refactoring
+	//? add cypress testing
 
 	//? move image upload to backend
 	//? solve bug with non disconnecting socket

@@ -1,4 +1,6 @@
 import { Tooltip } from '@nextui-org/react';
+import { IconButton } from '@mui/material';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 const RequirementsText = () => {
 	return (
@@ -15,14 +17,9 @@ const PasswordRequirementsHint = () => {
 
 	return (
 		<Tooltip content={<RequirementsText />} closeDelay={0}>
-			<button onClick={handleClick} tabIndex={-1}>
-				<img
-					width="18"
-					height="18"
-					src="https://img.icons8.com/material-outlined/24/ffffff/info--v1.png"
-					alt="#"
-				/>
-			</button>
+			<IconButton sx={{ p: 0 }} onClick={handleClick}>
+				<InfoOutlinedIcon color="primary" sx={{ width: '20px' }} />
+			</IconButton>
 		</Tooltip>
 	);
 };

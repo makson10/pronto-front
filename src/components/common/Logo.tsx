@@ -1,4 +1,5 @@
 'use client';
+import { Box } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -6,7 +7,7 @@ const Logo = () => {
 	const router = useRouter();
 
 	return (
-		<div className="flex flex-col justify-center">
+		<Box display={'flex'} flexDirection={'column'} justifyContent={'center'}>
 			<Image
 				priority={true}
 				onClick={() => router.push('/')}
@@ -17,7 +18,7 @@ const Logo = () => {
 				height={36}
 				draggable={false}
 			/>
-		</div>
+		</Box>
 	);
 };
 

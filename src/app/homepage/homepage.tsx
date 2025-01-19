@@ -1,12 +1,13 @@
-import PagesList from '../../components/HomePage/PagesList/PagesList';
-import RecommendationPostFlow from '../../components/HomePage/RecommendationPostFlow/RecommendationPostFlow';
+import PagesList from '@/components/HomePage/PagesList/PagesList';
+import RecommendationPostFlow from '@/components/HomePage/RecommendationPostFlow/RecommendationPostFlow';
+import { Box } from '@mui/material';
 
 const Homepage = () => {
 	return (
-		<div className="flex-[2_1_auto] flex mx-[15%]">
+		<Box flex={'2 1 auto'} display="flex" mx={'15%'}>
 			<PagesList />
 			<RecommendationPostFlow />
-		</div>
+		</Box>
 	);
 };
 

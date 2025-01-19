@@ -1,4 +1,5 @@
 import { createPortal } from 'react-dom';
+import { Box } from '@mui/material';
 import style from '@/styles/messageBox.module.css';
 
 interface Props {
@@ -15,9 +16,9 @@ export const ShowMessageBox = ({ message, isError = false }: Props) => {
 
 const MessageBox = ({ message, isError }: Props) => {
 	return (
-		<div className={style['message-box-wrapper']}>
+		<Box display={'flex'} justifyContent={'center'}>
 			<div className={style['message-box']} data-iserror={isError} />
 			<p className={style['message-box-text']}>{message}</p>
-		</div>
+		</Box>
 	);
 };

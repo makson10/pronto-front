@@ -46,7 +46,7 @@ const MessageList = ({ companionId }: MessageListProps) => {
 		return () => {
 			socket.off('updateMessages', handleMessages);
 		};
-	}, [companionId]);
+	}, [companionId, userId]);
 
 	useEffect(() => liftChatDown(), [messages]);
 

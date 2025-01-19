@@ -1,4 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
+import { Button } from '@mui/material';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 interface Props {
 	isPasswordVisible: boolean;
@@ -17,20 +20,20 @@ const ChangePasswordVisibilityButton = ({
 	};
 
 	return (
-		<button
+		<Button
 			tabIndex={-1}
-			className="rounded-md bg-[#737373] p-[0.3rem] data-[variant=second]:w-fit"
-			data-variant={styleVariant === 1 ? 'first' : 'second'}
+			sx={{
+				borderRadius: '6px',
+				bgcolor: '#737373',
+				p: '0.3rem',
+				minWidth: styleVariant === 1 ? 'auto' : 'fit-content',
+				':hover': {
+					bgcolor: '#737373',
+				},
+			}}
 			onClick={togglePasswordVisible}>
-			<img
-				width="24"
-				height="24"
-				src={`https://img.icons8.com/material-outlined/100/ffffff/${
-					isPasswordVisible ? 'invisible.png' : 'visible--v1.png'
-				}`}
-				alt="#"
-			/>
-		</button>
+			{isPasswordVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}
+		</Button>
 	);
 };
 

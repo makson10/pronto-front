@@ -1,8 +1,3 @@
-.message-box-wrapper {
-	display: flex;
-	justify-content: center;
-}
-
 .message-box[data-iserror='false'] {
 	background-color: #3b4379;
 }
@@ -21,10 +16,6 @@
 	width: max-content;
 	height: 40px;
 	animation: messageBoxAnimation 4000ms linear forwards;
-}
-
-.shadow-message-box-text {
-	opacity: 0;
 }
 
 .message-box-text {
