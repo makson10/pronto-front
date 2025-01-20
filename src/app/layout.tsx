@@ -8,24 +8,21 @@ import '@/styles/globals.css';
 import '@/styles/scrollbar.css';
 import '@/styles/variables.css';
 import 'swiper/css/bundle';
+import CustomThemeProvider from '@/components/common/CustomThemeProvider';
 import { getUserDataBySession } from '@/store/user/userUtils';
 import { getProfile } from '@/store/profile/profileUtils';
 import StoreProvider from '@/store/StoreProvider';
-import CustomThemeProvider from '@/components/common/CustomThemeProvider';
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 
 const RootLayout = async ({ children }: PropsWithChildren) => {
 	const user = await getUserDataBySession();
 	const profile = user?.id ? await getProfile(user.id) : null;
 
 	// TODO:
-	//?! throw non-authorized as HTTPError
-
 	//? not set user up in store if it returns error
 	//? fix eslint warnings
 	//? hide No posts yet title when NewPostForm is open
 
-	//* rewrite component to mui // rewrite /chat, authorizedUserError, common components
+	//* rewrite component to mui
 	//? add swagger on backend
 	//? make nestjs refactoring
 	//? add cypress testing
@@ -46,9 +43,7 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
 			<body>
 				<div id="portal" className="fixed z-[101] w-screen" />
 				<StoreProvider user={user} profile={profile}>
-					<AppRouterCacheProvider>
-						<CustomThemeProvider>{children}</CustomThemeProvider>
-					</AppRouterCacheProvider>
+					<CustomThemeProvider>{children}</CustomThemeProvider>
 				</StoreProvider>
 			</body>
 		</html>

@@ -44,7 +44,11 @@ export const getUserDataByUserId = async (userId: number) => {
 
 export const getUserIdBySession = async () => {
 	const sessionId = await getSessionIdFromCookie();
-	if (!sessionId) throw new Error('You are not logged in yet');
+	if (!sessionId) {
+		throw new Error('You are not logged in yet', {
+			cause: 'Unauthorized access',
+		});
+	}
 	const cookie = encodeCookie('sessionId', sessionId);
 
 	const req = await fetch(

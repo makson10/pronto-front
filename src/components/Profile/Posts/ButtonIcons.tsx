@@ -1,6 +1,8 @@
+import Image from 'next/image';
+
 export const CopyPostLinkItemIcon = () => {
 	return (
-		<img
+		<Image
 			width="20"
 			height="20"
 			src="https://img.icons8.com/windows/ffffff/32/copy-link.png"
@@ -11,7 +13,7 @@ export const CopyPostLinkItemIcon = () => {
 
 export const DeletePostItemIcon = () => {
 	return (
-		<img
+		<Image
 			width="20"
 			height="20"
 			src="https://img.icons8.com/windows/D90000/32/trash.png"

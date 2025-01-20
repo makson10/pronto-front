@@ -1,4 +1,5 @@
 import { Button } from '@nextui-org/react';
+import Image from 'next/image';
 import { ChangeEvent } from 'react';
 
 interface Props {
@@ -19,7 +20,7 @@ const AttachPictureButton = ({ attachFunction }: Props) => {
 					onChange={attachFunction}
 					className="hidden"
 				/>
-				<img
+				<Image
 					width="30"
 					height="30"
 					src="https://img.icons8.com/ios-glyphs/100/camera--v1.png"

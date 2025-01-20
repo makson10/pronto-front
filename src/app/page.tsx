@@ -1,6 +1,6 @@
 import Footer from '@/components/common/Footer';
 import MainHeader from '@/components/MainHeader/MainHeader';
-import Homepage from './homepage/Homepage';
+import Homepage from './homepage/homepage';
 import { Box } from '@mui/material';
 
 const Home = () => {

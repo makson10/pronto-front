@@ -5,6 +5,7 @@ import { ShowMessageBox } from '@/components/common/MessageBox';
 import NewIconPreview from './NewIconPreview';
 import SubmitChangeIcon from './SubmitChangeIcon';
 import DeleteIcon from './DeleteIcon';
+import Image from 'next/image';
 
 interface Props {
 	iconExist: boolean;
@@ -50,7 +51,7 @@ const DropdownInput = ({ iconExist }: Props) => {
 			<div className="flex flex-col gap-4">
 				<label htmlFor="dropdown-file" className="w-full">
 					<div className="cursor-pointer py-4 bg-[#17153B] flex flex-row gap-2 justify-center items-center border-3 border-gray-700 rounded-lg">
-						<img
+						<Image
 							width={24}
 							height={24}
 							src="https://img.icons8.com/ios/100/ffffff/upload-to-cloud--v1.png"

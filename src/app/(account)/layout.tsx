@@ -4,10 +4,15 @@ import Footer from '@/components/common/Footer';
 import SecondaryHeader from '@/components/common/SecondaryHeader';
 import { Box } from '@mui/material';
 import { useAppSelector } from '@/store/hooks';
-import AuthorizedUserError from '@/components/AuthorizedUserError/AuthorizedUserError';
 
 const Layout = ({ children }: PropsWithChildren) => {
 	const isAuthorized = useAppSelector((state) => state.user.authorized);
+	if (isAuthorized) {
+		throw new Error(
+			"It seems you're trying to access authorization page while being authorized. Please, log out first or go to another page",
+			{ cause: 'Authorization page access denied' },
+		);
+	}
 
 	return (
 		<Box display={'flex'} flexDirection={'column'} minHeight={'100vh'}>
@@ -18,7 +23,7 @@ const Layout = ({ children }: PropsWithChildren) => {
 				flexDirection={'column'}
 				justifyContent={'center'}
 				alignItems={'center'}>
-				{isAuthorized ? <AuthorizedUserError /> : children}
+				{children}
 			</Box>
 			<Footer />
 		</Box>

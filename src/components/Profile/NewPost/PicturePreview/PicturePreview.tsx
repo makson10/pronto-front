@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import FullscreenPreview from '@/components/Picture/FullscreenPreview';
 import DisplayedPicture from '@/components/Picture/DisplayedPicture';
+import Image from 'next/image';
 
 interface PicturePreviewProps {
 	pictureUrl: string;
@@ -37,7 +38,7 @@ const PicturePreview = ({
 					<DisplayedPicture pictureUrl={pictureUrl} />
 				</div>
 				<button className="m-auto" onClick={deleteNewPostPicture}>
-					<img
+					<Image
 						width="25"
 						height="25"
 						src="https://img.icons8.com/ios-filled/100/multiply.png"

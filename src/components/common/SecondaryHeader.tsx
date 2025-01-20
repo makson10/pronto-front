@@ -1,10 +1,18 @@
 import Logo from './Logo';
+import { Box } from '@mui/material';
 
 const SecondaryHeader = () => {
 	return (
-		<div className="w-screen min-h-[64px] bg-[--header-bg-color] flex flex-row justify-center py-3">
+		<Box
+			width={'100vw'}
+			minHeight={'64px'}
+			bgcolor={'var(--header-bg-color)'}
+			display={'flex'}
+			flexDirection={'row'}
+			justifyContent={'center'}
+			py={'0.75rem'}>
 			<Logo />
-		</div>
+		</Box>
 	);
 };
 

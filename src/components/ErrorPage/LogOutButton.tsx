@@ -1,17 +1,18 @@
 import { useAppDispatch } from '@/store/hooks';
 import { removeUser } from '@/store/user/userSlice';
 import { removeProfile } from '@/store/profile/profileSlice';
-import usePageNavigation from '@/hooks/usePageNavigation';
+import { Button } from '@mui/material';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
 const LogOutButton = () => {
+	const router = useRouter();
 	const dispatch = useAppDispatch();
-	const { refreshPage } = usePageNavigation();
 
 	const handleClick = async () => {
 		await makeLogOutRequest();
 		await resetAllSessionStates();
-		refreshPage();
+		router.refresh();
 	};
 
 	const resetAllSessionStates = async () => {
@@ -33,12 +34,15 @@ const LogOutButton = () => {
 	};
 
 	return (
-		<button
-			onClick={handleClick}
-			className="button px-4 pt-[0.6rem] pb-[0.7rem] rounded-[5px] text-base"
-			style={{ backgroundColor: 'rgb(29 78 216)' }}>
+		<Button
+			variant="contained"
+			sx={{
+				width: '50%',
+				height: '100%',
+			}}
+			onClick={handleClick}>
 			Log out
-		</button>
+		</Button>
 	);
 };
 

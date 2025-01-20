@@ -1,6 +1,9 @@
 'use client';
-import { Box, Button, Container, Typography } from '@mui/material';
-import { useRouter } from 'next/navigation';
+import GoHomeButton from '@/components/ErrorPage/GoHomeButton';
+import LeaveFeedbackButton from '@/components/ErrorPage/LeaveFeedbackButton';
+import LogInButton from '@/components/ErrorPage/LogInButton';
+import LogOutButton from '@/components/ErrorPage/LogOutButton';
+import { Box, Container, Typography } from '@mui/material';
 
 interface Props {
 	error: Error & { digest?: string; cause?: string };
@@ -8,10 +11,6 @@ interface Props {
 }
 
 const Error = ({ error }: Props) => {
-	const router = useRouter();
-	const handleGoHome = () => router.push('/');
-	const handleGoToFeedback = () => router.push('/feedback');
-
 	return (
 		<Container sx={{ height: '100vh' }}>
 			<Box
@@ -39,24 +38,21 @@ const Error = ({ error }: Props) => {
 					</Box>
 					<Box
 						sx={{
+							minWidth: '300px',
 							display: 'flex',
 							flexDirection: 'row',
+							justifyContent: 'space-between',
 							alignItems: 'center',
 							gap: 2,
 						}}>
-						<Button
-							variant="contained"
-							sx={{ width: '50%', height: '100%' }}
-							color="success"
-							onClick={handleGoHome}>
-							Go home
-						</Button>
-						<Button
-							variant="contained"
-							sx={{ width: '50%', height: '100%' }}
-							onClick={handleGoToFeedback}>
-							Leave feedback
-						</Button>
+						<GoHomeButton />
+						{error.cause === 'Authorization page access denied' ? (
+							<LogOutButton />
+						) : error.cause === 'Unauthorized access' ? (
+							<LogInButton />
+						) : (
+							<LeaveFeedbackButton />
+						)}
 					</Box>
 				</Box>
 			</Box>

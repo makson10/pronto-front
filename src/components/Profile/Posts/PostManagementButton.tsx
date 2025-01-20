@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { ShowMessageBox } from '@/components/common/MessageBox';
 import { CopyPostLinkItemIcon, DeletePostItemIcon } from './ButtonIcons';
+import Image from 'next/image';
 
 interface Props {
 	postId: number;
@@ -55,7 +56,7 @@ const PostManagementButton = ({ postId }: Props) => {
 						<button
 							className="p-2 rounded-lg font-bold bg-gray-800"
 							ref={dropdownTriggerRef}>
-							<img
+							<Image
 								width="18"
 								height="18"
 								src="https://img.icons8.com/ios-glyphs/100/ffffff/ellipsis.png"
