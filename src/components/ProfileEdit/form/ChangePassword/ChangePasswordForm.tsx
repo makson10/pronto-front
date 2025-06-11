@@ -2,6 +2,7 @@ import { Button, Input } from '@nextui-org/react';
 import PasswordRequirementsHint from '@/components/common/PasswordRequirementsHint';
 import { useState } from 'react';
 import ChangePasswordVisibilityButton from '@/components/common/ChangePasswordVisibilityButton';
+import StyledButton from '@/components/StyledButton/StyledButton';
 
 interface Props {
 	formik: any;
@@ -111,9 +112,9 @@ const ChangePasswordForm = ({ formik }: Props) => {
 				</div>
 			</div>
 			<div className="mt-8 w-full flex flex-row justify-end">
-				<Button className="button" type="submit" disabled={isSubmitting}>
+				<StyledButton type="submit" disabled={isSubmitting}>
 					Submit
-				</Button>
+				</StyledButton>
 			</div>
 		</form>
 	);

@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import Image from 'next/image';
 import FullscreenPreview from '@/components/Picture/FullscreenPreview';
 import DisplayedPicture from '@/components/Picture/DisplayedPicture';
-import Image from 'next/image';
+import { Box } from '@mui/material';
 
 interface PicturePreviewProps {
 	pictureUrl: string;
@@ -33,19 +34,28 @@ const PicturePreview = ({
 					closeFullscreenPreview={closeFullscreenPreview}
 				/>
 			)}
-			<div className="bg-white pl-1 rounded-small border-1 flex flex-row gap-1">
-				<div className="m-auto" onClick={openFullscreenPreview}>
+			<Box
+				sx={{
+					bgcolor: 'white',
+					pl: '0.25rem',
+					borderRadius: '0.25rem',
+					border: '1px solid',
+					display: 'flex',
+					flexDirection: 'row',
+					gap: '0.25rem',
+				}}>
+				<Box sx={{ m: 'auto' }} onClick={openFullscreenPreview}>
 					<DisplayedPicture pictureUrl={pictureUrl} />
-				</div>
-				<button className="m-auto" onClick={deleteNewPostPicture}>
+				</Box>
+				<Box sx={{ m: 'auto' }} onClick={deleteNewPostPicture}>
 					<Image
-						width="25"
-						height="25"
+						width={25}
+						height={25}
 						src="https://img.icons8.com/ios-filled/100/multiply.png"
 						alt="#"
 					/>
-				</button>
-			</div>
+				</Box>
+			</Box>
 		</>
 	);
 };

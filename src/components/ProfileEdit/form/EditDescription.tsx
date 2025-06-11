@@ -21,16 +21,14 @@ const EditDescription = ({
 	};
 
 	useEffect(() => {
-		descriptionInputRef.current?.addEventListener(
-			'keydown',
-			enterPreventHandler,
-		);
+		const input = descriptionInputRef.current;
+
+		if (!input) return;
+
+		input.addEventListener('keydown', enterPreventHandler);
 
 		return () => {
-			descriptionInputRef.current?.removeEventListener(
-				'keydown',
-				enterPreventHandler,
-			);
+			input.removeEventListener('keydown', enterPreventHandler);
 		};
 	}, []);
 

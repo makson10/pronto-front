@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 interface Props {
@@ -11,9 +12,17 @@ const NewIconPreview = ({ newIcon }: Props) => {
 		setNewIconUrl(URL.createObjectURL(newIcon));
 	}, [newIcon]);
 
+	if (!newIconUrl) return null;
+
 	return (
 		<div className="h-[250px] flex justify-center items-center">
-			<img className="max-h-[250px]" src={newIconUrl} alt="#" />
+			<Image
+				className="w-full max-h-[250px] object-contain"
+				src={newIconUrl}
+				alt="#"
+				width={250}
+				height={250}
+			/>
 		</div>
 	);
 };

@@ -1,6 +1,7 @@
 import SettingsButtons from './OptionData/SettingsButtons';
 import CharacterCounter from './OptionData/CharacterCounter';
 import NewPostPicturePreview from './PicturePreview/PicturePreview';
+import { Box } from '@mui/material';
 
 interface OptionDataProps {
 	setNewPostText: React.Dispatch<React.SetStateAction<string>>;
@@ -16,8 +17,14 @@ const OptionData = ({
 	charactersAmount,
 }: OptionDataProps) => {
 	return (
-		<div className="w-full flex flex-row justify-between">
-			<div className="flex flex-row gap-6">
+		<Box
+			sx={{
+				width: '100%',
+				display: 'flex',
+				flexDirection: 'row',
+				justifyContent: 'space-between',
+			}}>
+			<Box sx={{ display: 'flex', flexDirection: 'row', gap: '1.5rem' }}>
 				<SettingsButtons
 					setText={setNewPostText}
 					setPicture={setNewPostPicture}
@@ -28,9 +35,9 @@ const OptionData = ({
 						setNewPostPicture={setNewPostPicture}
 					/>
 				)}
-			</div>
+			</Box>
 			<CharacterCounter charactersAmount={charactersAmount} />
-		</div>
+		</Box>
 	);
 };
 

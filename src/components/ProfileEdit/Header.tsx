@@ -1,6 +1,7 @@
 'use client';
-import { Button, User } from '@nextui-org/react';
+import { User } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
+import StyledButton from '../StyledButton/StyledButton';
 
 interface Props {
 	iconUrl: string | null;
@@ -27,11 +28,7 @@ const GoBackButton = () => {
 	const router = useRouter();
 	const handleClick = () => router.back();
 
-	return (
-		<Button className="button" onClick={handleClick}>
-			Go back
-		</Button>
-	);
+	return <StyledButton onClick={handleClick}>Go back</StyledButton>;
 };
 
 export default Header;

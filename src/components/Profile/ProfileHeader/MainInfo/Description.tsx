@@ -50,7 +50,7 @@ const Description = ({ description, showEntireDescription = false }: Props) => {
 				setDescriptionFadeOutLetter((state) => [...state, letterElement]);
 			});
 		}
-	}, [userDescription]);
+	}, [description, showEntireDescription, userDescription]);
 
 	if (!description) return <NoDescriptionMessage />;
 

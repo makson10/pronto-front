@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Link, Stack, Typography } from '@mui/material';
+import { Divider, Link, Stack, Typography } from '@mui/material';
 
 const RegisterButton = () => {
 	return (

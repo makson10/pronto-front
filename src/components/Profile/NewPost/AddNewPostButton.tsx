@@ -1,5 +1,6 @@
 'use client';
-import { Button } from '@nextui-org/react';
+import StyledButton from '@/components/StyledButton/StyledButton';
+import { Box } from '@mui/material';
 
 interface Props {
 	openEditor: (event?: React.MouseEvent<HTMLButtonElement>) => void;
@@ -7,11 +8,15 @@ interface Props {
 
 const AddNewPostButton = ({ openEditor }: Props) => {
 	return (
-		<div className="w-full flex flex-row justify-end">
-			<Button className="min-h-[40px] button text-base" onClick={openEditor}>
-				Add new post
-			</Button>
-		</div>
+		<Box
+			sx={{
+				width: '100%',
+				display: 'flex',
+				flexDirection: 'row',
+				justifyContent: 'flex-end',
+			}}>
+			<StyledButton onClick={openEditor}>Add new post</StyledButton>
+		</Box>
 	);
 };
 

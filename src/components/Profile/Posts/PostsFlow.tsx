@@ -2,16 +2,33 @@
 import { PropsWithChildren } from 'react';
 import AddNewPost from '../NewPost/AddNewPost';
 import { useAppSelector } from '@/store/hooks';
+import { Box } from '@mui/material';
 
-export default function PostsFlow({ children }: PropsWithChildren) {
+const PostsFlow = ({ children }: PropsWithChildren) => {
 	const shouldShowAddNewPost = useAppSelector(
 		(state) => state.requestedProfile.isAuthorWatchProfile,
 	);
 
+	const addingNewPost = useAppSelector((state) => state.profile.addingNewPost);
+
 	return (
-		<div className="w-[65%] flex-[1] flex flex-col gap-4 bg-[--main-color] border-[4px] border-[--border-main-color] rounded-xl p-4">
+		<Box
+			sx={{
+				width: '65%',
+				flex: '1',
+				display: 'flex',
+				flexDirection: 'column',
+				gap: '16px',
+				backgroundColor: 'var(--main-color)',
+				borderWidth: '4px',
+				borderColor: 'var(--border-main-color)',
+				borderRadius: '12px',
+				padding: '1rem',
+			}}>
 			{shouldShowAddNewPost && <AddNewPost />}
-			{children}
-		</div>
+			{!addingNewPost && children}
+		</Box>
 	);
-}
+};
+
+export default PostsFlow;

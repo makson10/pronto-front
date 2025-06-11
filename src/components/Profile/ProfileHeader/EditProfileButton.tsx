@@ -1,5 +1,5 @@
 'use client';
-import { Button } from '@nextui-org/react';
+import StyledButton from '@/components/StyledButton/StyledButton';
 import { useRouter } from 'next/navigation';
 
 const EditProfileButton = () => {
@@ -7,12 +7,9 @@ const EditProfileButton = () => {
 	const handleClick = () => router.push('/profile/edit');
 
 	return (
-		<Button
-			className="button"
-			onClick={handleClick}
-			aria-label="edit-profile-button">
+		<StyledButton onClick={handleClick} aria-label="edit-profile-button">
 			Edit profile
-		</Button>
+		</StyledButton>
 	);
 };
 

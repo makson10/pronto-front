@@ -1,16 +1,40 @@
 import { PropsWithChildren } from 'react';
 import Footer from '@/components/common/Footer';
 import LayoutHeader from '@/components/Profile/LayoutHeader/LayoutHeader';
+import { Box } from '@mui/material';
 
 const Layout = ({ children }: PropsWithChildren) => {
 	return (
-		<div className="flex flex-col min-h-screen">
+		<Box
+			sx={{
+				display: 'flex',
+				flexDirection: 'column',
+				minHeight: '100vh',
+			}}>
 			<LayoutHeader />
-			<div className="flex-[2_1_auto] flex flex-col justify-center items-center px-[18%] py-4">
-				<div className="w-full flex-[1] flex flex-col gap-4">{children}</div>
-			</div>
+			<Box
+				sx={{
+					flex: '2 1 auto',
+					display: 'flex',
+					flexDirection: 'column',
+					justifyContent: 'center',
+					alignItems: 'center',
+					px: '18%',
+					py: '1rem',
+				}}>
+				<Box
+					sx={{
+						width: '100%',
+						flex: '1',
+						display: 'flex',
+						flexDirection: 'column',
+						gap: '1rem',
+					}}>
+					{children}
+				</Box>
+			</Box>
 			<Footer />
-		</div>
+		</Box>
 	);
 };
 

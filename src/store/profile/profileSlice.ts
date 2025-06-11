@@ -3,10 +3,12 @@ import { Profile } from '@/types/profile';
 
 interface ProfileSlice {
 	data: Profile | null;
+	addingNewPost: boolean;
 }
 
 const initialState: ProfileSlice = {
 	data: null,
+	addingNewPost: false,
 };
 
 export const profileSlice = createSlice({
@@ -19,8 +21,19 @@ export const profileSlice = createSlice({
 		removeProfile: (state) => {
 			state.data = null;
 		},
+		openNewPostEditor: (state) => {
+			state.addingNewPost = true;
+		},
+		closeNewPostEditor: (state) => {
+			state.addingNewPost = false;
+		},
 	},
 });
 
-export const { setProfile, removeProfile } = profileSlice.actions;
+export const {
+	setProfile,
+	removeProfile,
+	openNewPostEditor,
+	closeNewPostEditor,
+} = profileSlice.actions;
 export default profileSlice.reducer;

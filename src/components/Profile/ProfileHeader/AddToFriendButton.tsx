@@ -1,17 +1,13 @@
 'use client';
-
-import { Button } from '@nextui-org/react';
+import StyledButton from '@/components/StyledButton/StyledButton';
 
 const AddToFriendButton = () => {
 	const handleClick = () => console.log('fucking clicked');
 
 	return (
-		<Button
-			className="button"
-			onClick={handleClick}
-			aria-label="add-to-friend-button">
+		<StyledButton onClick={handleClick} aria-label="add-to-friend-button">
 			Add to friends
-		</Button>
+		</StyledButton>
 	);
 };
 

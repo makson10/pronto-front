@@ -1,6 +1,7 @@
 import PasteTextButton from './PasteTextButton';
 import AttachPictureButton from './AttachPictureButton';
 import { ChangeEvent } from 'react';
+import { Box } from '@mui/material';
 
 interface Props {
 	setText: React.Dispatch<React.SetStateAction<string>>;
@@ -19,10 +20,10 @@ const SettingsButtons = ({ setText, setPicture }: Props) => {
 	};
 
 	return (
-		<div className="flex flex-row gap-2">
+		<Box sx={{ display: 'flex', flexDirection: 'row', gap: '0.5rem' }}>
 			<PasteTextButton pasteFunction={pasteText} />
 			<AttachPictureButton attachFunction={attachPicture} />
-		</div>
+		</Box>
 	);
 };
 

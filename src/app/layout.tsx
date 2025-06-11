@@ -19,11 +19,8 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
 
 	// TODO:
 	//? not set user up in store if it returns error
-	//? fix eslint warnings
-	//? hide No posts yet title when NewPostForm is open
 
 	//* rewrite component to mui
-	//? add swagger on backend
 	//? make nestjs refactoring
 	//? add cypress testing
 

@@ -8,26 +8,24 @@ interface Props {
 	goToPath: string;
 }
 
-const PageLink = ({ title, icon, goToPath }: Props) => {
-	return (
-		<Link className="text-xl" href={goToPath}>
-			<Box display="flex" flexDirection="row" gap="0.75rem">
-				<Image width="28" height="28" src={icon} alt="#" />
-				<Typography
-					sx={{
-						fontSize: '1.25rem',
-						cursor: 'pointer',
-						transition: 'all',
-						':hover': {
-							textDecoration: 'underline',
-							textUnderlineOffset: '0.1rem',
-						},
-					}}>
-					{title}
-				</Typography>
-			</Box>
-		</Link>
-	);
-};
+const PageLink = ({ title, icon, goToPath }: Props) => (
+	<Link className="text-xl" href={goToPath}>
+		<Box display="flex" flexDirection="row" gap="0.75rem">
+			<Image width="28" height="28" src={icon} alt="#" />
+			<Typography
+				sx={{
+					fontSize: '1.25rem',
+					cursor: 'pointer',
+					transition: 'all',
+					':hover': {
+						textDecoration: 'underline',
+						textUnderlineOffset: '0.1rem',
+					},
+				}}>
+				{title}
+			</Typography>
+		</Box>
+	</Link>
+);
 
 export default PageLink;

@@ -2,7 +2,7 @@
 import { useRef, useState } from 'react';
 import EditField from './EditField';
 import axios from 'axios';
-import { Button } from '@nextui-org/react';
+import StyledButton from '@/components/StyledButton/StyledButton';
 
 interface MainProps {
 	isVerifed: boolean;
@@ -46,12 +46,9 @@ const SendRequestButton = ({ setShouldShowSendButton }: ButtonProps) => {
 	};
 
 	return (
-		<Button
-			isDisabled={isButtonDisabled.current}
-			className="button"
-			onClick={handleClick}>
+		<StyledButton isDisabled={isButtonDisabled.current} onClick={handleClick}>
 			Send verification request
-		</Button>
+		</StyledButton>
 	);
 };
 

@@ -9,7 +9,7 @@ const PasteTextButton = ({ pasteFunction }: Props) => {
 	return (
 		<Button
 			onClick={pasteFunction}
-			className="button flex justify-center items-center"
+			className="flex justify-center items-center bg-white"
 			size="sm"
 			isIconOnly>
 			<Image

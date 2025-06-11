@@ -10,6 +10,7 @@ import {
 } from '@nextui-org/react';
 import ChangePasswordForm from './ChangePasswordForm';
 import axios from 'axios';
+import StyledButton from '@/components/StyledButton/StyledButton';
 
 const ChangePasswordModal = () => {
 	const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
@@ -47,9 +48,7 @@ const ChangePasswordModal = () => {
 
 	return (
 		<>
-			<Button onPress={onOpen} className="button">
-				Change password
-			</Button>
+			<StyledButton onPress={onOpen}>Change password</StyledButton>
 			<Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="opaque">
 				<ModalContent className="bg-gray-800 p-2">
 					{(onClose) => (

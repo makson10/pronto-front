@@ -1,20 +1,23 @@
 import { useEffect, useRef, useState } from 'react';
-import { Button, Textarea } from '@nextui-org/react';
+import { Textarea } from '@nextui-org/react';
 import { ShowMessageBox } from '@/components/common/MessageBox';
 import OptionData from './OptionData';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import StyledButton from '@/components/StyledButton/StyledButton';
+import { Box } from '@mui/material';
 
 interface Props {
 	closeEditor: (event?: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const textareaStyle = {
-	base: 'w-full min-h-[270px]',
+	base: 'w-full min-h-[270px] focus:outline-none focus:border-none',
 	inputWrapper:
 		'min-h-full pb-0 bg-gray-900 border-3 border-[--border-main-color] data-[hover=true]:bg-gray-900 group-data-[focus=true]:bg-gray-900 flex justify-start',
-	innerWrapper: 'flex flex-col gap-2 h-4/5',
-	input: 'min-h-full group-data-[has-value=true]:text-white textarea-scrollbar',
+	innerWrapper: 'flex flex-col gap-2 h-full',
+	input:
+		'min-h-[80%] group-data-[has-value=true]:text-white textarea-scrollbar',
 };
 
 const NewPostEditor = ({ closeEditor }: Props) => {
@@ -95,16 +98,26 @@ const NewPostEditor = ({ closeEditor }: Props) => {
 					/>
 				}
 			/>
-			<div className="w-full flex flex-row justify-end">
-				<div className="flex flex-row items-end gap-4">
-					<Button className="button" onClick={closeEditor}>
-						Discard new post
-					</Button>
-					<Button className="button" onClick={addPost} ref={postButtonRef}>
+			<Box
+				sx={{
+					width: '100%',
+					display: 'flex',
+					flexDirection: 'row',
+					justifyContent: 'flex-end',
+				}}>
+				<Box
+					sx={{
+						display: 'flex',
+						flexDirection: 'row',
+						alignItems: 'flex-end',
+						gap: '1rem',
+					}}>
+					<StyledButton onClick={closeEditor}>Discard new post</StyledButton>
+					<StyledButton onClick={addPost} ref={postButtonRef}>
 						Post
-					</Button>
-				</div>
-			</div>
+					</StyledButton>
+				</Box>
+			</Box>
 		</>
 	);
 };

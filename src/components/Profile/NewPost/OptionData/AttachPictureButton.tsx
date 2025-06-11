@@ -9,7 +9,7 @@ interface Props {
 const AttachPictureButton = ({ attachFunction }: Props) => {
 	return (
 		<Button
-			className="button flex justify-center items-center"
+			className="flex justify-center items-center bg-white"
 			size="sm"
 			isIconOnly>
 			<label htmlFor="post-image-input">
